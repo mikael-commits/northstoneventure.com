@@ -1152,7 +1152,7 @@
   <div class="confirm-icon">✓</div>
   <p class="hero-eyebrow">Strategy Session Booked</p>
   <h1>Your Call Is <em>Confirmed.</em><br>Here's What To Do Next.</h1>
-  <p>Work through the steps below before our call. It takes under 10 minutes and makes the conversation significantly more valuable.</p>
+  <p>Work through the steps below before our call. It takes just a few minutes and makes the conversation significantly more valuable.</p>
 
   <div class="cal-prompt">
     <span>📅</span>
@@ -1173,7 +1173,7 @@
         <div class="step-num">01</div>
         <div class="step-text">
           <div class="step-name">Watch Overview</div>
-          <div class="step-desc">5 min intro</div>
+          <div class="step-desc">Quick overview</div>
         </div>
       </div>
       <div class="step-item" onclick="scrollToSection('s2', this)">
@@ -1215,7 +1215,7 @@
       <div class="section-header">
         <p class="section-eyebrow">Step 01 · Before We Talk</p>
         <h2 class="section-title">Watch This Short Overview</h2>
-        <p class="section-sub">A 5-minute walkthrough of who we are, how the system works, and what to expect on our call.</p>
+        <p class="section-sub">A quick walkthrough of who we are, how the system works, and what to expect on our call.</p>
       </div>
 
       <div class="video-wrap">
@@ -1223,7 +1223,6 @@
         <video
           id="overview-video"
           controls
-          muted
           playsinline
           style="width:100%;aspect-ratio:16/9;display:block;background:#000;">
           <source src="/northstone-overview.mp4.mp4" type="video/mp4">
@@ -1236,23 +1235,12 @@
           var v = document.getElementById('overview-video');
           v.playbackRate = 1.05;
           v.defaultPlaybackRate = 1.05;
-          var played = false;
-          function tryPlay() {
-            if (played) return;
-            played = true;
-            v.playbackRate = 1.05;
-            v.play().catch(function() {});
-          }
           v.addEventListener('loadedmetadata', function() {
             v.playbackRate = 1.05;
+            v.play().catch(function() {
+              // Autoplay blocked by browser — user will need to press play manually
+            });
           });
-          // Try immediately
-          tryPlay();
-          // Fallback: try on first user interaction if autoplay blocked
-          document.addEventListener('click', function handler() {
-            tryPlay();
-            document.removeEventListener('click', handler);
-          }, { once: true });
         })();
       </script>
     </div>
