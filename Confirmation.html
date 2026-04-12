@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Call Is Confirmed | Northstone Ventures</title>
+  <!--
+    META PIXEL — Add before first ad goes live:
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('track', 'Schedule');
+    </script>
+    GA4:
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID"></script>
+  -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Barlow+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* ─── TOKENS ─────────────────────────────────── */
+    :root {
+      --navy:       #0d1b4b;
+      --navy-deep:  #07101f;
+      --navy-card:  #0d1b4b;
+      --gold:       #c9a84c;
+      --gold-light: #e2c47a;
+      --gold-dim:   rgba(201,168,76,0.18);
+      --off-white:  #f5f6fa;
+      --muted:      #8e9ab5;
+      --border:     rgba(201,168,76,0.18);
+      --border-sub: rgba(255,255,255,0.06);
+
+      /* TYPE SCALE — 3 display sizes only */
+      --t-hero:    clamp(2.6rem, 5vw, 4rem);
+      --t-section: clamp(1.75rem, 2.8vw, 2.4rem);
+      --t-card:    1.25rem;
+    }
+
+    /* ─── RESET ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ─── BASE ───────────────────────────────────── */
+    body {
+      background-color: var(--navy-deep);
+      color: var(--off-white);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grain texture — no radial gradients */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle top glow — single, restrained */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── UTILS ──────────────────────────────────── */
+    .gold-rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.3;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ─── HEADER ─────────────────────────────────── */
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 1.75rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-sub);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .logo-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      line-height: 1;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 400;
+      color: var(--gold);
+      letter-spacing: 0.22em;
+      margin-top: 0.2rem;
+    }
+
+    .header-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.9rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(201,168,76,0.06);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse-dot 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      max-width: 760px;
+      margin: 0 auto;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .confirm-icon {
+      width: 64px;
+      height: 64px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-size: 1.4rem;
+      color: var(--gold);
+      animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.15s both;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-hero);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--off-white);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Calendar prompt */
+    .cal-prompt {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(74,222,128,0.07);
+      border: 1px solid rgba(74,222,128,0.25);
+      padding: 0.6rem 1.2rem;
+      font-size: 0.82rem;
+      color: #86efac;
+      margin-bottom: 2rem;
+    }
+
+    .cal-prompt strong { font-weight: 500; }
+
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto;
+      opacity: 0.4;
+    }
+
+    /* ─── STEP NAV (vertical sidebar on desktop) ─── */
+    .page-layout {
+      position: relative;
+      z-index: 10;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .step-sidebar {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .step-sidebar-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-sub);
+    }
+
+    .step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-left: 1px solid var(--border-sub);
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.9rem 0 0.9rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      border-left: 2px solid transparent;
+      margin-left: -1px;
+    }
+
+    .step-item.active {
+      border-left-color: var(--gold);
+    }
+
+    .step-item:hover:not(.active) {
+      border-left-color: rgba(201,168,76,0.3);
+    }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.25;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .step-item.active .step-num,
+    .step-item:hover .step-num { opacity: 1; }
+
+    .step-text {}
+
+    .step-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s ease;
+      line-height: 1.2;
+    }
+
+    .step-item.active .step-name { color: var(--off-white); }
+
+    .step-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      opacity: 0.6;
+      margin-top: 0.15rem;
+      line-height: 1.3;
+    }
+
+    /* ─── MAIN CONTENT ───────────────────────────── */
+    .content-col { min-width: 0; }
+
+    /* Section header */
+    .section-header {
+      margin-bottom: 2rem;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .section-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-section);
+      font-weight: 600;
+      color: var(--off-white);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .section-block {
+      margin-bottom: 5rem;
+    }
+
+    /* ─── LOOM VIDEO ─────────────────────────────── */
+    .video-wrap {
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    .video-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+    }
+
+    .video-placeholder {
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      background: var(--navy-card);
+      cursor: pointer;
+    }
+
+    .play-ring {
+      width: 64px;
+      height: 64px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--gold);
+      transition: all 0.25s ease;
+    }
+
+    .video-placeholder:hover .play-ring {
+      background: var(--gold);
+      color: var(--navy-deep);
+      transform: scale(1.06);
+    }
+
+    .video-placeholder p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ─── FAQ ────────────────────────────────────── */
+    .faq-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border-sub);
+      border: 1px solid var(--border-sub);
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    .faq-item { background: var(--navy-deep); }
+
+    .faq-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      padding: 1.6rem 1.75rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s ease;
+    }
+
+    .faq-item:hover .faq-trigger { background: rgba(255,255,255,0.02); }
+    .faq-item.open .faq-trigger   { background: rgba(201,168,76,0.04); }
+
+    .faq-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .faq-n {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.35;
+      flex-shrink: 0;
+      width: 20px;
+      margin-top: 0.05rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .faq-item.open .faq-n { opacity: 1; }
+
+    .faq-q {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--off-white);
+      line-height: 1.45;
+    }
+
+    .faq-chevron {
+      font-size: 0.75rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    .faq-body {
+      display: none;
+      padding: 0 1.75rem 0 4.25rem;
+      border-top: 1px solid var(--border-sub);
+    }
+
+    .faq-item.open .faq-body { display: block; }
+
+    .faq-body-inner {
+      padding: 1.25rem 0 1.5rem;
+    }
+
+    .faq-answer {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .faq-video-hint {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    /* ─── CREDIBILITY GRID ───────────────────────── */
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border-sub);
+      border: 1px solid var(--border-sub);
+      margin-bottom: 1px;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    .cred-item {
+      background: var(--navy-card);
+      padding: 1.75rem;
+      transition: background 0.2s ease;
+    }
+
+    .cred-item:hover { background: rgba(13,27,75,0.8); }
+
+    .cred-icon {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .cred-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .cred-text {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── ROI CALCULATOR ─────────────────────────── */
+    .calc-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border-sub);
+      border: 1px solid var(--border-sub);
+      animation: fadeUp 0.7s ease 0.4s both;
+    }
+
+    .calc-inputs {
+      background: var(--navy-card);
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .calc-inputs-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-sub);
+    }
+
+    .calc-row {}
+
+    .calc-row-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.65rem;
+    }
+
+    .calc-row-label {
+      font-size: 0.8rem;
+      color: var(--off-white);
+      font-weight: 400;
+    }
+
+    .calc-row-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 1px;
+      background: rgba(201,168,76,0.25);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--gold);
+      background: var(--navy-deep);
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .slider::-webkit-slider-thumb:hover { background: var(--gold); }
+    .slider::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--gold);
+      background: var(--navy-deep);
+      cursor: pointer;
+      border-radius: 0;
+    }
+
+    .slider-bounds {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.3rem;
+      font-size: 0.62rem;
+      color: var(--muted);
+      opacity: 0.45;
+    }
+
+    /* Results panel */
+    .calc-results {
+      background: rgba(201,168,76,0.04);
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .calc-total-block {
+      text-align: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-sub);
+    }
+
+    .calc-total-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .calc-total-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      transition: all 0.35s ease;
+    }
+
+    .calc-total-sub {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+    }
+
+    .calc-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .calc-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .calc-line:last-child { border-bottom: none; }
+
+    .calc-line-left { flex: 1; min-width: 0; }
+
+    .calc-line-name {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--off-white);
+      margin-bottom: 0.15rem;
+    }
+
+    .calc-line-desc {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .calc-line-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .calc-cta-note {
+      border: 1px solid var(--border);
+      background: rgba(201,168,76,0.05);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .calc-cta-note strong { color: var(--off-white); font-weight: 500; }
+
+    /* ─── TESTIMONIALS ───────────────────────────── */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border-sub);
+      border: 1px solid var(--border-sub);
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    .testimonial-card {
+      background: var(--navy-card);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .testimonial-quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.2;
+      line-height: 0.8;
+    }
+
+    .testimonial-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .testimonial-placeholder-text {
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0.5;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-sub);
+    }
+
+    .testimonial-avatar {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .testimonial-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .testimonial-firm {
+      font-size: 0.72rem;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
+    /* ─── CALL BANNER ────────────────────────────── */
+    .call-banner {
+      border: 1px solid var(--border);
+      background: var(--navy-card);
+      overflow: hidden;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    .call-banner-top {
+      background: var(--gold);
+      padding: 0.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .call-banner-top span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--navy-deep);
+    }
+
+    .call-banner-body {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .call-banner-left h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--t-card);
+      font-weight: 600;
+      color: var(--off-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .call-banner-left p {
+      font-size: 0.96rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .call-banner-left a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .call-banner-left a:hover { text-decoration: underline; }
+
+    .call-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border-sub);
+      flex-shrink: 0;
+    }
+
+    .call-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border-bottom: 1px solid var(--border-sub);
+    }
+
+    .call-meta-row:last-child { border-bottom: none; }
+
+    .call-meta-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.6rem 1rem;
+      border-right: 1px solid var(--border-sub);
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .call-meta-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--off-white);
+      padding: 0.6rem 1rem;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid var(--border-sub);
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer p { font-size: 0.75rem; color: var(--muted); }
+
+    footer a {
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* AI CAPABILITIES ROW */
+    .ai-caps {
+      display: flex;
+      gap: 1px;
+      background: var(--border-sub);
+      border: 1px solid var(--border-sub);
+      margin-bottom: 1px;
+    }
+
+    .ai-cap {
+      flex: 1;
+      background: var(--navy-card);
+      padding: 0.6rem 0.75rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+    }
+
+    /* HIGHLIGHT LINE */
+    .calc-line-highlight {
+      background: rgba(201,168,76,0.05);
+      border-left: 2px solid var(--gold);
+      padding-left: 0.5rem;
+      margin-left: -0.5rem;
+    }
+
+    .calc-line-highlight .calc-line-val {
+      color: var(--gold);
+      font-size: 1.3rem;
+    }
+
+    /* EQUIVALENT TO CARD */
+    .calc-equiv-card {
+      border: 1px solid var(--gold);
+      background: rgba(201,168,76,0.06);
+      padding: 1rem 1.25rem;
+      text-align: center;
+    }
+
+    .calc-equiv-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .calc-equiv-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--off-white);
+      line-height: 1.5;
+    }
+
+    /* VS TABLE */
+    .vs-table {
+      border: 1px solid var(--border-sub);
+      background: var(--navy-card);
+      margin-top: 1px;
+      overflow: hidden;
+    }
+
+    .vs-table-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--border-sub);
+    }
+
+    .vs-col-head {
+      padding: 0.75rem 1.25rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .vs-col-head.vs-col-current { color: var(--muted); }
+    .vs-col-head.vs-col-ai { color: var(--gold); border-left: 1px solid var(--border-sub); }
+
+    .vs-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border-sub);
+    }
+
+    .vs-row-last { border-bottom: none; }
+
+    .vs-row > div {
+      padding: 0.85rem 1.25rem;
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .vs-col-label { color: var(--muted); }
+
+    .vs-bad { color: var(--muted); text-align: center; opacity: 0.6; }
+
+    .vs-good {
+      color: var(--gold-light);
+      text-align: center;
+      font-weight: 500;
+      border-left: 1px solid var(--border-sub);
+    }
+
+    @media (max-width: 640px) {
+      .ai-caps { flex-wrap: wrap; }
+      .vs-table-header, .vs-row { grid-template-columns: 1fr; }
+      .vs-col-head.vs-col-ai, .vs-good { border-left: none; }
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 900px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .step-sidebar {
+        position: static;
+      }
+
+      .step-list {
+        flex-direction: row;
+        border-left: none;
+        border-top: 1px solid var(--border-sub);
+        overflow-x: auto;
+      }
+
+      .step-item {
+        border-left: none;
+        border-top: 2px solid transparent;
+        margin-left: 0;
+        margin-top: -1px;
+        padding: 0.75rem 1rem;
+        flex-direction: column;
+        gap: 0.25rem;
+        align-items: center;
+        text-align: center;
+        min-width: 90px;
+      }
+
+      .step-item.active { border-top-color: var(--gold); border-left-color: transparent; }
+
+      .cred-grid { grid-template-columns: 1fr 1fr; }
+      .calc-wrap { grid-template-columns: 1fr; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .call-banner-body { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 580px) {
+      header { padding: 1.25rem 1.25rem; }
+      .hero { padding: 3.5rem 1.25rem 3rem; }
+      .page-layout { padding: 2rem 1.25rem 3rem; }
+      .cred-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="https://northstoneventure.com" class="logo">
+    <div class="logo-mark">N</div>
+    <div class="logo-text">
+      Northstone Ventures
+      <span>AI Automation · CPA Firms</span>
+    </div>
+  </a>
+  <div class="header-badge">
+    <div class="badge-dot"></div>
+    Call Confirmed
+  </div>
+</header>
+<div class="gold-rule"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="confirm-icon">✓</div>
+  <p class="hero-eyebrow">Strategy Session Booked</p>
+  <h1>Your Call Is <em>Confirmed.</em><br>Here's What To Do Next.</h1>
+  <p>Work through the steps below before our call. It takes under 10 minutes and makes the conversation significantly more valuable.</p>
+
+  <div class="cal-prompt">
+    <span>📅</span>
+    <strong>Action required:</strong>&nbsp;Please manually accept the calendar invite in your email to lock your spot.
+  </div>
+
+  <div class="hero-rule"></div>
+</section>
+
+<!-- PAGE LAYOUT: SIDEBAR + CONTENT -->
+<div class="page-layout">
+
+  <!-- VERTICAL STEP SIDEBAR -->
+  <nav class="step-sidebar" aria-label="Page sections">
+    <div class="step-sidebar-label">On This Page</div>
+    <div class="step-list">
+      <div class="step-item active" onclick="scrollToSection('s1', this)">
+        <div class="step-num">01</div>
+        <div class="step-text">
+          <div class="step-name">Watch Overview</div>
+          <div class="step-desc">5 min intro</div>
+        </div>
+      </div>
+      <div class="step-item" onclick="scrollToSection('s2', this)">
+        <div class="step-num">02</div>
+        <div class="step-text">
+          <div class="step-name">FAQ</div>
+          <div class="step-desc">Common questions</div>
+        </div>
+      </div>
+      <div class="step-item" onclick="scrollToSection('s3', this)">
+        <div class="step-num">03</div>
+        <div class="step-text">
+          <div class="step-name">Calculate ROI</div>
+          <div class="step-desc">Your numbers</div>
+        </div>
+      </div>
+      <div class="step-item" onclick="scrollToSection('s4', this)">
+        <div class="step-num">04</div>
+        <div class="step-text">
+          <div class="step-name">Client Results</div>
+          <div class="step-desc">Testimonials</div>
+        </div>
+      </div>
+      <div class="step-item" onclick="scrollToSection('s5', this)">
+        <div class="step-num">05</div>
+        <div class="step-text">
+          <div class="step-name">Your Call</div>
+          <div class="step-desc">Details + reschedule</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT COLUMN -->
+  <div class="content-col">
+
+    <!-- 01 — LOOM VIDEO -->
+    <div class="section-block" id="s1">
+      <div class="section-header">
+        <p class="section-eyebrow">Step 01 · Before We Talk</p>
+        <h2 class="section-title">Watch This Short Overview</h2>
+        <p class="section-sub">A 5-minute walkthrough of who we are, how the system works, and what to expect on our call.</p>
+      </div>
+
+      <div class="video-wrap">
+        <div class="video-badge">Watch Before Your Call</div>
+        <video
+          id="overview-video"
+          controls
+          muted
+          playsinline
+          style="width:100%;aspect-ratio:16/9;display:block;background:#000;">
+          <source src="/northstone-overview.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <script>
+        (function() {
+          var v = document.getElementById('overview-video');
+          v.playbackRate = 1.05;
+          v.defaultPlaybackRate = 1.05;
+          var played = false;
+          function tryPlay() {
+            if (played) return;
+            played = true;
+            v.playbackRate = 1.05;
+            v.play().catch(function() {});
+          }
+          v.addEventListener('loadedmetadata', function() {
+            v.playbackRate = 1.05;
+          });
+          // Try immediately
+          tryPlay();
+          // Fallback: try on first user interaction if autoplay blocked
+          document.addEventListener('click', function handler() {
+            tryPlay();
+            document.removeEventListener('click', handler);
+          }, { once: true });
+        })();
+      </script>
+    </div>
+
+    <!-- 02 — FAQ -->
+    <div class="section-block" id="s2">
+      <div class="section-header">
+        <p class="section-eyebrow">Step 02 · Before You Ask</p>
+        <h2 class="section-title">Common Questions Answered</h2>
+        <p class="section-sub">Click any question below for a detailed written answer.</p>
+      </div>
+
+      <div class="faq-stack">
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left">
+              <span class="faq-n">1</span>
+              <span class="faq-q">We've worked with agencies before and it didn't work. How is this different?</span>
+            </div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">
+              <p class="faq-answer">Most agencies build generic systems and hand them off. We build specifically for CPA and tax firms — the workflows, language, and client communication sequences are all designed around how accounting practices operate. We also come from a finance and compliance background, which means we understand the professional standards your firm is held to. We stay involved through implementation, not just setup.</p>
+              <!-- <iframe src="https://www.loom.com/embed/YOUR_ID" loading="lazy" frameborder="0" allowfullscreen style="width:100%;aspect-ratio:16/9;display:block;margin-top:1rem;"></iframe> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left">
+              <span class="faq-n">2</span>
+              <span class="faq-q">All our clients come through referrals. Why would we need this?</span>
+            </div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">
+              <p class="faq-answer">Referrals are the best kind of client — but also the least predictable. You've likely done everything right for a client and still lost them to H&R Block because of a $99 offer. Consumer loyalty in this space is fragile. Our system doesn't replace your referral network — it makes sure you're not 100% dependent on it, and it ensures the clients you've already earned don't quietly leave without you knowing why.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left">
+              <span class="faq-n">3</span>
+              <span class="faq-q">We're too busy during tax season to implement something new. When does this make sense?</span>
+            </div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">
+              <p class="faq-answer">That's exactly why you do it now — so it's running on autopilot before next season. Setup takes 30 days. If you start in April or May, the system is live and tested well before the next busy season begins. The firms getting ahead of this are building the infrastructure during the quiet months, not scrambling to fix problems during their busiest weeks.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left">
+              <span class="faq-n">4</span>
+              <span class="faq-q">How does this actually work? What does the 30-day process look like?</span>
+            </div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">
+              <p class="faq-answer">Week 1: We audit your current intake, AR, and client communication process. Week 2: We build and configure the systems — AI receptionist, AR automation, and lead generation — specific to your firm. Week 3: We test everything end to end. Week 4: We go live and monitor performance. You're not building any of this — we build it, you approve it, and we hand it over running.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left">
+              <span class="faq-n">5</span>
+              <span class="faq-q">What's the ROI? Is this worth it for a firm our size?</span>
+            </div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">
+              <p class="faq-answer">The average CPA firm carries $18,000–$42,000 in aged receivables at any given time. Our AR automation typically recovers a meaningful portion within the first 60 days. On the acquisition side, one new retained client at $2,500–$5,000 per year covers the cost of the system for months. We'll build a specific ROI projection for your firm on our call based on your current client base and revenue.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left">
+              <span class="faq-n">6</span>
+              <span class="faq-q">How do you handle our client data? Are you compliant with IRC 7216 and FTC Safeguards?</span>
+            </div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">
+              <p class="faq-answer">Our systems operate at the workflow and communication layer — scheduling, reminders, follow-up, call handling. We don't access or store your clients' tax data. Each build is scoped upfront to make sure it meets IRC 7216 and FTC Safeguards before we touch anything. Automations run inside your own cloud environment, data is encrypted in transit, and we don't reuse data across clients. The enterprise AI models we use don't store or train on your data.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 03 — ROI CALCULATOR -->
+    <div class="section-block" id="s3">
+      <div class="section-header">
+        <p class="section-eyebrow">Step 03 · Your Numbers</p>
+        <h2 class="section-title">Calculate Your ROI</h2>
+        <p class="section-sub">Adjust the inputs below to see what our systems could recover and generate for your specific firm.</p>
+      </div>
+
+      <!-- AI Capabilities labels -->
+      <div class="ai-caps">
+        <div class="ai-cap">24/7 Call Coverage</div>
+        <div class="ai-cap">Calendar Booking</div>
+        <div class="ai-cap">Lead Qualification</div>
+        <div class="ai-cap">Call Routing</div>
+      </div>
+
+      <!-- ROI CALCULATOR -->
+      <div class="calc-wrap">
+        <div class="calc-inputs">
+          <div class="calc-inputs-label">Enter Your Numbers Below</div>
+
+          <div class="calc-row">
+            <div class="calc-row-header">
+              <label class="calc-row-label">Avg Annual Value Per Client</label>
+              <span class="calc-row-val" id="v-acv">$2,500</span>
+            </div>
+            <input type="range" class="slider" id="s-acv" min="500" max="50000" step="500" value="2500" oninput="calc()">
+            <div class="slider-bounds"><span>$500</span><span>$50,000</span></div>
+          </div>
+
+          <div class="calc-row">
+            <div class="calc-row-header">
+              <label class="calc-row-label">Missed Calls Per Week</label>
+              <span class="calc-row-val" id="v-calls">5</span>
+            </div>
+            <input type="range" class="slider" id="s-calls" min="1" max="30" step="1" value="5" oninput="calc()">
+            <div class="slider-bounds"><span>1</span><span>30</span></div>
+          </div>
+
+          <div class="calc-row">
+            <div class="calc-row-header">
+              <label class="calc-row-label">Hours/Week on Phone Admin</label>
+              <span class="calc-row-val" id="v-phone">15 hrs</span>
+            </div>
+            <input type="range" class="slider" id="s-phone" min="5" max="40" step="1" value="15" oninput="calc()">
+            <div class="slider-bounds"><span>5 hrs</span><span>40 hrs</span></div>
+          </div>
+
+          <div class="calc-row">
+            <div class="calc-row-header">
+              <label class="calc-row-label">Avg Billing Rate ($/hr)</label>
+              <span class="calc-row-val" id="v-rate">$200/hr</span>
+            </div>
+            <input type="range" class="slider" id="s-rate" min="100" max="400" step="25" value="200" oninput="calc()">
+            <div class="slider-bounds"><span>$100</span><span>$400</span></div>
+          </div>
+
+          <div class="calc-row">
+            <div class="calc-row-header">
+              <label class="calc-row-label">Aged Receivables (Est.)</label>
+              <span class="calc-row-val" id="v-ar">$25,000</span>
+            </div>
+            <input type="range" class="slider" id="s-ar" min="0" max="100000" step="5000" value="25000" oninput="calc()">
+            <div class="slider-bounds"><span>$0</span><span>$100,000</span></div>
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="calc-total-block">
+            <div class="calc-total-eyebrow">Estimated Annual Opportunity</div>
+            <div class="calc-total-num" id="r-total">$0</div>
+            <div class="calc-total-sub">Conservative projection based on your inputs</div>
+          </div>
+
+          <div class="calc-lines">
+            <div class="calc-line">
+              <div class="calc-line-left">
+                <div class="calc-line-name">📞 Missed Call Revenue</div>
+                <div class="calc-line-desc" id="d-calls">—</div>
+              </div>
+              <div class="calc-line-val" id="r-calls">$0</div>
+            </div>
+            <div class="calc-line calc-line-highlight">
+              <div class="calc-line-left">
+                <div class="calc-line-name">⏱ Staff Time Recaptured</div>
+                <div class="calc-line-desc" id="d-labor">—</div>
+              </div>
+              <div class="calc-line-val" id="r-labor">$0</div>
+            </div>
+            <div class="calc-line">
+              <div class="calc-line-left">
+                <div class="calc-line-name">💰 AR Recovery (60-day)</div>
+                <div class="calc-line-desc" id="d-ar">—</div>
+              </div>
+              <div class="calc-line-val" id="r-ar">$0</div>
+            </div>
+            <div class="calc-line">
+              <div class="calc-line-left">
+                <div class="calc-line-name">📈 New Client Acquisition</div>
+                <div class="calc-line-desc" id="d-leads">—</div>
+              </div>
+              <div class="calc-line-val" id="r-leads">$0</div>
+            </div>
+          </div>
+
+          <!-- Equivalent To card -->
+          <div class="calc-equiv-card">
+            <div class="calc-equiv-label">Equivalent To</div>
+            <div class="calc-equiv-val" id="r-equiv">—</div>
+          </div>
+
+          <div class="calc-cta-note">
+            We'll build a <strong>firm-specific projection</strong> on your call — tailored to your actual client base, billing structure, and current gaps.
+          </div>
+        </div>
+      </div>
+
+      <!-- vs. Current Comparison Table -->
+      <div class="vs-table">
+        <div class="vs-table-header">
+          <div class="vs-col-label"></div>
+          <div class="vs-col-head vs-col-current">Current State</div>
+          <div class="vs-col-head vs-col-ai">With AI Voice Agent</div>
+        </div>
+        <div class="vs-row">
+          <div class="vs-col-label">After-hours calls answered</div>
+          <div class="vs-col-current vs-bad">0%</div>
+          <div class="vs-col-ai vs-good">100%</div>
+        </div>
+        <div class="vs-row">
+          <div class="vs-col-label">Weekly phone admin hours</div>
+          <div class="vs-col-current vs-bad" id="vs-phone-hrs">15 hrs</div>
+          <div class="vs-col-ai vs-good">~2 hrs (exceptions only)</div>
+        </div>
+        <div class="vs-row">
+          <div class="vs-col-label">Annual capacity freed</div>
+          <div class="vs-col-current vs-bad">—</div>
+          <div class="vs-col-ai vs-good" id="vs-capacity">$0 in billable hours</div>
+        </div>
+        <div class="vs-row vs-row-last">
+          <div class="vs-col-label">Estimated annual cost</div>
+          <div class="vs-col-current vs-bad">~$35,000 (receptionist)</div>
+          <div class="vs-col-ai vs-good">Fraction of that — discuss on call</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 — TESTIMONIALS -->
+    <div class="section-block" id="s4">
+      <div class="section-header">
+        <p class="section-eyebrow">Step 04 · Client Results</p>
+        <h2 class="section-title">What Firms Are Saying</h2>
+        <p class="section-sub">Real results from CPA and tax firms using our systems.</p>
+      </div>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-quote-mark">"</div>
+          <p class="testimonial-placeholder-text">Testimonial coming soon — awaiting client case study from the Northstone team.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">—</div>
+            <div>
+              <div class="testimonial-name">Client Name · Firm</div>
+              <div class="testimonial-firm">Location · Placeholder</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote-mark">"</div>
+          <p class="testimonial-placeholder-text">Testimonial coming soon — awaiting client case study from the Northstone team.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">—</div>
+            <div>
+              <div class="testimonial-name">Client Name · Firm</div>
+              <div class="testimonial-firm">Location · Placeholder</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 — CALL DETAILS -->
+    <div class="section-block" id="s5">
+      <div class="section-header">
+        <p class="section-eyebrow">Step 05 · Your Appointment</p>
+        <h2 class="section-title">Call Details</h2>
+        <p class="section-sub">Everything you need for your upcoming strategy session.</p>
+      </div>
+
+      <div class="call-banner">
+        <div class="call-banner-top">
+          <span>🗓 Your Strategy Call Is Scheduled</span>
+        </div>
+        <div class="call-banner-body">
+          <div class="call-banner-left">
+            <h3>Check Your Email for the Video Link</h3>
+            <p>A calendar invite has been sent to you. <strong style="color:var(--gold);">Please manually accept it</strong> to confirm it appears on your Google Calendar — invites no longer auto-populate.</p>
+            <a href="https://calendly.com/northstone_ventures/ceo">Need to reschedule? Find a new time →</a>
+          </div>
+          <div class="call-meta">
+            <div class="call-meta-row">
+              <div class="call-meta-label">Duration</div>
+              <div class="call-meta-val">45 Minutes</div>
+            </div>
+            <div class="call-meta-row">
+              <div class="call-meta-label">Format</div>
+              <div class="call-meta-val">Video Call</div>
+            </div>
+            <div class="call-meta-row">
+              <div class="call-meta-label">With</div>
+              <div class="call-meta-val">Mikael Dubinsky</div>
+            </div>
+            <div class="call-meta-row">
+              <div class="call-meta-label">Firm</div>
+              <div class="call-meta-val">Northstone Ventures</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content-col -->
+</div><!-- /page-layout -->
+
+<footer>
+  <p>© 2026 Northstone Ventures LLC · All rights reserved</p>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="https://northstoneventure.com/privacy">Privacy Policy</a>
+    <a href="https://northstoneventure.com">northstoneventure.com</a>
+  </div>
+</footer>
+
+<script>
+  // ── FAQ ACCORDION ──────────────────────────────
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── STEP SIDEBAR ───────────────────────────────
+  function scrollToSection(id, el) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.step-item').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // Intersection observer for sidebar
+  const sections = ['s1','s2','s3','s4','s5'];
+  const items = document.querySelectorAll('.step-item');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = sections.indexOf(e.target.id);
+        if (idx > -1) items.forEach((t,i) => t.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(id => { const el = document.getElementById(id); if (el) io.observe(el); });
+
+  // ── ROI CALCULATOR ─────────────────────────────
+  function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+  function calc() {
+    const acv      = +document.getElementById('s-acv').value;
+    const calls    = +document.getElementById('s-calls').value;
+    const phoneHrs = +document.getElementById('s-phone').value;
+    const billRate = +document.getElementById('s-rate').value;
+    const ar       = +document.getElementById('s-ar').value;
+
+    // Update display labels
+    document.getElementById('v-acv').textContent   = '$' + acv.toLocaleString('en-US');
+    document.getElementById('v-calls').textContent = calls;
+    document.getElementById('v-phone').textContent = phoneHrs + ' hrs';
+    document.getElementById('v-rate').textContent  = '$' + billRate + '/hr';
+    document.getElementById('v-ar').textContent    = '$' + ar.toLocaleString('en-US');
+
+    // Calculations
+    const callVal  = calls * 52 * 0.10 * acv;                // 10% conservative conversion
+    const laborVal = phoneHrs * 52 * billRate;                // staff time recaptured
+    const arVal    = ar * 0.40;                               // 40% AR recovery in 60 days
+    const leadVal  = 3 * 12 * acv;                            // 3 new clients/month
+    const total    = callVal + laborVal + arVal + leadVal;
+
+    // Update result values
+    document.getElementById('r-calls').textContent = fmt(callVal);
+    document.getElementById('r-labor').textContent = fmt(laborVal);
+    document.getElementById('r-ar').textContent    = fmt(arVal);
+    document.getElementById('r-leads').textContent = fmt(leadVal);
+    document.getElementById('r-total').textContent = fmt(total);
+
+    // Update descriptions
+    document.getElementById('d-calls').textContent = `${calls} missed/wk × 10% conversion × ${fmt(acv)} avg value`;
+    document.getElementById('d-labor').textContent = `${phoneHrs} hrs/wk × 52 weeks × ${fmt(billRate)}/hr billing rate`;
+    document.getElementById('d-ar').textContent    = `40% of ${fmt(ar)} recovered in 60 days`;
+    document.getElementById('d-leads').textContent = `3 new clients/mo × 12 months × ${fmt(acv)}`;
+
+    // Equivalent To — based on fully loaded receptionist cost ~$52k/yr
+    const equivFTE = (total / 52000).toFixed(1);
+    document.getElementById('r-equiv').textContent =
+      `${equivFTE} full-time hires — without the salary, benefits, or turnover.`;
+
+    // vs. table dynamic updates
+    document.getElementById('vs-phone-hrs').textContent = phoneHrs + ' hrs/week';
+    document.getElementById('vs-capacity').textContent  = fmt(laborVal) + ' in billable hours';
+  }
+
+  calc();
+
+  // ── CALENDLY PERSONALIZATION ───────────────────
+  function param(name) { return new URLSearchParams(window.location.search).get(name) || ''; }
+  const firstName = param('invitee_first_name');
+  if (firstName) {
+    document.querySelector('.hero h1').innerHTML =
+      `${firstName}, Your Call Is <em>Confirmed.</em><br>Here's What To Do Next.`;
+  }
+</script>
+
+</body>
+</html>
