@@ -600,7 +600,7 @@
 
     .calc-inputs-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.62rem;
+      font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -619,14 +619,14 @@
     }
 
     .calc-row-label {
-      font-size: 0.8rem;
+      font-size: 0.98rem;
       color: var(--off-white);
       font-weight: 400;
     }
 
     .calc-row-val {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--gold);
     }
@@ -665,9 +665,9 @@
       display: flex;
       justify-content: space-between;
       margin-top: 0.3rem;
-      font-size: 0.62rem;
+      font-size: 0.78rem;
       color: var(--muted);
-      opacity: 0.45;
+      opacity: 0.55;
     }
 
     /* Results panel */
@@ -687,7 +687,7 @@
 
     .calc-total-eyebrow {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.62rem;
+      font-size: 0.78rem;
       font-weight: 600;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -697,7 +697,7 @@
 
     .calc-total-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
       font-weight: 700;
       color: var(--gold);
       line-height: 1;
@@ -705,7 +705,7 @@
     }
 
     .calc-total-sub {
-      font-size: 0.72rem;
+      font-size: 0.88rem;
       color: var(--muted);
       margin-top: 0.4rem;
     }
@@ -730,21 +730,21 @@
     .calc-line-left { flex: 1; min-width: 0; }
 
     .calc-line-name {
-      font-size: 0.82rem;
+      font-size: 0.95rem;
       font-weight: 500;
       color: var(--off-white);
       margin-bottom: 0.15rem;
     }
 
     .calc-line-desc {
-      font-size: 0.72rem;
+      font-size: 0.84rem;
       color: var(--muted);
       line-height: 1.4;
     }
 
     .calc-line-val {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       font-weight: 700;
       color: var(--gold-light);
       flex-shrink: 0;
@@ -755,9 +755,9 @@
       border: 1px solid var(--border);
       background: rgba(201,168,76,0.05);
       padding: 0.9rem 1.1rem;
-      font-size: 0.82rem;
+      font-size: 0.95rem;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .calc-cta-note strong { color: var(--off-white); font-weight: 500; }
@@ -1150,13 +1150,13 @@
 <!-- HERO -->
 <section class="hero">
   <div class="confirm-icon">✓</div>
-  <p class="hero-eyebrow">Strategy Session Booked</p>
-  <h1>Your Call Is <em>Confirmed.</em><br>Here's What To Do Next.</h1>
-  <p>Work through the steps below before our call. It takes just a few minutes and makes the conversation significantly more valuable.</p>
+  <p class="hero-eyebrow">You're Confirmed — One Step Left</p>
+  <h1>Your Call Is <em>Locked In.</em><br>Here's How To Make It Count.</h1>
+  <p>Watch the overview, review the FAQ, and run your numbers below. Firms that come prepared get significantly more out of this conversation.</p>
 
   <div class="cal-prompt">
     <span>📅</span>
-    <strong>Action required:</strong>&nbsp;Please manually accept the calendar invite in your email to lock your spot.
+    <strong>Action required:</strong>&nbsp;Accept the calendar invite in your email to secure your spot.
   </div>
 
   <div class="hero-rule"></div>
@@ -1197,12 +1197,6 @@
           <div class="step-desc">Testimonials</div>
         </div>
       </div>
-      <div class="step-item" onclick="scrollToSection('s5', this)">
-        <div class="step-num">05</div>
-        <div class="step-text">
-          <div class="step-name">Your Call</div>
-          <div class="step-desc">Details + reschedule</div>
-        </div>
       </div>
     </div>
   </nav>
@@ -1219,29 +1213,73 @@
       </div>
 
       <div class="video-wrap">
-        <div class="video-badge">Watch Before Your Call</div>
         <video
           id="overview-video"
           controls
+          muted
+          autoplay
           playsinline
           style="width:100%;aspect-ratio:16/9;display:block;background:#000;">
           <source src="/northstone-overview.mp4.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
+        <!-- Unmute overlay -->
+        <div id="unmute-prompt" onclick="unmuteVideo()" style="
+          position:absolute;
+          bottom:60px;
+          left:50%;
+          transform:translateX(-50%);
+          background:rgba(13,27,75,0.92);
+          border:1px solid rgba(201,168,76,0.5);
+          color:#c9a84c;
+          font-family:'Barlow Condensed',sans-serif;
+          font-size:0.85rem;
+          font-weight:600;
+          letter-spacing:0.18em;
+          text-transform:uppercase;
+          padding:0.6rem 1.4rem;
+          cursor:pointer;
+          display:flex;
+          align-items:center;
+          gap:0.5rem;
+          white-space:nowrap;
+          z-index:10;
+          animation: pulse-unmute 2s ease-in-out infinite;
+        ">
+          🔊 Click to unmute
+        </div>
       </div>
+
+      <style>
+        .video-wrap { position: relative; }
+        @keyframes pulse-unmute {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.6; }
+        }
+      </style>
 
       <script>
         (function() {
           var v = document.getElementById('overview-video');
+          var prompt = document.getElementById('unmute-prompt');
+
           v.playbackRate = 1.1;
           v.defaultPlaybackRate = 1.1;
+
           v.addEventListener('loadedmetadata', function() {
             v.playbackRate = 1.1;
-            v.play().catch(function() {
-              // Autoplay blocked by browser — user will need to press play manually
-            });
           });
+
+          v.play().catch(function() {});
         })();
+
+        function unmuteVideo() {
+          var v = document.getElementById('overview-video');
+          var prompt = document.getElementById('unmute-prompt');
+          v.muted = false;
+          v.playbackRate = 1.1;
+          prompt.style.display = 'none';
+        }
       </script>
     </div>
 
@@ -1311,7 +1349,12 @@
           </button>
           <div class="faq-body">
             <div class="faq-body-inner">
-              <p class="faq-answer">Week 1: We audit your current intake, AR, and client communication process. Week 2: We build and configure the systems — AI receptionist, AR automation, and lead generation — specific to your firm. Week 3: We test everything end to end. Week 4: We go live and monitor performance. You're not building any of this — we build it, you approve it, and we hand it over running.</p>
+              <p class="faq-answer">Timeline depends on your firm's size, client volume, and the complexity of your build — typically 30–60 days from kickoff to live. The process follows four phases regardless of scope.</p>
+              <p class="faq-answer" style="margin-top:1rem;"><strong style="color:var(--off-white);">Discovery.</strong> You share a snapshot of your current tools and key numbers. We map where revenue is leaking and what's recoverable.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Build.</strong> We configure everything — AI receptionist, AR automation, lead generation — integrated with your existing software. You review and approve as we go.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Launch.</strong> Systems go live with active monitoring. Your team gets a walkthrough so everyone knows what's running.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Optimization.</strong> We iterate monthly based on real performance data. You get reports. We handle refinements. We don't disappear after setup.</p>
+              <p class="faq-answer" style="margin-top:1rem;">Your job is to show up, approve, and keep doing what you do best. We'll give you a specific timeline on the call once we understand your firm's scope.</p>
             </div>
           </div>
         </div>
@@ -1326,7 +1369,12 @@
           </button>
           <div class="faq-body">
             <div class="faq-body-inner">
-              <p class="faq-answer">The average CPA firm carries $18,000–$42,000 in aged receivables at any given time. Our AR automation typically recovers a meaningful portion within the first 60 days. On the acquisition side, one new retained client at $2,500–$5,000 per year covers the cost of the system for months. We'll build a specific ROI projection for your firm on our call based on your current client base and revenue.</p>
+              <p class="faq-answer">Every firm is different, but based on what we've modeled across CPA and tax practices of varying sizes, ROI typically lands in the <strong style="color:var(--gold-light);">2.5x–6x range</strong> — and in some cases higher, depending on your starting point. Here's where that return comes from:</p>
+              <p class="faq-answer" style="margin-top:1rem;"><strong style="color:var(--off-white);">New client acquisition.</strong> The lead generation system brings in qualified prospects who are actively looking for a CPA. One new retained client at $2,500–$5,000 per year compounds. Three new clients a month changes your growth trajectory entirely.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Freed capacity for billable and advisory work.</strong> When your team isn't managing phone admin, appointment scheduling, and follow-up manually, those hours go back into billable work and higher-value client relationships. At $150–$300 per billable hour, that recovery adds up fast.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Enhanced client experience and retention.</strong> 24/7 call coverage, instant responses, proactive communication — clients feel looked after. Firms using these systems report stronger client loyalty and fewer quiet departures to competitors or discount services.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Faster collection on aged receivables.</strong> The AR automation sends structured, timely reminders and escalates appropriately — without awkward manual follow-up. Firms typically recover a meaningful portion of their aged balance within the first 60 days.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;">We'll build a projection specific to your firm on the call — based on your actual client base, billing rate, and current gaps.</p>
             </div>
           </div>
         </div>
@@ -1373,46 +1421,47 @@
           <div class="calc-row">
             <div class="calc-row-header">
               <label class="calc-row-label">Avg Annual Value Per Client</label>
-              <span class="calc-row-val" id="v-acv">$2,500</span>
+              <span class="calc-row-val" id="v-acv">$3,000</span>
             </div>
-            <input type="range" class="slider" id="s-acv" min="500" max="50000" step="500" value="2500" oninput="calc()">
+            <input type="range" class="slider" id="s-acv" min="500" max="50000" step="500" value="3000" oninput="calc()">
             <div class="slider-bounds"><span>$500</span><span>$50,000</span></div>
           </div>
 
           <div class="calc-row">
             <div class="calc-row-header">
               <label class="calc-row-label">Missed Calls Per Week</label>
-              <span class="calc-row-val" id="v-calls">5</span>
+              <span class="calc-row-val" id="v-calls">10</span>
             </div>
-            <input type="range" class="slider" id="s-calls" min="1" max="30" step="1" value="5" oninput="calc()">
-            <div class="slider-bounds"><span>1</span><span>30</span></div>
+            <input type="range" class="slider" id="s-calls" min="1" max="50" step="1" value="10" oninput="calc()">
+            <div class="slider-bounds"><span>1</span><span>50</span></div>
           </div>
 
           <div class="calc-row">
             <div class="calc-row-header">
-              <label class="calc-row-label">Hours/Week on Phone Admin</label>
-              <span class="calc-row-val" id="v-phone">15 hrs</span>
+              <label class="calc-row-label">Hours/Week on Phone &amp; Admin</label>
+              <span class="calc-row-val" id="v-phone">20 hrs</span>
             </div>
-            <input type="range" class="slider" id="s-phone" min="5" max="40" step="1" value="15" oninput="calc()">
-            <div class="slider-bounds"><span>5 hrs</span><span>40 hrs</span></div>
+            <input type="range" class="slider" id="s-phone" min="2" max="60" step="1" value="20" oninput="calc()">
+            <div class="slider-bounds"><span>2 hrs</span><span>60 hrs</span></div>
           </div>
 
           <div class="calc-row">
             <div class="calc-row-header">
-              <label class="calc-row-label">Avg Billing Rate ($/hr)</label>
-              <span class="calc-row-val" id="v-rate">$200/hr</span>
+              <label class="calc-row-label">Effective Rate or Opportunity Cost ($/hr)</label>
+              <span class="calc-row-val" id="v-rate">$175/hr</span>
             </div>
-            <input type="range" class="slider" id="s-rate" min="100" max="400" step="25" value="200" oninput="calc()">
-            <div class="slider-bounds"><span>$100</span><span>$400</span></div>
+            <input type="range" class="slider" id="s-rate" min="75" max="500" step="25" value="175" oninput="calc()">
+            <div class="slider-bounds"><span>$75</span><span>$500</span></div>
+            <div style="margin-top:0.5rem;font-size:0.78rem;color:var(--muted);opacity:0.7;line-height:1.5;">Flat-rate firm? Use your effective hourly rate — divide your avg service fee by hours spent per engagement.</div>
           </div>
 
           <div class="calc-row">
             <div class="calc-row-header">
               <label class="calc-row-label">Aged Receivables (Est.)</label>
-              <span class="calc-row-val" id="v-ar">$25,000</span>
+              <span class="calc-row-val" id="v-ar">$40,000</span>
             </div>
-            <input type="range" class="slider" id="s-ar" min="0" max="100000" step="5000" value="25000" oninput="calc()">
-            <div class="slider-bounds"><span>$0</span><span>$100,000</span></div>
+            <input type="range" class="slider" id="s-ar" min="0" max="200000" step="5000" value="40000" oninput="calc()">
+            <div class="slider-bounds"><span>$0</span><span>$200,000</span></div>
           </div>
         </div>
 
@@ -1465,35 +1514,6 @@
           </div>
         </div>
       </div>
-
-      <!-- vs. Current Comparison Table -->
-      <div class="vs-table">
-        <div class="vs-table-header">
-          <div class="vs-col-label"></div>
-          <div class="vs-col-head vs-col-current">Current State</div>
-          <div class="vs-col-head vs-col-ai">With AI Voice Agent</div>
-        </div>
-        <div class="vs-row">
-          <div class="vs-col-label">After-hours calls answered</div>
-          <div class="vs-col-current vs-bad">0%</div>
-          <div class="vs-col-ai vs-good">100%</div>
-        </div>
-        <div class="vs-row">
-          <div class="vs-col-label">Weekly phone admin hours</div>
-          <div class="vs-col-current vs-bad" id="vs-phone-hrs">15 hrs</div>
-          <div class="vs-col-ai vs-good">~2 hrs (exceptions only)</div>
-        </div>
-        <div class="vs-row">
-          <div class="vs-col-label">Annual capacity freed</div>
-          <div class="vs-col-current vs-bad">—</div>
-          <div class="vs-col-ai vs-good" id="vs-capacity">$0 in billable hours</div>
-        </div>
-        <div class="vs-row vs-row-last">
-          <div class="vs-col-label">Estimated annual cost</div>
-          <div class="vs-col-current vs-bad">~$35,000 (receptionist)</div>
-          <div class="vs-col-ai vs-good">Fraction of that — discuss on call</div>
-        </div>
-      </div>
     </div>
 
     <!-- 04 — TESTIMONIALS -->
@@ -1530,46 +1550,6 @@
       </div>
     </div>
 
-    <!-- 05 — CALL DETAILS -->
-    <div class="section-block" id="s5">
-      <div class="section-header">
-        <p class="section-eyebrow">Step 05 · Your Appointment</p>
-        <h2 class="section-title">Call Details</h2>
-        <p class="section-sub">Everything you need for your upcoming strategy session.</p>
-      </div>
-
-      <div class="call-banner">
-        <div class="call-banner-top">
-          <span>🗓 Your Strategy Call Is Scheduled</span>
-        </div>
-        <div class="call-banner-body">
-          <div class="call-banner-left">
-            <h3>Check Your Email for the Video Link</h3>
-            <p>A calendar invite has been sent to you. <strong style="color:var(--gold);">Please manually accept it</strong> to confirm it appears on your Google Calendar — invites no longer auto-populate.</p>
-            <a href="https://calendly.com/northstone_ventures/ceo">Need to reschedule? Find a new time →</a>
-          </div>
-          <div class="call-meta">
-            <div class="call-meta-row">
-              <div class="call-meta-label">Duration</div>
-              <div class="call-meta-val">45 Minutes</div>
-            </div>
-            <div class="call-meta-row">
-              <div class="call-meta-label">Format</div>
-              <div class="call-meta-val">Video Call</div>
-            </div>
-            <div class="call-meta-row">
-              <div class="call-meta-label">With</div>
-              <div class="call-meta-val">Mikael Dubinsky</div>
-            </div>
-            <div class="call-meta-row">
-              <div class="call-meta-label">Firm</div>
-              <div class="call-meta-val">Northstone Ventures</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div><!-- /content-col -->
 </div><!-- /page-layout -->
 
@@ -1598,7 +1578,7 @@
   }
 
   // Intersection observer for sidebar
-  const sections = ['s1','s2','s3','s4','s5'];
+  const sections = ['s1','s2','s3','s4'];
   const items = document.querySelectorAll('.step-item');
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -1642,8 +1622,8 @@
     document.getElementById('r-total').textContent = fmt(total);
 
     // Update descriptions
-    document.getElementById('d-calls').textContent = `${calls} missed/wk × 10% conversion × ${fmt(acv)} avg value`;
-    document.getElementById('d-labor').textContent = `${phoneHrs} hrs/wk × 52 weeks × ${fmt(billRate)}/hr billing rate`;
+    document.getElementById('d-calls').textContent = `${calls} missed/wk × 10% conversion × ${fmt(acv)} avg client value`;
+    document.getElementById('d-labor').textContent = `${phoneHrs} hrs/wk × 52 weeks × ${fmt(billRate)}/hr effective rate`;
     document.getElementById('d-ar').textContent    = `40% of ${fmt(ar)} recovered in 60 days`;
     document.getElementById('d-leads').textContent = `3 new clients/mo × 12 months × ${fmt(acv)}`;
 
@@ -1652,9 +1632,7 @@
     document.getElementById('r-equiv').textContent =
       `${equivFTE} full-time hires — without the salary, benefits, or turnover.`;
 
-    // vs. table dynamic updates
-    document.getElementById('vs-phone-hrs').textContent = phoneHrs + ' hrs/week';
-    document.getElementById('vs-capacity').textContent  = fmt(laborVal) + ' in billable hours';
+
   }
 
   calc();
