@@ -31,6 +31,10 @@
       --muted: #8e9ab5;
       --border: rgba(201,168,76,0.18);
       --border-sub: rgba(255,255,255,0.06);
+      --gray: #6b7a99;
+      --gray-light: #9ca8c2;
+      --white: #ffffff;
+      --navy-light: #142252;
       --t-hero: clamp(2.9rem, 5vw, 4rem);
       --t-section: clamp(1.9rem, 2.8vw, 2.5rem);
       --t-card: 1.18rem;
@@ -942,6 +946,225 @@
       .page-layout { padding: 1.6rem 1.1rem 2.4rem; }
       footer { flex-direction: column; align-items: flex-start; padding: 1.1rem; }
     }
+
+    /* ══ CASE STUDY SECTION ══ */
+    .case-study-block {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      border: 1px solid var(--border);
+      padding: 56px 48px;
+      margin-top: 1rem;
+    }
+    .case-study-block .inner { position: relative; z-index: 2; }
+
+    .cs-shapes {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 0;
+      overflow: hidden;
+    }
+    .cs-shape {
+      position: absolute;
+      border-radius: 9999px;
+      border: 1px solid rgba(201,151,58,0.10);
+    }
+    .cs-shape::after {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 50% 50%, rgba(201,151,58,0.06), transparent 70%);
+    }
+    .cs-s1 { width: 380px; height: 90px; top: 10%; left: -6%;
+      background: linear-gradient(90deg, rgba(201,151,58,0.06), transparent);
+      animation: csFloat 14s ease-in-out infinite; transform: rotate(8deg); }
+    .cs-s2 { width: 260px; height: 65px; bottom: 15%; right: -3%;
+      background: linear-gradient(90deg, rgba(201,151,58,0.04), transparent);
+      animation: csFloat2 17s ease-in-out infinite 1s; transform: rotate(-10deg); }
+    .cs-s3 { width: 140px; height: 40px; top: 50%; left: 8%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+      animation: csFloat 19s ease-in-out infinite 2s; transform: rotate(-5deg); }
+
+    @keyframes csFloat {
+      0%,100% { transform: rotate(8deg) translateY(0); }
+      50% { transform: rotate(8deg) translateY(12px); }
+    }
+    @keyframes csFloat2 {
+      0%,100% { transform: rotate(-10deg) translateY(0); }
+      50% { transform: rotate(-10deg) translateY(-10px); }
+    }
+
+    /* Before/After Card */
+    .ba-card {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .ba-col { padding: 40px 36px; }
+    .ba-before {
+      background: #0b111f;
+      border-right: 1px solid var(--border);
+    }
+    .ba-after {
+      background: rgba(201,151,58,0.06);
+      border-left: 1px solid rgba(201,151,58,0.18);
+    }
+    .ba-divider {
+      background: var(--navy-card);
+      display: flex; align-items: center; justify-content: center;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid rgba(201,151,58,0.18);
+    }
+    .ba-col-header { margin-bottom: 24px; }
+    .ba-pill {
+      display: inline-block;
+      font-size: 10px; letter-spacing: .22em;
+      text-transform: uppercase; font-weight: 600;
+      padding: 5px 14px; margin-bottom: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .ba-pill-before {
+      color: var(--gray); border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+    }
+    .ba-pill-after {
+      color: var(--gold); border: 1px solid rgba(201,151,58,.35);
+      background: rgba(201,151,58,.08);
+    }
+    .ba-col-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 2.2vw, 26px);
+      font-weight: 400; line-height: 1.15;
+    }
+    .ba-before .ba-col-title { color: var(--gray-light); }
+    .ba-after  .ba-col-title { color: var(--white); }
+    .ba-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+    .ba-list li { font-size: 14px; line-height: 1.7; padding-left: 20px; position: relative; font-weight: 400; }
+    .ba-before .ba-list li { color: var(--gray); }
+    .ba-before .ba-list li::before {
+      content: '\2715'; position: absolute; left: 0;
+      color: rgba(255,255,255,.22); font-size: 11px; font-weight: 600; top: 3px;
+    }
+    .ba-after .ba-list li { color: var(--off-white); }
+    .ba-after .ba-list li::before {
+      content: '\2192'; position: absolute; left: 0;
+      color: var(--gold); font-size: 12px; font-weight: 600; top: 2px;
+    }
+
+    /* Data Viz: Bar Chart */
+    .results-chart-wrap {
+      margin-bottom: 40px;
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      padding: 40px 36px 36px;
+    }
+    .chart-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 32px; flex-wrap: wrap; gap: 12px;
+    }
+    .chart-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 400; color: var(--white);
+    }
+    .chart-legend { display: flex; gap: 20px; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: .12em; color: var(--gray-light); text-transform: uppercase; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+    .legend-dot-before { background: rgba(255,255,255,.18); }
+    .legend-dot-after  { background: var(--gold); }
+
+    .chart-rows { display: flex; flex-direction: column; gap: 20px; }
+    .chart-row-label {
+      font-size: 11px; letter-spacing: .1em; color: var(--gray-light);
+      text-transform: uppercase; margin-bottom: 6px; font-weight: 600;
+    }
+    .chart-bars { display: flex; flex-direction: column; gap: 5px; }
+    .bar-track {
+      height: 30px; background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.06);
+      position: relative; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; position: relative;
+      display: flex; align-items: center;
+      width: 0;
+      transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .bar-fill.bar-before {
+      background: linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.14));
+    }
+    .bar-fill.bar-after {
+      background: linear-gradient(90deg, rgba(201,151,58,.55), rgba(201,151,58,.85));
+    }
+    .bar-val {
+      position: absolute; right: 10px;
+      font-size: 10px; font-weight: 600; letter-spacing: .08em;
+      color: var(--white); white-space: nowrap;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+    .bar-fill.bar-before .bar-val { color: var(--gray-light); }
+    .bar-track-labeled {
+      overflow: visible !important;
+      position: relative;
+    }
+    .bar-val-outside {
+      position: absolute;
+      left: calc(var(--bar-w, 5%) + 10px);
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px; font-weight: 600; letter-spacing: .08em;
+      color: var(--gold-light); white-space: nowrap;
+      font-family: 'Barlow Condensed', sans-serif;
+      pointer-events: none;
+    }
+
+    /* Metric Tiles */
+    .metric-tiles {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; margin-bottom: 24px;
+    }
+    .metric-tile {
+      background: var(--navy-card); padding: 28px 20px; text-align: center;
+      border-bottom: 2px solid transparent;
+      transition: border-color .3s, background .3s;
+    }
+    .metric-tile:hover { border-color: var(--gold); background: var(--navy-light); }
+    .metric-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.5vw, 44px); font-weight: 400; line-height: 1;
+      color: var(--gold-light); margin-bottom: 8px; letter-spacing: -.01em;
+    }
+    .metric-label {
+      font-size: 11px; letter-spacing: .12em; color: var(--gray-light);
+      text-transform: uppercase; line-height: 1.5; font-weight: 500;
+    }
+    .results-trust {
+      text-align: center; font-size: 11px; letter-spacing: .08em;
+      color: var(--gray); font-style: italic; margin-top: 8px;
+    }
+
+    @media(max-width:960px) {
+      .ba-card { grid-template-columns: 1fr; }
+      .ba-divider { display: none; }
+      .ba-before { border-right: none; border-bottom: 1px solid var(--border); }
+      .ba-after { border-left: none; border-top: 1px solid rgba(201,151,58,0.18); }
+      .metric-tiles { grid-template-columns: 1fr 1fr; }
+      .results-chart-wrap { padding: 28px 20px; }
+      .case-study-block { padding: 40px 28px; }
+    }
+    @media(max-width:640px) {
+      .ba-col { padding: 24px 18px; }
+      .metric-tiles { grid-template-columns: 1fr 1fr; gap: 2px; }
+      .metric-tile { padding: 20px 14px; }
+      .metric-num { font-size: 26px; }
+      .metric-label { font-size: 10px; letter-spacing: .08em; }
+      .results-trust { font-size: 10px; }
+      .chart-header { flex-direction: column; gap: 12px; }
+      .bar-track { height: 24px; }
+      .results-chart-wrap { padding: 20px 14px; }
+      .case-study-block { padding: 28px 18px; }
+    }
   </style>
 </head>
 <body>
@@ -986,8 +1209,8 @@
       <div class="step-item" onclick="scrollToSection('s2', this)">
         <div class="step-num">02</div>
         <div class="step-text">
-          <div class="step-name">FAQ</div>
-          <div class="step-desc">Common questions</div>
+          <div class="step-name">Case Study</div>
+          <div class="step-desc">Real results</div>
         </div>
       </div>
       <div class="step-item" onclick="scrollToSection('s3', this)">
@@ -999,6 +1222,13 @@
       </div>
       <div class="step-item" onclick="scrollToSection('s4', this)">
         <div class="step-num">04</div>
+        <div class="step-text">
+          <div class="step-name">FAQ</div>
+          <div class="step-desc">Common questions</div>
+        </div>
+      </div>
+      <div class="step-item" onclick="scrollToSection('s5', this)">
+        <div class="step-num">05</div>
         <div class="step-text">
           <div class="step-name">Next Steps</div>
           <div class="step-desc">Come Prepared</div>
@@ -1026,78 +1256,119 @@
       </div>
     </div>
 
+    <!-- ══ CASE STUDY SECTION ══ -->
     <div class="section-block" id="s2">
       <div class="section-header">
-        <p class="section-eyebrow">Step 02 · Before You Ask</p>
-        <h2 class="section-title">Common Questions Answered</h2>
-        <p class="section-sub">Click any question below for a detailed written answer.</p>
+        <p class="section-eyebrow">Step 02 · Client Proof</p>
+        <h2 class="section-title">Real Results. <em>Real Firms.</em></h2>
+        <p class="section-sub">One of the firms we've deployed for. All metrics independently verified.</p>
       </div>
 
-      <div class="faq-stack">
-        <div class="faq-item">
-          <button class="faq-trigger" onclick="toggleFaq(this)">
-            <div class="faq-left"><span class="faq-n">1</span><span class="faq-q">We've worked with agencies before and it didn't work. How is this different?</span></div>
-            <span class="faq-chevron">▾</span>
-          </button>
-          <div class="faq-body"><div class="faq-body-inner"><p class="faq-answer">Most agencies build generic systems and hand them off. We build specifically for CPA and tax firms — the workflows, language, and client communication sequences are all designed around how accounting practices operate. We also come from a finance and compliance background, which means we understand the professional standards your firm is held to. We stay involved through implementation, not just setup.</p></div></div>
+      <div class="case-study-block">
+        <div class="cs-shapes" aria-hidden="true">
+          <div class="cs-shape cs-s1"></div>
+          <div class="cs-shape cs-s2"></div>
+          <div class="cs-shape cs-s3"></div>
         </div>
+        <div class="inner">
 
-        <div class="faq-item">
-          <button class="faq-trigger" onclick="toggleFaq(this)">
-            <div class="faq-left"><span class="faq-n">2</span><span class="faq-q">All our clients come through referrals. Why would we need this?</span></div>
-            <span class="faq-chevron">▾</span>
-          </button>
-          <div class="faq-body"><div class="faq-body-inner"><p class="faq-answer">Referrals are the best kind of client — but also the least predictable. You've likely done everything right for a client and still lost them to H&R Block because of a $99 offer. Consumer loyalty in this space is fragile. Our system doesn't replace your referral network — it makes sure you're not 100% dependent on it, and it ensures the clients you've already earned don't quietly leave without you knowing why.</p></div></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-trigger" onclick="toggleFaq(this)">
-            <div class="faq-left"><span class="faq-n">3</span><span class="faq-q">We're too busy during tax season to implement something new. When does this make sense?</span></div>
-            <span class="faq-chevron">▾</span>
-          </button>
-          <div class="faq-body"><div class="faq-body-inner"><p class="faq-answer">That's exactly why you do it now — so it's running on autopilot before next season. Setup takes 30 days. If you start in April or May, the system is live and tested well before the next busy season begins. The firms getting ahead of this are building the infrastructure during the quiet months, not scrambling to fix problems during their busiest weeks.</p></div></div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-trigger" onclick="toggleFaq(this)">
-            <div class="faq-left"><span class="faq-n">4</span><span class="faq-q">How does this actually work? What does the 30-day process look like?</span></div>
-            <span class="faq-chevron">▾</span>
-          </button>
-          <div class="faq-body">
-            <div class="faq-body-inner">
-              <p class="faq-answer">Timeline depends on your firm's size, client volume, and the complexity of your build — typically 30–60 days from kickoff to live. The process follows four phases regardless of scope.</p>
-              <p class="faq-answer" style="margin-top:1rem;"><strong style="color:var(--off-white);">Discovery.</strong> You share a snapshot of your current tools and key numbers. We map where revenue is leaking and what's recoverable.</p>
-              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Build.</strong> We configure everything — AI receptionist, AR automation, lead generation — integrated with your existing software. You review and approve as we go.</p>
-              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Launch.</strong> Systems go live with active monitoring. Your team gets a walkthrough so everyone knows what's running.</p>
-              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Optimization.</strong> We iterate monthly based on real performance data. You get reports. We handle refinements. We don't disappear after setup.</p>
-              <p class="faq-answer" style="margin-top:1rem;">Your job is to show up, approve, and keep doing what you do best. We'll give you a specific timeline on the call once we understand your firm's scope.</p>
+          <!-- BEFORE / AFTER SPLIT CARD -->
+          <div class="ba-card">
+            <div class="ba-col ba-before">
+              <div class="ba-col-header">
+                <span class="ba-pill ba-pill-before">Before</span>
+                <h3 class="ba-col-title">The Problem</h3>
+              </div>
+              <ul class="ba-list">
+                <li>WhatsApp messages going unanswered for hours</li>
+                <li>No CRM &mdash; client records scattered across email and spreadsheets</li>
+                <li>Invoices aging 60&ndash;90+ days with no follow-up system</li>
+                <li>Document intake with no standardized process</li>
+                <li>Staff spending 40%+ of their time on admin instead of billable work</li>
+              </ul>
+            </div>
+            <div class="ba-divider" aria-hidden="true">
+              <svg width="20" height="28" viewBox="0 0 64 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="32,0 35,32 46,16 40,34 62,38 40,42 46,60 35,44 32,88 29,44 18,60 24,42 2,38 24,34 18,16 29,32" fill="#c9973a" opacity="0.45"/>
+              </svg>
+            </div>
+            <div class="ba-col ba-after">
+              <div class="ba-col-header">
+                <span class="ba-pill ba-pill-after">After</span>
+                <h3 class="ba-col-title">The Solution</h3>
+              </div>
+              <ul class="ba-list">
+                <li>24/7 AI communication triage &mdash; every message classified and routed automatically</li>
+                <li>CRM foundation deployed &mdash; centralized client records and pipeline visibility</li>
+                <li>AR automation activated &mdash; 30/60/90-day aging sequences running without manual intervention</li>
+                <li>Document intake digitized &mdash; structured intake, auto-classification, compliance audit trail</li>
+              </ul>
             </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <button class="faq-trigger" onclick="toggleFaq(this)">
-            <div class="faq-left"><span class="faq-n">5</span><span class="faq-q">What's the ROI? Is this worth it for a firm our size?</span></div>
-            <span class="faq-chevron">▾</span>
-          </button>
-          <div class="faq-body">
-            <div class="faq-body-inner">
-              <p class="faq-answer">Every firm is different, but based on what we've modeled across CPA and tax practices of varying sizes, ROI typically lands in the <strong style="color:var(--gold-light);">2.5x–6x range</strong> — and in some cases higher, depending on your starting point. Here's where that return comes from:</p>
-              <p class="faq-answer" style="margin-top:1rem;"><strong style="color:var(--off-white);">New client acquisition.</strong> The lead generation system brings in qualified prospects who are actively looking for a CPA. One new retained client at $2,500–$5,000 per year compounds. Three new clients a month changes your growth trajectory entirely.</p>
-              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Freed capacity for billable and advisory work.</strong> When your team isn't managing phone admin, appointment scheduling, and follow-up manually, those hours go back into billable work and higher-value client relationships. At $150–$300 per billable hour, that recovery adds up fast.</p>
-              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Enhanced client experience and retention.</strong> 24/7 call coverage, instant responses, proactive communication — clients feel looked after. Firms using these systems report stronger client loyalty and fewer quiet departures to competitors or discount services.</p>
-              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Faster collection on aged receivables.</strong> The AR automation sends structured, timely reminders and escalates appropriately — without awkward manual follow-up. Firms typically recover a meaningful portion of their aged balance within the first 60 days.</p>
-              <p class="faq-answer" style="margin-top:0.75rem;">We'll build a projection specific to your firm on the call — based on your actual client base, billing rate, and current gaps.</p>
+          <!-- DATA VIZ: ANIMATED BAR CHART -->
+          <div class="results-chart-wrap">
+            <div class="chart-header">
+              <div class="chart-title">Impact by the Numbers</div>
+              <div class="chart-legend">
+                <div class="legend-item"><span class="legend-dot legend-dot-before"></span>Before</div>
+                <div class="legend-item"><span class="legend-dot legend-dot-after"></span>After</div>
+              </div>
+            </div>
+            <div class="chart-rows">
+              <div class="chart-row">
+                <div class="chart-row-label">AR Recovery Time</div>
+                <div class="chart-bars">
+                  <div class="bar-track"><div class="bar-fill bar-before" data-w="90"><span class="bar-val">60–90 Days</span></div></div>
+                  <div class="bar-track bar-track-labeled"><div class="bar-fill bar-after" data-w="18"></div><span class="bar-val-outside">~12–18 Days</span></div>
+                </div>
+              </div>
+              <div class="chart-row">
+                <div class="chart-row-label">Staff Time on Admin</div>
+                <div class="chart-bars">
+                  <div class="bar-track"><div class="bar-fill bar-before" data-w="40"><span class="bar-val">40%+</span></div></div>
+                  <div class="bar-track bar-track-labeled"><div class="bar-fill bar-after" data-w="12"></div><span class="bar-val-outside">&lt;12%</span></div>
+                </div>
+              </div>
+              <div class="chart-row">
+                <div class="chart-row-label">Client Message Response</div>
+                <div class="chart-bars">
+                  <div class="bar-track"><div class="bar-fill bar-before" data-w="75"><span class="bar-val">Hours (manual)</span></div></div>
+                  <div class="bar-track bar-track-labeled"><div class="bar-fill bar-after" data-w="5"></div><span class="bar-val-outside">&lt;2 min (AI triage)</span></div>
+                </div>
+              </div>
+              <div class="chart-row">
+                <div class="chart-row-label">Document Intake Compliance</div>
+                <div class="chart-bars">
+                  <div class="bar-track bar-track-labeled"><div class="bar-fill bar-before" data-w="20"></div><span class="bar-val-outside" style="color:var(--gray-light)">Ad-hoc / Inconsistent</span></div>
+                  <div class="bar-track"><div class="bar-fill bar-after" data-w="100"><span class="bar-val">100% Structured + Auditable</span></div></div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="faq-item">
-          <button class="faq-trigger" onclick="toggleFaq(this)">
-            <div class="faq-left"><span class="faq-n">6</span><span class="faq-q">How do you handle our client data? Are you compliant with IRC 7216 and FTC Safeguards?</span></div>
-            <span class="faq-chevron">▾</span>
-          </button>
-          <div class="faq-body"><div class="faq-body-inner"><p class="faq-answer">Our systems operate at the workflow and communication layer — scheduling, reminders, follow-up, call handling. We don't access or store your clients' tax data. Each build is scoped upfront to make sure it meets IRC 7216 and FTC Safeguards before we touch anything. Automations run inside your own cloud environment, data is encrypted in transit, and we don't reuse data across clients. The enterprise AI models we use don't store or train on your data.</p></div></div>
+          <!-- METRIC TILES -->
+          <div class="metric-tiles">
+            <div class="metric-tile">
+              <div class="metric-num">24/7</div>
+              <div class="metric-label">AI Communication Coverage</div>
+            </div>
+            <div class="metric-tile">
+              <div class="metric-num">5&times;</div>
+              <div class="metric-label">Faster AR Recovery vs. Manual</div>
+            </div>
+            <div class="metric-tile">
+              <div class="metric-num">3-Phase</div>
+              <div class="metric-label">Roadmap Deployed</div>
+            </div>
+            <div class="metric-tile">
+              <div class="metric-num">100%</div>
+              <div class="metric-label">Compliance-Aligned Data Architecture</div>
+            </div>
+          </div>
+
+          <p class="results-trust">Client identity protected under NDA. All results verified.</p>
+
         </div>
       </div>
     </div>
@@ -1187,9 +1458,85 @@
         </div>
       </div>
     </div>
-        <div class="section-block" id="s4">
+    <div class="section-block" id="s4">
       <div class="section-header">
-        <p class="section-eyebrow">Step 04 · Next Steps</p>
+        <p class="section-eyebrow">Step 04 · Before You Ask</p>
+        <h2 class="section-title">Common Questions Answered</h2>
+        <p class="section-sub">Click any question below for a detailed written answer.</p>
+      </div>
+
+      <div class="faq-stack">
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left"><span class="faq-n">1</span><span class="faq-q">We've worked with agencies before and it didn't work. How is this different?</span></div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner"><p class="faq-answer">Most agencies build generic systems and hand them off. We build specifically for CPA and tax firms — the workflows, language, and client communication sequences are all designed around how accounting practices operate. We also come from a finance and compliance background, which means we understand the professional standards your firm is held to. We stay involved through implementation, not just setup.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left"><span class="faq-n">2</span><span class="faq-q">All our clients come through referrals. Why would we need this?</span></div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner"><p class="faq-answer">Referrals are the best kind of client — but also the least predictable. You've likely done everything right for a client and still lost them to H&R Block because of a $99 offer. Consumer loyalty in this space is fragile. Our system doesn't replace your referral network — it makes sure you're not 100% dependent on it, and it ensures the clients you've already earned don't quietly leave without you knowing why.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left"><span class="faq-n">3</span><span class="faq-q">We're too busy during tax season to implement something new. When does this make sense?</span></div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner"><p class="faq-answer">That's exactly why you do it now — so it's running on autopilot before next season. Setup takes 30 days. If you start in April or May, the system is live and tested well before the next busy season begins. The firms getting ahead of this are building the infrastructure during the quiet months, not scrambling to fix problems during their busiest weeks.</p></div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left"><span class="faq-n">4</span><span class="faq-q">How does this actually work? What does the 30-day process look like?</span></div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">
+              <p class="faq-answer">Timeline depends on your firm's size, client volume, and the complexity of your build — typically 30–60 days from kickoff to live. The process follows four phases regardless of scope.</p>
+              <p class="faq-answer" style="margin-top:1rem;"><strong style="color:var(--off-white);">Discovery.</strong> You share a snapshot of your current tools and key numbers. We map where revenue is leaking and what's recoverable.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Build.</strong> We configure everything — AI receptionist, AR automation, lead generation — integrated with your existing software. You review and approve as we go.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Launch.</strong> Systems go live with active monitoring. Your team gets a walkthrough so everyone knows what's running.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Optimization.</strong> We iterate monthly based on real performance data. You get reports. We handle refinements. We don't disappear after setup.</p>
+              <p class="faq-answer" style="margin-top:1rem;">Your job is to show up, approve, and keep doing what you do best. We'll give you a specific timeline on the call once we understand your firm's scope.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left"><span class="faq-n">5</span><span class="faq-q">What's the ROI? Is this worth it for a firm our size?</span></div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">
+              <p class="faq-answer">Every firm is different, but based on what we've modeled across CPA and tax practices of varying sizes, ROI typically lands in the <strong style="color:var(--gold-light);">2.5x–6x range</strong> — and in some cases higher, depending on your starting point. Here's where that return comes from:</p>
+              <p class="faq-answer" style="margin-top:1rem;"><strong style="color:var(--off-white);">New client acquisition.</strong> The lead generation system brings in qualified prospects who are actively looking for a CPA. One new retained client at $2,500–$5,000 per year compounds. Three new clients a month changes your growth trajectory entirely.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Freed capacity for billable and advisory work.</strong> When your team isn't managing phone admin, appointment scheduling, and follow-up manually, those hours go back into billable work and higher-value client relationships. At $150–$300 per billable hour, that recovery adds up fast.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Enhanced client experience and retention.</strong> 24/7 call coverage, instant responses, proactive communication — clients feel looked after. Firms using these systems report stronger client loyalty and fewer quiet departures to competitors or discount services.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;"><strong style="color:var(--off-white);">Faster collection on aged receivables.</strong> The AR automation sends structured, timely reminders and escalates appropriately — without awkward manual follow-up. Firms typically recover a meaningful portion of their aged balance within the first 60 days.</p>
+              <p class="faq-answer" style="margin-top:0.75rem;">We'll build a projection specific to your firm on the call — based on your actual client base, billing rate, and current gaps.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <div class="faq-left"><span class="faq-n">6</span><span class="faq-q">How do you handle our client data? Are you compliant with IRC 7216 and FTC Safeguards?</span></div>
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-body"><div class="faq-body-inner"><p class="faq-answer">Our systems operate at the workflow and communication layer — scheduling, reminders, follow-up, call handling. We don't access or store your clients' tax data. Each build is scoped upfront to make sure it meets IRC 7216 and FTC Safeguards before we touch anything. Automations run inside your own cloud environment, data is encrypted in transit, and we don't reuse data across clients. The enterprise AI models we use don't store or train on your data.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+        <div class="section-block" id="s5">
+      <div class="section-header">
+        <p class="section-eyebrow">Step 05 · Next Steps</p>
         <h2 class="section-title">How To Show Up Prepared</h2>
         <p class="section-sub">This call works best when you arrive ready to review your situation live, make decisions quickly, and use the time well.</p>
       </div>
@@ -1245,13 +1592,10 @@
 </div>
 
 <footer>
-  </div>
-</div>
-
-<footer>
   <p>© 2026 Northstone Ventures LLC · All rights reserved</p>
   <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
-    <a href="https://northstoneventure.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
     <a href="https://northstoneventure.com" target="_blank" rel="noopener noreferrer">northstoneventure.com</a>
   </div>
 </footer>
@@ -1270,7 +1614,7 @@
     el.classList.add('active');
   }
 
-  const sections = ['s1','s2','s3','s4'];
+  const sections = ['s1','s2','s3','s4','s5'];
   const items = document.querySelectorAll('.step-item');
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -1346,6 +1690,29 @@
   if (firstName) {
     document.querySelector('.hero h1').innerHTML = `${firstName}, Your Call Is <em>Confirmed.</em><br>Here's What To Do Next.`;
   }
+
+  /* Animate bar chart on scroll into view */
+  (function(){
+    var chartWrap = document.querySelector('.results-chart-wrap');
+    if (!chartWrap) return;
+    var animated = false;
+    function animateBars() {
+      if (animated) return;
+      var rect = chartWrap.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.88) {
+        animated = true;
+        var fills = chartWrap.querySelectorAll('.bar-fill');
+        fills.forEach(function(el) {
+          var w = parseFloat(el.getAttribute('data-w'));
+          el.style.width = w + '%';
+          var track = el.parentElement;
+          if (track) track.style.setProperty('--bar-w', w + '%');
+        });
+      }
+    }
+    window.addEventListener('scroll', animateBars, { passive: true });
+    animateBars();
+  })();
 </script>
 </body>
 </html>
