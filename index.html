@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Northstone Ventures builds AI-powered automation systems for CPA and tax firms. Automated collections, 24/7 AI voice agents, and lead generation. Compliance-first. Live in 30 days.">
+<meta name="description" content="Northstone Ventures builds AI-powered automation systems for CPA and tax firms. Automated collections, 24/7 AI voice agents, and lead generation. Compliance-first. Live in under 60 days.">
 <meta property="og:title" content="Northstone Ventures | AI Systems for CPA & Tax Firms">
-<meta property="og:description" content="Automated collections, 24/7 AI voice agents, and lead generation for CPA and tax firms. Compliance-first. Live in 30 days.">
+<meta property="og:description" content="Automated collections, 24/7 AI voice agents, and lead generation for CPA and tax firms. Compliance-first. Live in under 60 days.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://northstoneventure.com">
 <meta name="twitter:card" content="summary_large_image">
@@ -91,7 +91,7 @@
     min-height:100vh;
     display:flex; align-items:center; justify-content:center;
     position:relative; overflow:hidden;
-    padding:140px 64px 100px;
+    padding:100px 64px 72px;
     text-align:center;
   }
 
@@ -186,7 +186,7 @@
 
   .hero-proof {
     display:flex; justify-content:center; gap:56px;
-    margin-top:80px; padding-top:56px;
+    margin-top:80px; padding-top:40px;
     border-top:1px solid var(--border);
     opacity:0; animation:fadeUp .7s ease 1s forwards;
     flex-wrap:wrap;
@@ -201,7 +201,7 @@
 
   /* ─── SECTIONS ─── */
   .section { position:relative; z-index:2; }
-  .inner { max-width:1200px; margin:0 auto; padding:120px 64px; }
+  .inner { max-width:1200px; margin:0 auto; padding:88px 64px; }
 
   .s-label {
     font-size:11px; letter-spacing:.32em; color:var(--gold);
@@ -341,10 +341,16 @@
   .compliance-strip .inner {
     padding:48px 64px;
     display:flex; align-items:center; justify-content:space-between;
-    flex-wrap:wrap; gap:32px;
+    flex-wrap:nowrap; gap:40px;
   }
-  .compliance-intro { font-size:14px; color:var(--gray-light); font-style:italic; max-width:320px; line-height:1.65; }
-  .compliance-badges { display:flex; gap:24px; flex-wrap:wrap; }
+  .compliance-intro {
+    font-size:14px; color:var(--gray-light); font-style:italic;
+    max-width:420px; flex:0 1 420px; line-height:1.65;
+  }
+  .compliance-badges {
+    display:flex; gap:16px; flex:1; flex-wrap:nowrap;
+    justify-content:space-between;
+  }
   .c-badge { display:flex; align-items:center; gap:10px; font-size:12px; letter-spacing:.1em; color:var(--gray-light); font-weight:500; }
   .c-badge::before { content:'✓'; color:var(--gold); font-size:14px; font-weight:600; }
 
@@ -352,7 +358,7 @@
   .process { background:var(--navy-mid); }
 
   .process-steps {
-    display:grid; grid-template-columns:repeat(3,1fr);
+    display:grid; grid-template-columns:repeat(4,1fr);
     gap:2px; margin-top:64px;
   }
 
@@ -373,7 +379,7 @@
 
   /* ─── ROI BAND ─── */
   .roi-band { background:var(--navy-light); text-align:center; }
-  .roi-band .inner { padding:80px 64px; }
+  .roi-band .inner { padding:60px 64px; }
   .roi-headline {
     font-family:'Cormorant Garamond',serif;
     font-size:clamp(32px,5vw,60px);
@@ -395,7 +401,7 @@
     display:grid; grid-template-columns:1fr 2fr;
     gap:56px; align-items:start;
     margin-top:40px; margin-bottom:64px;
-    padding-bottom:64px;
+    padding-bottom:48px;
     border-bottom:1px solid var(--border);
   }
   .founder-photo { text-align:center; padding-top:4px; }
@@ -434,7 +440,7 @@
     position:absolute; inset:0;
     background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(27,42,74,.7) 0%, transparent 70%);
   }
-  .qualify .inner { position:relative; z-index:3; padding:140px 64px; }
+  .qualify .inner { position:relative; z-index:3; padding:100px 64px; }
   .qualify-star { margin:0 auto 40px; }
   .qualify-title {
     font-family:'Cormorant Garamond',serif;
@@ -488,8 +494,8 @@
     nav { padding:16px 20px; gap:12px; }
     .nav-link { display:none; }
     .nav-btn { font-size:9px; padding:9px 16px; letter-spacing:.14em; }
-    .inner { padding:80px 24px; }
-    .hero { padding:110px 24px 80px; }
+    .inner { padding:60px 24px; }
+    .hero { padding:80px 24px 60px; }
     .pain-layout, .systems-intro, .why-grid, .founder-section { grid-template-columns:1fr; gap:40px; }
     .founder-img { margin:0 auto; }
     .systems-grid, .process-steps { grid-template-columns:1fr; }
@@ -507,8 +513,8 @@
   @media(max-width:640px) {
     body { font-size:16px; line-height:1.8; }
 
-    .hero { padding:100px 20px 60px; }
-    .inner { padding:64px 20px; }
+    .hero { padding:72px 20px 48px; }
+    .inner { padding:48px 20px; }
 
     /* Nav */
     .logo-top { font-size:12px; letter-spacing:.12em; }
@@ -563,7 +569,7 @@
     .step-timeline { font-size:10px; }
 
     /* ROI */
-    .roi-band .inner { padding:64px 20px; }
+    .roi-band .inner { padding:48px 20px; }
     .roi-headline { font-size:28px; line-height:1.15; }
     .roi-sub { font-size:14px; }
     .roi-numbers { gap:32px; }
@@ -600,9 +606,695 @@
     .horizon-title { font-size:20px; }
     .horizon-desc { font-size:14px; line-height:1.7; }
   }
+
+  /* ═══════════════════════════════════════════
+     CASE STUDY: REAL RESULTS. REAL FIRMS.
+  ═══════════════════════════════════════════ */
+
+  .results-section {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── Floating ambient shapes ── */
+  .results-shapes {
+    position: absolute; inset: 0;
+    pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .rs-shape {
+    position: absolute;
+    border-radius: 9999px;
+    border: 1px solid rgba(201,151,58,0.12);
+    backdrop-filter: blur(2px);
+  }
+  .rs-shape::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 50% 50%, rgba(201,151,58,0.08), transparent 70%);
+  }
+  .rs-s1 { width: 520px; height: 120px; top: 12%; left: -8%;
+    background: linear-gradient(90deg, rgba(201,151,58,0.07), transparent);
+    animation: floatA 14s ease-in-out infinite; transform: rotate(10deg); }
+  .rs-s2 { width: 380px; height: 90px; bottom: 18%; right: -4%;
+    background: linear-gradient(90deg, rgba(201,151,58,0.05), transparent);
+    animation: floatB 17s ease-in-out infinite 1s; transform: rotate(-12deg); }
+  .rs-s3 { width: 200px; height: 55px; top: 55%; left: 5%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.03), transparent);
+    animation: floatA 19s ease-in-out infinite 2s; transform: rotate(-6deg); }
+  .rs-s4 { width: 140px; height: 40px; top: 8%; right: 20%;
+    background: linear-gradient(90deg, rgba(201,151,58,0.06), transparent);
+    animation: floatB 22s ease-in-out infinite .5s; transform: rotate(18deg); }
+  .rs-s5 { width: 100px; height: 30px; bottom: 8%; left: 28%;
+    background: linear-gradient(90deg, rgba(255,255,255,0.02), transparent);
+    animation: floatA 16s ease-in-out infinite 3s; transform: rotate(-22deg); }
+
+  @keyframes floatA {
+    0%,100% { transform: rotate(10deg) translateY(0px); }
+    50%      { transform: rotate(10deg) translateY(16px); }
+  }
+  @keyframes floatB {
+    0%,100% { transform: rotate(-12deg) translateY(0px); }
+    50%      { transform: rotate(-12deg) translateY(-14px); }
+  }
+
+  /* ── Section inner override to position above shapes ── */
+  .results-section .inner { position: relative; z-index: 2; }
+
+  /* ── Before/After Card ── */
+  .ba-card {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    margin-bottom: 48px;
+    overflow: hidden;
+  }
+  .ba-col { padding: 48px 40px; }
+  .ba-before {
+    background: #0b111f;
+    border-right: 1px solid var(--border);
+  }
+  .ba-after {
+    background: rgba(201,151,58,0.06);
+    border-left: 1px solid rgba(201,151,58,0.18);
+  }
+  .ba-divider {
+    background: var(--navy-card);
+    display: flex; align-items: center; justify-content: center;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid rgba(201,151,58,0.18);
+  }
+  .ba-col-header { margin-bottom: 28px; }
+  .ba-pill {
+    display: inline-block;
+    font-size: 10px; letter-spacing: .22em;
+    text-transform: uppercase; font-weight: 600;
+    padding: 5px 14px; margin-bottom: 14px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .ba-pill-before {
+    color: var(--gray); border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.03);
+  }
+  .ba-pill-after {
+    color: var(--gold); border: 1px solid rgba(201,151,58,.35);
+    background: rgba(201,151,58,.08);
+  }
+  .ba-col-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 400; line-height: 1.15;
+  }
+  .ba-before .ba-col-title { color: var(--gray-light); }
+  .ba-after  .ba-col-title { color: var(--white); }
+  .ba-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .ba-list li { font-size: 15px; line-height: 1.7; padding-left: 20px; position: relative; font-weight: 400; }
+  .ba-before .ba-list li { color: var(--gray); }
+  .ba-before .ba-list li::before {
+    content: '✕'; position: absolute; left: 0;
+    color: rgba(255,255,255,.22); font-size: 12px; font-weight: 600; top: 3px;
+  }
+  .ba-after .ba-list li { color: var(--off-white); }
+  .ba-after .ba-list li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--gold); font-size: 13px; font-weight: 600; top: 2px;
+  }
+
+  /* ── Data Viz: Animated Bar Chart ── */
+  .results-chart-wrap {
+    margin-bottom: 48px;
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    padding: 48px 40px 40px;
+  }
+  .chart-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 36px; flex-wrap: wrap; gap: 12px;
+  }
+  .chart-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; color: var(--white);
+  }
+  .chart-legend { display: flex; gap: 24px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: .12em; color: var(--gray-light); text-transform: uppercase; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  .legend-dot-before { background: rgba(255,255,255,.18); }
+  .legend-dot-after  { background: var(--gold); }
+
+  .chart-rows { display: flex; flex-direction: column; gap: 22px; }
+  .chart-row {}
+  .chart-row-label {
+    font-size: 12px; letter-spacing: .1em; color: var(--gray-light);
+    text-transform: uppercase; margin-bottom: 8px; font-weight: 500;
+  }
+  .chart-bars { display: flex; flex-direction: column; gap: 6px; }
+  .bar-track {
+    height: 28px; background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.06);
+    position: relative; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; position: relative;
+    display: flex; align-items: center;
+    width: 0; /* animated via JS */
+    transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .bar-fill.bar-before {
+    background: linear-gradient(90deg, rgba(255,255,255,.08), rgba(255,255,255,.14));
+  }
+  .bar-fill.bar-after {
+    background: linear-gradient(90deg, rgba(201,151,58,.55), rgba(201,151,58,.85));
+  }
+  .bar-val {
+    position: absolute; right: 10px;
+    font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    color: var(--white); white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .bar-fill.bar-before .bar-val { color: var(--gray-light); }
+
+  /* ── Metric Tiles ── */
+  .metric-tiles {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2px; margin-bottom: 32px;
+  }
+  .metric-tile {
+    background: var(--navy-card); padding: 36px 28px; text-align: center;
+    border-bottom: 2px solid transparent;
+    transition: border-color .3s, background .3s;
+  }
+  .metric-tile:hover { border-color: var(--gold); background: var(--navy-light); }
+  .metric-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px); font-weight: 400; line-height: 1;
+    color: var(--gold-light); margin-bottom: 10px; letter-spacing: -.01em;
+  }
+  .metric-label {
+    font-size: 12px; letter-spacing: .12em; color: var(--gray-light);
+    text-transform: uppercase; line-height: 1.5; font-weight: 500;
+  }
+
+  /* ── Trust Line ── */
+  .results-trust {
+    text-align: center; font-size: 12px; letter-spacing: .08em;
+    color: var(--gray); font-style: italic; max-width: none; margin-top: 8px;
+  }
+
+  /* ── Responsive ── */
+  @media(max-width:960px) {
+    .ba-card { grid-template-columns: 1fr; }
+    .ba-divider { display: none; }
+    .ba-before { border-right: none; border-bottom: 1px solid var(--border); }
+    .ba-after { border-left: none; border-top: 1px solid rgba(201,151,58,0.18); }
+    .metric-tiles { grid-template-columns: 1fr 1fr; }
+    .results-chart-wrap { padding: 32px 24px; }
+  }
+  @media(max-width:640px) {
+    .ba-col { padding: 28px 20px; }
+    .metric-tiles { grid-template-columns: 1fr 1fr; gap: 2px; }
+    .metric-tile { padding: 24px 16px; }
+    .metric-num { font-size: 30px; }
+    .metric-label { font-size: 11px; letter-spacing: .08em; }
+    .results-trust { font-size: 11px; }
+    .chart-header { flex-direction: column; gap: 16px; }
+    .bar-track { height: 24px; }
+    .results-chart-wrap { padding: 24px 16px; }
+  }
+
+  /* ── Bar chart overflow fix ── */
+  .bar-track-labeled {
+    overflow: visible !important;
+    position: relative;
+  }
+  .bar-val-outside {
+    position: absolute;
+    left: calc(var(--bar-w, 5%) + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    color: var(--gold-light); white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+    pointer-events: none;
+  }
+  /* Taller bars for legibility */
+  .bar-track { height: 32px !important; }
+  /* Wider chart label column */
+  .chart-row-label { font-size: 11px; font-weight: 600; }
+
+  /* ── Process bottom note ── */
+  .process-bottom {
+    margin-top: 32px; padding: 28px 36px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,151,58,.18);
+    font-size: 15px; line-height: 1.75;
+    color: var(--off-white); font-weight: 400;
+  }
+  .process-bottom strong { color: var(--gold-light); font-weight: 600; }
+  /* 4-col responsive */
+  @media(max-width:900px) {
+    .process-steps { grid-template-columns: repeat(2,1fr); }
+  }
+  @media(max-width:540px) {
+    .process-steps { grid-template-columns: 1fr; }
+  }
+
+  /* ── Mobile nav ── */
+  .nav-hamburger {
+    display:none; flex-direction:column; gap:5px;
+    cursor:pointer; padding:8px; background:none; border:none; z-index:1001;
+  }
+  .nav-hamburger span { display:block; width:22px; height:1.5px; background:var(--gray-light); transition:all .25s; }
+  .nav-hamburger.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .nav-hamburger.active span:nth-child(2){opacity:0;}
+  .nav-hamburger.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  
+  /* Footer nav */
+  .footer-nav {
+    display:flex; gap:28px; justify-content:center;
+    padding-bottom:28px; flex-wrap:wrap;
+    border-bottom:1px solid var(--border); margin-bottom:20px;
+  }
+  .footer-nav a {
+    font-size:11px; letter-spacing:.16em; color:var(--gray);
+    text-decoration:none; text-transform:uppercase; transition:color .2s;
+  }
+  .footer-nav a:hover{color:var(--gold);}
+
+  /* ══ PREMIUM UPGRADES ══ */
+
+  /* 1. HERO — subtle animated gold gradient orb behind headline */
+  .hero-orb {
+    position:absolute; top:-10%; left:50%; transform:translateX(-50%);
+    width:700px; height:700px; border-radius:50%;
+    background: radial-gradient(ellipse at center,
+      rgba(201,151,58,.07) 0%,
+      rgba(201,151,58,.03) 40%,
+      transparent 70%);
+    pointer-events:none; z-index:0;
+    animation: orb-pulse 8s ease-in-out infinite;
+  }
+  @keyframes orb-pulse {
+    0%,100%{opacity:.6; transform:translateX(-50%) scale(1);}
+    50%{opacity:1; transform:translateX(-50%) scale(1.08);}
+  }
+
+  /* 2. HERO STAT — gold accent line above each stat */
+  .stat-item::before {
+    content:'';
+    display:block; width:28px; height:1px;
+    background:var(--gold); margin:0 auto 14px;
+    opacity:.6;
+  }
+
+  /* 3. SYSTEM CARDS — refined hover with gold glow */
+  .system-card {
+    position:relative; overflow:hidden;
+  }
+  .system-card::after {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse at 80% 20%,
+      rgba(201,151,58,.06) 0%, transparent 60%);
+    opacity:0; transition:opacity .4s;
+  }
+  .system-card:hover::after { opacity:1; }
+  .system-card:hover {
+    transform:translateY(-3px);
+    box-shadow:0 12px 40px rgba(0,0,0,.35), 0 0 0 1px rgba(201,151,58,.18);
+  }
+
+  /* 4. BEFORE/AFTER CARD — gold shimmer on hover */
+  .ba-card {
+    transition: box-shadow .4s;
+  }
+  .ba-card:hover {
+    box-shadow: 0 20px 60px rgba(0,0,0,.4), 0 0 0 1px rgba(201,151,58,.12);
+  }
+
+  /* 5. METRIC TILE — number animates on first view */
+  .metric-tile { cursor:default; }
+
+  /* 6. PROCESS — connecting line between steps */
+  .process-grid {
+    position:relative;
+  }
+  .process-grid::before {
+    content:'';
+    position:absolute; top:44px; left:10%; right:10%;
+    height:1px;
+    background: linear-gradient(90deg,
+      transparent 0%, rgba(201,151,58,.25) 20%,
+      rgba(201,151,58,.25) 80%, transparent 100%);
+    pointer-events:none; z-index:0;
+  }
+  @media(max-width:860px){.process-grid::before{display:none;}}
+
+  /* 7. SECTION LABEL — gold dot prefix */
+  .s-label::before {
+    content:'';
+    display:inline-block; width:6px; height:6px;
+    border-radius:50%; background:var(--gold);
+    margin-right:10px; vertical-align:middle;
+    opacity:.7;
+  }
+
+  /* 8. QUALIFY CTA — refined card glow */
+  .qualify-card {
+    position:relative; overflow:hidden;
+  }
+  .qualify-card::before {
+    content:'';
+    position:absolute; top:-40%; left:50%; transform:translateX(-50%);
+    width:500px; height:300px;
+    background: radial-gradient(ellipse,
+      rgba(201,151,58,.08) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  /* 9. ROI STAT — refined */
+  .roi-stat-num {
+    font-size:clamp(36px,4.5vw,58px);
+    letter-spacing:-.02em;
+  }
+
+  /* 10. BA DIVIDER — subtle pulse */
+  .ba-divider svg polygon {
+    animation: star-pulse 4s ease-in-out infinite;
+  }
+  @keyframes star-pulse {
+    0%,100%{opacity:.45;}
+    50%{opacity:.8;}
+  }
+
+  /* 11. NAV — sharper active state */
+  .nav-link.active { color:var(--gold); }
+
+  /* 12. HERO — stat items refined spacing */
+  .hero-stats {
+    margin-top:clamp(36px,4vw,56px);
+    gap:clamp(28px,4vw,56px);
+  }
+
+  /* 13. Pain stat — add gold top border accent */
+  .pain-stat {
+    border-top:2px solid rgba(201,151,58,.25);
+    padding-top:28px;
+  }
+
+  /* 14. COMPLIANCE STRIP — tags refined */
+  .comp-tag {
+    transition:background .25s, color .25s, border-color .25s;
+  }
+  .comp-tag:hover {
+    background:rgba(201,151,58,.1);
+    border-color:rgba(201,151,58,.3);
+    color:var(--gold-light);
+  }
+
+  /* 15. SCROLL PROGRESS BAR */
+  #scroll-progress {
+    position:fixed; top:0; left:0; height:2px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+    z-index:2000; transform-origin:left;
+    transform:scaleX(0); transition:transform .1s linear;
+  }
+
+  .footer-tagline {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(15px,1.8vw,20px);
+    color:var(--gray-light); font-weight:400; font-style:italic;
+    text-align:center; max-width:520px; margin:0 auto 12px;
+    line-height:1.5; letter-spacing:.01em;
+  }
+
+  /* ══════════════════════════════════════
+     LAMP / TIMELINE SECTION
+  ══════════════════════════════════════ */
+
+  .process-timeline-section {
+    background: var(--navy);
+    overflow: hidden;
+    position: relative;
+    padding-top: 0 !important;
+  }
+
+  /* ── Lamp beam from ceiling ── */
+  .lamp-beam {
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 100%; pointer-events: none; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .lamp-bar {
+    width: 280px; height: 3px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0,180,220,.6) 30%,
+      rgba(100,220,255,.95) 50%,
+      rgba(0,180,220,.6) 70%,
+      transparent 100%);
+    box-shadow: 0 0 18px rgba(0,200,255,.5), 0 0 40px rgba(0,180,220,.25);
+    margin-top: 0;
+  }
+  .lamp-cone {
+    width: 0; height: 0;
+    border-left: 180px solid transparent;
+    border-right: 180px solid transparent;
+    border-top: 320px solid rgba(0,180,220,.055);
+    position: relative;
+    filter: blur(2px);
+  }
+  .lamp-cone::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -120px; right: -120px;
+    height: 320px;
+    background: linear-gradient(180deg,
+      rgba(0,185,225,.12) 0%,
+      rgba(0,130,170,.04) 60%,
+      transparent 100%);
+    filter: blur(30px);
+  }
+  .lamp-pool {
+    width: 520px; height: 120px; margin-top: -40px;
+    background: radial-gradient(ellipse at center top,
+      rgba(0,185,225,.12) 0%,
+      rgba(0,130,170,.05) 40%,
+      transparent 75%);
+    filter: blur(20px);
+  }
+
+  /* ── Inner content offset to clear lamp ── */
+  .process-timeline-section .inner {
+    padding-top: 80px;
+  }
+
+  /* ── Timeline container ── */
+  .timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* Vertical line */
+  .timeline-line {
+    position: absolute;
+    left: 28px;
+    top: 16px;
+    bottom: 16px;
+    width: 1px;
+    background: linear-gradient(180deg,
+      rgba(201,151,58,.0) 0%,
+      rgba(201,151,58,.35) 15%,
+      rgba(201,151,58,.35) 85%,
+      rgba(201,151,58,.0) 100%);
+    z-index: 0;
+  }
+
+  /* ── Each step ── */
+  .timeline-step {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    padding: 28px 0;
+    position: relative;
+    z-index: 1;
+  }
+  .timeline-step:not(:last-child) {
+    border-bottom: 1px solid rgba(255,255,255,.04);
+  }
+
+  /* Node circle */
+  .tl-node {
+    width: 56px; height: 56px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2;
+    transition: border-color .3s, background .3s, box-shadow .3s;
+  }
+  .timeline-step:hover .tl-node {
+    border-color: rgba(201,151,58,.4);
+    background: var(--navy-light);
+    box-shadow: 0 0 0 4px rgba(201,151,58,.06);
+  }
+  .tl-node--gold {
+    border-color: rgba(201,151,58,.5) !important;
+    background: rgba(201,151,58,.08) !important;
+  }
+  .tl-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 500;
+    color: var(--gold); letter-spacing: .04em;
+  }
+
+  /* Card */
+  .tl-card {
+    flex: 1;
+    padding: 24px 28px;
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    transition: border-color .3s, box-shadow .3s, background .3s;
+  }
+  .timeline-step:hover .tl-card {
+    border-color: rgba(201,151,58,.18);
+    background: var(--navy-light);
+    box-shadow: 0 8px 32px rgba(0,0,0,.25);
+  }
+  .tl-card--accent {
+    border-color: rgba(201,151,58,.2) !important;
+    background: rgba(201,151,58,.04) !important;
+  }
+  .timeline-step:hover .tl-card--accent {
+    border-color: rgba(201,151,58,.35) !important;
+    box-shadow: 0 8px 32px rgba(201,151,58,.08);
+  }
+
+  .tl-phase-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); opacity: .75;
+    margin-bottom: 8px;
+  }
+  .tl-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px,2.5vw,26px);
+    font-weight: 400; color: var(--white);
+    margin-bottom: 14px; line-height: 1.1;
+  }
+  .tl-body {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .tl-body p {
+    font-size: 14px; line-height: 1.75;
+    color: var(--gray); max-width: 100%;
+  }
+  .tl-body strong { color: var(--off-white); font-weight: 600; }
+  .tl-badge {
+    display: inline-block; margin-top: 16px;
+    font-size: 10px; letter-spacing: .18em;
+    font-weight: 600; text-transform: uppercase;
+    padding: 5px 14px;
+    color: var(--gray-light);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.03);
+    font-family: 'Montserrat', sans-serif;
+  }
+  .tl-badge--gold {
+    color: var(--gold);
+    border-color: rgba(201,151,58,.35);
+    background: rgba(201,151,58,.06);
+  }
+
+  /* Process bottom callout */
+  .process-bottom-line {
+    max-width: 760px; margin: 48px auto 0;
+    padding: 28px 32px;
+    border: 1px solid var(--border);
+    border-left: 2px solid rgba(201,151,58,.4);
+    background: rgba(201,151,58,.03);
+  }
+  .process-bottom-line p {
+    font-size: 15px; line-height: 1.8;
+    color: var(--gray-light); font-style: italic;
+    max-width: 100%;
+  }
+
+  /* ── MOBILE TIMELINE ── */
+  @media(max-width:640px){
+    .timeline-line { left: 20px; }
+    .tl-node { width: 40px; height: 40px; }
+    .tl-num { font-size: 14px; }
+    .tl-card { padding: 18px 16px; }
+    .tl-title { font-size: 20px; }
+    .tl-body p { font-size: 13px; }
+    .timeline-step { gap: 16px; }
+    .process-bottom-line { padding: 20px 18px; }
+    .lamp-cone { border-left-width: 100px; border-right-width: 100px; }
+    .lamp-pool { width: 300px; }
+  }
+
+
+  /* ═══════════════════════════════════════════
+     RESPONSIVE NAV — One set of links, responsive
+  ═══════════════════════════════════════════ */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 8px;
+    background: none; border: none; z-index: 1001;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 1.5px;
+    background: var(--gray-light); transition: all .3s ease;
+  }
+  .nav-hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  @media (max-width: 860px) {
+    .nav-hamburger { display: flex; }
+
+    .nav-right {
+      display: none;
+      position: fixed;
+      top: 66px; left: 0; right: 0;
+      background: rgba(8,13,26,.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      padding: 16px 32px 24px;
+      z-index: 999;
+      gap: 0;
+    }
+    .nav-right.open {
+      display: flex;
+    }
+    .nav-right .nav-link {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: 12px;
+    }
+    .nav-right .nav-btn {
+      margin-top: 16px;
+      text-align: center;
+      width: 100%;
+    }
+    nav { padding: 16px 24px; }
+  }
+
 </style>
 </head>
 <body>
+<div id="scroll-progress"></div>
 
 <!-- ═══ NAV ═══ -->
 <nav id="nav">
@@ -614,17 +1306,22 @@
     </div>
   </a>
   <div class="nav-right">
-    <a href="#home" class="nav-link">Home</a>
-    <a href="#systems" class="nav-link">Services</a>
+    <a href="#systems" class="nav-link">Systems</a>
+    <a href="#results" class="nav-link">Results</a>
+    <a href="#process" class="nav-link">Process</a>
     <a href="#about" class="nav-link">About</a>
-    <a href="https://calendly.com/northstone_ventures/ceo" class="nav-btn" target="_blank">Book a Growth Assessment</a>
+    <a href="https://calendly.com/northstone_ventures/ceo" class="nav-btn" target="_blank">Book a Free Assessment</a>
   </div>
+  <button class="nav-hamburger" aria-label="Open menu" id="navHamburger">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ═══ HERO (ENHANCED) ═══ -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
-  <div class="hero-inner">
+  <div class="hero-orb"></div>
+<div class="hero-inner">
 
     <div class="hero-star">
       <svg class="ns-star glow" width="48" height="68" viewBox="0 0 64 88" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="32,0 35,32 46,16 40,34 62,38 40,42 46,60 35,44 32,88 29,44 18,60 24,42 2,38 24,34 18,16 29,32" fill="#c9973a"/></svg>
@@ -633,16 +1330,16 @@
     <div class="eyebrow">AI Systems for CPA &amp; Tax Firms</div>
 
     <!-- ENHANCED: Formulaic hero - Bold Sans first half, Massive Serif Italic second half -->
-  <div class="hero-reframe">
+  <h1 class="hero-reframe">
     CPA and Tax Firm Owners Work Harder Than Almost Anyone —<br>
     <em>And Still Watch Revenue Walk Out the Door.</em>
-</div>
+</h1>
 <span class="hero-mirror">
-    We install AI systems that collect what you've earned, answer every call, and fill your calendar — so you get more revenue, less stress, and time back. Without adding to payroll.
+    AI systems that collect what you’ve earned, answer every call, and fill your calendar. More revenue. Less overhead. Zero new hires.
 </span>
 
     <div class="hero-cta-wrap">
-      <a href="https://calendly.com/northstone_ventures/ceo" class="btn-gold" target="_blank">Book Your Free Growth Assessment</a>
+      <a href="https://calendly.com/northstone_ventures/ceo" class="btn-gold" target="_blank">Book a Free Assessment</a>
       <p class="cta-sub-text">
         <strong>No cost. No obligation.</strong> We'll show you exactly what your firm is leaving on the table. Real numbers, not estimates.
       </p>
@@ -658,12 +1355,8 @@
         <div class="proof-label">Calls missed in tax season</div>
       </div>
       <div class="proof-item">
-        <div class="proof-num">30 Days</div>
-        <div class="proof-label">To fully operational</div>
-      </div>
-      <div class="proof-item">
-        <div class="proof-num">$0</div>
-        <div class="proof-label">New software to learn</div>
+        <div class="proof-num">Under 60</div>
+        <div class="proof-label">Days to fully operational</div>
       </div>
     </div>
 
@@ -717,7 +1410,7 @@
         <h2 class="s-title reveal">Three Systems.<br><em>One Operational Advantage.</em></h2>
       </div>
       <div class="s-body reveal reveal-d1">
-        Each system runs independently, but they compound when deployed together. More clients coming in. More revenue collected. More hours freed for the work only you can do.
+        Each system runs independently. Deployed together, they compound: more clients coming in, more revenue collected, more hours freed for the work that only you can do.
       </div>
     </div>
 
@@ -779,6 +1472,129 @@
   </div>
 </section>
 
+<!-- ═══ CASE STUDY: REAL RESULTS. REAL FIRMS. ═══ -->
+<section class="section results-section" id="results">
+
+  <!-- Floating ambient shapes -->
+  <div class="results-shapes" aria-hidden="true">
+    <div class="rs-shape rs-s1"></div>
+    <div class="rs-shape rs-s2"></div>
+    <div class="rs-shape rs-s3"></div>
+    <div class="rs-shape rs-s4"></div>
+    <div class="rs-shape rs-s5"></div>
+  </div>
+
+  <div class="inner">
+    <div class="s-label reveal">Client Proof</div>
+    <h2 class="s-title reveal">Real Results. <em>Real Firms.</em></h2>
+    <p class="s-body reveal" style="margin-bottom:56px;">One of the firms we&rsquo;ve deployed for. All metrics independently verified.</p>
+
+    <!-- BEFORE / AFTER SPLIT CARD -->
+    <div class="ba-card reveal">
+      <div class="ba-col ba-before">
+        <div class="ba-col-header">
+          <span class="ba-pill ba-pill-before">Before</span>
+          <h3 class="ba-col-title">The Problem</h3>
+        </div>
+        <ul class="ba-list">
+          <li>WhatsApp messages going unanswered for hours</li>
+          <li>No CRM &mdash; client records scattered across email and spreadsheets</li>
+          <li>Invoices aging 60&ndash;90+ days with no follow-up system</li>
+          <li>Document intake with no standardized process</li>
+          <li>Staff spending 40%+ of their time on admin instead of billable work</li>
+        </ul>
+      </div>
+      <div class="ba-divider" aria-hidden="true">
+        <svg width="20" height="28" viewBox="0 0 64 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="32,0 35,32 46,16 40,34 62,38 40,42 46,60 35,44 32,88 29,44 18,60 24,42 2,38 24,34 18,16 29,32" fill="#c9973a" opacity="0.45"/>
+        </svg>
+      </div>
+      <div class="ba-col ba-after">
+        <div class="ba-col-header">
+          <span class="ba-pill ba-pill-after">After</span>
+          <h3 class="ba-col-title">The Solution</h3>
+        </div>
+        <ul class="ba-list">
+          <li>24/7 AI communication triage &mdash; every message classified and routed automatically</li>
+          <li>CRM foundation deployed &mdash; centralized client records and pipeline visibility</li>
+          <li>AR automation activated &mdash; 30/60/90-day aging sequences running without manual intervention</li>
+          <li>Document intake digitized &mdash; structured intake, auto-classification, compliance audit trail</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DATA VIZ: ANIMATED BAR CHART -->
+    <div class="results-chart-wrap reveal reveal-d1">
+      <div class="chart-header">
+        <div class="chart-title">Impact by the Numbers</div>
+        <div class="chart-legend">
+          <div class="legend-item"><span class="legend-dot legend-dot-before"></span>Before</div>
+          <div class="legend-item"><span class="legend-dot legend-dot-after"></span>After</div>
+        </div>
+      </div>
+      <div class="chart-rows">
+
+        <div class="chart-row">
+          <div class="chart-row-label">AR Recovery Time</div>
+          <div class="chart-bars">
+            <div class="bar-track"><div class="bar-fill bar-before" data-w="90"><span class="bar-val">60–90 Days</span></div></div>
+            <div class="bar-track bar-track-labeled"><div class="bar-fill bar-after" data-w="18"></div><span class="bar-val-outside">~12–18 Days</span></div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-row-label">Staff Time on Admin</div>
+          <div class="chart-bars">
+            <div class="bar-track"><div class="bar-fill bar-before" data-w="40"><span class="bar-val">40%+</span></div></div>
+            <div class="bar-track bar-track-labeled"><div class="bar-fill bar-after" data-w="12"></div><span class="bar-val-outside">&lt;12%</span></div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-row-label">Client Message Response</div>
+          <div class="chart-bars">
+            <div class="bar-track"><div class="bar-fill bar-before" data-w="75"><span class="bar-val">Hours (manual)</span></div></div>
+            <div class="bar-track bar-track-labeled"><div class="bar-fill bar-after" data-w="5"></div><span class="bar-val-outside">&lt;2 min (AI triage)</span></div>
+          </div>
+        </div>
+
+        <div class="chart-row">
+          <div class="chart-row-label">Document Intake Compliance</div>
+          <div class="chart-bars">
+            <div class="bar-track bar-track-labeled"><div class="bar-fill bar-before" data-w="20"></div><span class="bar-val-outside" style="color:var(--gray-light)">Ad-hoc / Inconsistent</span></div>
+            <div class="bar-track"><div class="bar-fill bar-after"  data-w="100"><span class="bar-val">100% Structured + Auditable</span></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- METRIC TILES -->
+    <div class="metric-tiles reveal reveal-d2">
+      <div class="metric-tile">
+        <div class="metric-num">24/7</div>
+        <div class="metric-label">AI Communication Coverage</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">5&times;</div>
+        <div class="metric-label">Faster AR Recovery vs. Manual</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">3-Phase</div>
+        <div class="metric-label">Roadmap Deployed</div>
+      </div>
+      <div class="metric-tile">
+        <div class="metric-num">100%</div>
+        <div class="metric-label">Compliance-Aligned Data Architecture</div>
+      </div>
+    </div>
+
+    <!-- TRUST LINE (single instance) -->
+    <p class="results-trust">Client identity protected under NDA. All results verified.</p>
+
+  </div>
+</section>
+
 <!-- ═══ COMPLIANCE STRIP ═══ -->
 <div class="compliance-strip section">
   <div class="inner">
@@ -793,40 +1609,98 @@
   </div>
 </div>
 
-<!-- ═══ PROCESS (SIMPLIFIED TO 3 STEPS) ═══ -->
-<section class="process section" id="process">
-  <div class="inner">
-    <div class="s-label reveal">What to Expect</div>
-    <h2 class="s-title reveal">Simple. Structured.<br><em>Fully Live in 30 Days.</em></h2>
-    <p class="s-body reveal" style="margin-bottom:0;">A three-step process built around your firm's schedule. No disruption. No software to learn. No technical work on your end.</p>
+<!-- ═══ PROCESS (TIMELINE) ═══ -->
+<section class="section process-timeline-section" id="process">
 
-    <div class="process-steps reveal">
+  <!-- LAMP LIGHT BEAM from top -->
+  <div class="lamp-beam" aria-hidden="true">
+    <div class="lamp-bar"></div>
+    <div class="lamp-cone"></div>
+    <div class="lamp-pool"></div>
+  </div>
 
-      <div class="process-step">
-        <div class="step-num">01</div>
-        <div class="step-label">Week 1</div>
-        <div class="step-title">GROWTH ASSESSMENT</div>
-        <p class="step-desc">A focused working session to understand your firm: current AR aging, call volume, client acquisition process, and software stack. We identify the specific revenue you're losing and map exactly what the fix looks like. If it's not a fit, we'll tell you directly.</p>
-        <div class="step-timeline">1–2 calls</div>
+  <div class="inner" style="position:relative;z-index:2;">
+    <div class="s-label reveal">How We Work</div>
+    <h2 class="s-title reveal">Simple. Structured.<br><em>Fully Live in Under 60 Days.</em></h2>
+    <p class="s-body reveal" style="margin-bottom:64px;">A phased deployment built around your firm&rsquo;s schedule and existing software stack.</p>
+
+    <!-- TIMELINE -->
+    <div class="timeline reveal">
+
+      <!-- Connecting line -->
+      <div class="timeline-line"></div>
+
+      <!-- Phase 1 -->
+      <div class="timeline-step">
+        <div class="tl-node">
+          <div class="tl-num">01</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-phase-tag">Week 1</div>
+          <h3 class="tl-title">Discovery</h3>
+          <div class="tl-body">
+            <p><strong>You:</strong> Share a few key numbers and a snapshot of your current tools.</p>
+            <p><strong>Us:</strong> Run the Revenue Audit &mdash; we come back with a clear leakage map. Where you&rsquo;re losing revenue and how much is recoverable.</p>
+          </div>
+          <div class="tl-badge">1&ndash;2 Calls</div>
+        </div>
       </div>
 
-      <div class="process-step">
-        <div class="step-num">02</div>
-        <div class="step-label">Week 1–3</div>
-        <div class="step-title">BUILD & INTEGRATE</div>
-        <p class="step-desc">Our engineering team builds and connects everything to your existing software, and AI agents are trained on your firm's specific services, pricing, and workflows. You don't write a line of code or learn a new platform. We handle the technical work. You review the output.</p>
-        <div class="step-timeline">10–14 days</div>
+      <!-- Phase 2 -->
+      <div class="timeline-step">
+        <div class="tl-node">
+          <div class="tl-num">02</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-phase-tag">Weeks 2&ndash;7</div>
+          <h3 class="tl-title">Build &amp; Integrate</h3>
+          <div class="tl-body">
+            <p><strong>You:</strong> Review and approve scripts and workflows as we go.</p>
+            <p><strong>Us:</strong> Our engineering team configures everything, integrates with your existing software, and trains the systems on your firm&rsquo;s specific workflows and client base.</p>
+          </div>
+          <div class="tl-badge">Minimal time on your end</div>
+        </div>
       </div>
 
-      <div class="process-step">
-        <div class="step-num">03</div>
-        <div class="step-label">Day 30+</div>
-        <div class="step-title">LIVE & OPTIMIZING</div>
-        <p class="step-desc">Systems go live. Receivables start getting chased. Calls start getting answered. Leads start flowing in. We monitor, iterate, and optimize based on real performance data. Monthly reporting in plain language, not dashboards that require a manual.</p>
-        <div class="step-timeline">Ongoing</div>
+      <!-- Phase 3 -->
+      <div class="timeline-step">
+        <div class="tl-node">
+          <div class="tl-num">03</div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-phase-tag">Week 8</div>
+          <h3 class="tl-title">Launch</h3>
+          <div class="tl-body">
+            <p><strong>You:</strong> Keep serving your clients.</p>
+            <p><strong>Us:</strong> Systems go live. Active monitoring starts immediately. Your team gets hands-on onboarding so everyone knows what&rsquo;s running and how to use it.</p>
+          </div>
+          <div class="tl-badge">Go Live</div>
+        </div>
       </div>
 
+      <!-- Phase 4 -->
+      <div class="timeline-step">
+        <div class="tl-node tl-node--gold">
+          <div class="tl-num">04</div>
+        </div>
+        <div class="tl-card tl-card--accent">
+          <div class="tl-phase-tag">Month 2+</div>
+          <h3 class="tl-title">Optimize</h3>
+          <div class="tl-body">
+            <p><strong>You:</strong> Check the monthly reports.</p>
+            <p><strong>Us:</strong> Iterate based on real performance data. Ongoing support and system refinement &mdash; we don&rsquo;t disappear after setup.</p>
+          </div>
+          <div class="tl-badge tl-badge--gold">Ongoing</div>
+        </div>
+      </div>
+
+    </div><!-- /.timeline -->
+
+    <!-- Bottom line callout -->
+    <div class="process-bottom-line reveal">
+      <p>Your job is to keep serving clients. Our job is to build and run the infrastructure that recovers revenue, captures leads, and answers the phone &mdash; whether you&rsquo;re in a client meeting or not.</p>
     </div>
+
   </div>
 </section>
 
@@ -834,15 +1708,15 @@
 <div class="roi-band section">
   <div class="inner">
     <h2 class="roi-headline reveal">The math is straightforward.<br><em>The results speak for themselves.</em></h2>
-    <p class="roi-sub reveal">Firms that deploy all three systems consistently recover more revenue, capture more clients, and free more billable hours than they did with additional headcount, at a fraction of the cost.</p>
+    <p class="roi-sub reveal">Firms that deploy all three systems consistently outperform peers on AR recovery, client retention, and billable hours — without adding a single staff member.</p>
     <div class="roi-numbers reveal">
       <div class="roi-item">
         <div class="roi-num">2–6×</div>
         <div class="roi-label">ROI in Year 1</div>
       </div>
       <div class="roi-item">
-        <div class="roi-num">30 Days</div>
-        <div class="roi-label">To fully operational</div>
+        <div class="roi-num">&lt;60</div>
+        <div class="roi-label">Days to fully operational</div>
       </div>
       <div class="roi-item">
         <div class="roi-num">1.5 FTEs</div>
@@ -870,7 +1744,7 @@
       <div class="founder-bio">
         <h3 class="founder-name">Mikael Dubinsky</h3>
         <p class="founder-title-text">Founder, Northstone Ventures</p>
-        <p class="founder-desc">Mikael built Northstone Ventures after spending his career in financial services, working across wealth management, telecommunications, software, and financial services operations. He holds a Master of Science in Finance from Florida Atlantic University.</p>
+        <p class="founder-desc">Mikael built Northstone Ventures after spending his career in financial services, working across wealth management, telecommunications, software, and financial services operations. His academic background in finance, combined with direct operating experience in financial services, gives Northstone a perspective that pure tech firms don’t have.</p>
         <p class="founder-desc">That background is intentional. CPA and tax firm owners operate in one of the most heavily regulated environments in professional services. They need a partner who understands their P&L, their compliance exposure, and their client relationships. Not someone who learned about accounting last month.</p>
         <p class="founder-desc">Northstone exists because the firms that automate their operations now will have a permanent advantage over those that don't. The staffing crisis is structural. The technology exists. The gap is in who installs it, who manages it, and who understands the environment it operates in.</p>
       </div>
@@ -924,7 +1798,7 @@
     </h2>
 
     <p class="qualify-body reveal">
-      Book a free Growth Assessment with our team. We'll walk through your current AR aging, call volume, and client acquisition process, and show you, with real numbers, exactly what automated systems would recover for your firm. This isn't a quick pitch. It's a working session designed to give you clarity.
+      Book a free Growth Assessment with our team. This isn't a quick pitch. It's a working session designed to give you clarity.
     </p>
 
     <span class="qualify-scarcity reveal">No pitch deck. No pressure. If it's not a fit, we'll tell you directly.</span>
@@ -935,7 +1809,7 @@
       <span class="criterion">Growth-minded owner or partner</span>
     </div>
 
-    <a href="https://calendly.com/northstone_ventures/ceo" class="btn-gold reveal" target="_blank" style="display:inline-block;">Book Your Free Growth Assessment</a>
+    <a href="https://calendly.com/northstone_ventures/ceo" class="btn-gold reveal" target="_blank" style="display:inline-block;">Book a Free Assessment</a>
 
     <p class="cta-sub-text reveal" style="margin-top:20px;">
       <strong>Real numbers.</strong> Clear next steps. No pressure.
@@ -953,11 +1827,12 @@
       <span class="logo-bottom">VENTURES LLC</span>
     </div>
   </div>
+  <p class="footer-tagline">Revenue infrastructure for accounting firms that are done leaving money on the table.</p>
   <p class="footer-copy">© 2026 Northstone Ventures LLC &nbsp;·&nbsp; St. Petersburg, FL</p>
   <div class="footer-links">
     <a href="privacy.html">Privacy Policy</a>
     <a href="terms.html">Terms of Service</a>
-    <a href="https://calendly.com/northstone_ventures/ceo" target="_blank">Book a Call</a>
+    <a href="https://calendly.com/northstone_ventures/ceo" target="_blank">Book a Free Assessment</a>
   </div>
 </footer>
 
@@ -977,6 +1852,119 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
   reveals.forEach(el => io.observe(el));
+</script>
+  <script>
+  /* ── Animate bar chart on scroll into view ── */
+  (function(){
+    var chartWrap = document.querySelector('.results-chart-wrap');
+    if (!chartWrap) return;
+    var animated = false;
+    function animateBars() {
+      if (animated) return;
+      var rect = chartWrap.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.88) {
+        animated = true;
+        var fills = chartWrap.querySelectorAll('.bar-fill');
+        fills.forEach(function(el) {
+          var w = parseFloat(el.getAttribute('data-w'));
+          el.style.width = w + '%';
+          // Set CSS var for outside label positioning
+          var track = el.parentElement;
+          if (track) track.style.setProperty('--bar-w', w + '%');
+        });
+      }
+    }
+    window.addEventListener('scroll', animateBars, { passive: true });
+    animateBars();
+  })();
+  </script>
+<script>
+  
+</script>
+<script>
+  // Scroll progress bar
+  (function(){
+    var bar = document.getElementById('scroll-progress');
+    if(!bar) return;
+    window.addEventListener('scroll', function(){
+      var scrolled = document.documentElement.scrollTop;
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (scrolled/total) + ')';
+    }, {passive:true});
+  })();
+
+  // Active nav link
+  (function(){
+    var sections = document.querySelectorAll('section[id]');
+    var links = document.querySelectorAll('.nav-link');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var id = entry.target.getAttribute('id');
+          links.forEach(function(link){
+            link.classList.remove('active');
+            if(link.getAttribute('href') === '#' + id){
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    },{threshold:0.4});
+    sections.forEach(function(s){ io.observe(s); });
+  })();
+
+  // Metric tile count-up
+  (function(){
+    var tiles = document.querySelectorAll('.metric-num');
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting && !en.target.dataset.done){
+          en.target.dataset.done = '1';
+          var el = en.target;
+          var final = el.textContent;
+          var num = parseFloat(final.replace(/[^0-9.]/g,''));
+          if(!isNaN(num) && num > 0 && num < 10000 && final.length < 10){
+            var start = 0; var dur = 1200; var startTime = null;
+            function step(ts){
+              if(!startTime) startTime=ts;
+              var progress = Math.min((ts-startTime)/dur, 1);
+              var eased = 1-Math.pow(1-progress,3);
+              var current = Math.floor(eased*num);
+              el.textContent = final.replace(String(num), String(current));
+              if(progress<1) requestAnimationFrame(step);
+              else el.textContent = final;
+            }
+            requestAnimationFrame(step);
+          }
+        }
+      });
+    },{threshold:0.6});
+    tiles.forEach(function(t){ io2.observe(t); });
+  })();
+</script>
+<script>
+  (function(){
+    var btn = document.getElementById('navHamburger');
+    var navRight = document.querySelector('.nav-right');
+    if(!btn || !navRight) return;
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      btn.classList.toggle('active');
+      navRight.classList.toggle('open');
+    });
+    document.addEventListener('click', function(e){
+      if(!btn.contains(e.target) && !navRight.contains(e.target)){
+        btn.classList.remove('active');
+        navRight.classList.remove('open');
+      }
+    });
+    navRight.querySelectorAll('a[href^="#"]').forEach(function(link){
+      link.addEventListener('click', function(){
+        btn.classList.remove('active');
+        navRight.classList.remove('open');
+      });
+    });
+  })();
 </script>
 </body>
 </html>
