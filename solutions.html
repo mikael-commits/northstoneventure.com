@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northstone Ventures, Solutions</title>
+<meta name="description" content="The Northstone suite: AI systems for CPA & tax firms. AR collections, voice agent, lead generation, document processing, client orchestration, dashboards, and custom builds. Compliance-first.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #0d1b4b;
+    --navy-2:    #0a1638;
+    --gold:      #c9a84c;
+    --gold-lt:   #e8c96a;
+    --slate:     #bcc2d8;
+    --white:     #f5f6fa;
+    --off-white: #eef0f6;
+    --void:      #080c16;
+    --panel:     #0f1729;
+    --panel-2:   #0f1a30;
+    --dark:      #0a1424;
+    --darker:    #0a0f1b;
+    --muted:     #4a4f6a;
+    --green:     #6ac28a;
+    --red:       #e06060;
+    --amber:     #e8a64c;
+    --line:      rgba(255,255,255,.07);
+    --line-2:    rgba(255,255,255,.12);
+    --fs-head:   clamp(1.85rem, 3.2vw, 2.7rem);
+    --fs-sub:    1.375rem;
+    --fs-body:   .9375rem;
+    --fs-label:  .8125rem;
+  }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  em, i { font-style:normal; }
+  html, body { height:100%; }
+  body {
+    font-family:'Inter',sans-serif;
+    background:var(--void);
+    color:var(--white);
+    overflow:hidden;
+    font-weight:400;
+    letter-spacing:.005em;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* ───────── LAYOUT ───────── */
+  .app { display:grid; grid-template-columns:300px 1fr; height:100vh; }
+
+  /* ───────── SIDEBAR ───────── */
+  .side {
+    background:linear-gradient(180deg,#070d18,#04070e);
+    border-right:1px solid var(--line);
+    display:flex; flex-direction:column;
+    overflow-y:auto;
+  }
+  .side-head { padding:1.6rem 1.4rem 1.2rem; border-bottom:1px solid var(--line); }
+  .side-back {
+    display:inline-flex; align-items:center; gap:.4rem;
+    font-family:'Inter',sans-serif; font-size:var(--fs-label);
+    letter-spacing:.13em; text-transform:uppercase; color:var(--slate);
+    text-decoration:none; margin-bottom:1rem; transition:color .18s;
+  }
+  .side-back:hover { color:var(--gold-lt); }
+  .side-logo { display:flex; align-items:center; gap:.6rem; margin-bottom:.6rem; }
+  .side-logo svg { width:22px; height:22px; filter:drop-shadow(0 0 7px rgba(255,255,255,.3)); }
+  .side-wm { font-family:'Inter',sans-serif; font-size:var(--fs-body); letter-spacing:.16em; color:var(--white); text-transform:uppercase; font-weight:600; }
+  .side-tag { font-size:var(--fs-label); color:var(--slate); letter-spacing:.04em; }
+
+  .side-section-label {
+    font-family:'Inter',sans-serif;
+    font-size:var(--fs-label); letter-spacing:.13em; text-transform:uppercase;
+    color:var(--gold); padding:1.4rem 1.4rem .65rem;
+  }
+
+  .nav-item {
+    display:flex; align-items:flex-start; gap:.85rem;
+    padding:.75rem 1.4rem; cursor:pointer;
+    border-left:2px solid transparent;
+    transition:background .18s, border-color .18s;
+    position:relative;
+  }
+  .nav-item:hover { background:rgba(255,255,255,.025); }
+  .nav-item.active { background:linear-gradient(90deg,rgba(201,168,76,.1),transparent 80%); border-left-color:var(--gold); }
+  .nav-item.active .nav-name { color:var(--gold-lt); }
+  .nav-num {
+    font-family:'Inter',sans-serif;
+    font-size:var(--fs-label); letter-spacing:.13em;
+    color:var(--gold); margin-top:3px; min-width:18px;
+  }
+  .nav-text { display:flex; flex-direction:column; }
+  .nav-name {
+    font-family:'Inter',sans-serif;
+    font-size:var(--fs-body); color:var(--white); line-height:1.2;
+    font-weight:600;
+  }
+  .nav-star { color:var(--gold); font-size:var(--fs-body); margin-left:.2rem; }
+  .nav-desc { font-size:var(--fs-label); color:var(--slate); margin-top:2px; line-height:1.4; }
+
+  .side-foot { margin-top:auto; padding:1.2rem 1.4rem; border-top:1px solid var(--line); }
+  .side-foot-cta {
+    display:block; text-align:center;
+    background:var(--gold); color:var(--dark);
+    font-family:'Inter',sans-serif; font-weight:700;
+    font-size:var(--fs-body); letter-spacing:.13em; text-transform:uppercase;
+    padding:.7rem 1rem; text-decoration:none;
+    clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);
+    transition:background .2s;
+  }
+  .side-foot-cta:hover { background:var(--gold-lt); }
+  .side-foot-note { font-size:var(--fs-label); color:rgba(245,246,250,.5); text-align:center; margin-top:.7rem; letter-spacing:.04em; }
+
+  /* ───────── MAIN ───────── */
+  .main { overflow-y:auto; position:relative;
+    background:
+      radial-gradient(90% 55% at 82% -5%, rgba(13,27,75,.32), transparent 62%),
+      radial-gradient(70% 50% at 0% 100%, rgba(13,27,75,.18), transparent 60%),
+      var(--void);
+  }
+  .view { display:none; min-height:100vh; }
+  .view.active { display:block; animation:viewIn .55s cubic-bezier(.16,1,.3,1); }
+  @keyframes viewIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+  /* Page header (common to demo views) */
+  .page-head {
+    padding:2.8rem 3.2rem 0;
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:2rem; flex-wrap:wrap;
+  }
+  .page-eyebrow { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.2em; color:var(--gold); text-transform:uppercase; margin-bottom:.75rem; display:inline-block; }
+  .page-title { font-family:'Inter',sans-serif; font-size:var(--fs-head); line-height:1.08; font-weight:600; color:var(--white); margin-bottom:.7rem; letter-spacing:-.015em; }
+  .page-title em { font-style:normal; color:var(--gold-lt); }
+  .page-sub { font-size:var(--fs-body); color:#cdd2e1; max-width:620px; line-height:1.6; }
+  .page-meta { display:flex; gap:1.6rem; align-items:center; flex-shrink:0; }
+  .meta-chip {
+    font-family:'Inter',sans-serif;
+    font-size:var(--fs-label); letter-spacing:.13em; text-transform:uppercase;
+    border:1px solid rgba(201,168,76,.3); color:var(--gold);
+    padding:.35rem .7rem;
+  }
+  .meta-live { display:flex; align-items:center; gap:.45rem; font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.13em; text-transform:uppercase; color:var(--slate); }
+  .meta-live::before { content:''; width:6px; height:6px; background:var(--green); border-radius:50%; box-shadow:0 0 8px var(--green); animation:pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.45} }
+
+  .page-body {
+    overflow:hidden;
+    background:
+      radial-gradient(130% 80% at 50% -12%, rgba(13,27,75,.4), transparent 58%),
+      var(--panel);
+    border:1px solid var(--line-2);
+    border-radius:16px;
+    box-shadow:0 44px 100px -55px rgba(0,0,0,.95), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+
+  /* Card primitives */
+  .card {
+    background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.011));
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:1.5rem 1.6rem;
+    position:relative;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.045);
+  }
+  .card-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+  .card-title { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.16em; text-transform:uppercase; color:var(--slate); font-weight:600; }
+  .card-action { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.13em; color:var(--gold); text-transform:uppercase; cursor:pointer; }
+
+  /* KPI strip */
+  .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:1.7rem; }
+  .kpi { background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.007)); border:1px solid var(--line); border-radius:13px; padding:1.5rem 1.5rem 1.4rem; position:relative; }
+  .kpi::before { content:''; position:absolute; top:0; left:1.5rem; width:26px; height:2px; background:var(--gold); }
+  .kpi-lbl { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.13em; text-transform:uppercase; color:var(--slate); margin-bottom:.55rem; }
+  .kpi-val { font-family:'Inter',sans-serif; font-size:var(--fs-sub); font-weight:600; color:var(--white); line-height:1; }
+  .kpi-val.gold { color:var(--gold-lt); }
+  .kpi-val.green { color:var(--green); }
+  .kpi-val.red { color:var(--red); }
+  .kpi-delta { font-size:var(--fs-label); color:var(--slate); margin-top:.4rem; }
+  .kpi-delta.up { color:var(--green); }
+  .kpi-delta.down { color:var(--red); }
+
+  /* Grid utilities */
+  .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+  .grid-2-1 { display:grid; grid-template-columns:2fr 1fr; gap:1.2rem; }
+  .stack { display:flex; flex-direction:column; gap:1.2rem; }
+
+  /* Tables */
+  table.t { width:100%; border-collapse:collapse; font-size:var(--fs-body); }
+  table.t th {
+    font-family:'Inter',sans-serif;
+    font-size:var(--fs-label); letter-spacing:.13em; text-transform:uppercase;
+    color:var(--slate); text-align:left; font-weight:600;
+    padding:.6rem .8rem; border-bottom:1px solid var(--line);
+  }
+  table.t td {
+    padding:.85rem .8rem;
+    border-bottom:1px solid var(--line);
+    color:#d6dae6; font-weight:400;
+  }
+  table.t tr:last-child td { border-bottom:none; }
+  table.t tr:hover td { background:rgba(255,255,255,.018); }
+  table.t .num { font-family:'Inter',sans-serif; font-size:var(--fs-body); color:var(--white); }
+  table.t .name { color:var(--white); }
+
+  /* Status pills */
+  .pill {
+    display:inline-flex; align-items:center; gap:.4rem;
+    font-family:'Inter',sans-serif;
+    font-size:var(--fs-label); letter-spacing:.13em; text-transform:uppercase;
+    padding:.22rem .55rem; font-weight:600;
+  }
+  .pill.green { background:rgba(106,194,138,.12); color:var(--green); }
+  .pill.gold { background:rgba(201,168,76,.13); color:var(--gold-lt); }
+  .pill.red { background:rgba(224,96,96,.12); color:var(--red); }
+  .pill.slate { background:rgba(138,143,168,.12); color:var(--slate); }
+  .pill.amber { background:rgba(232,166,76,.12); color:var(--amber); }
+  .pill::before { content:''; width:5px; height:5px; border-radius:50%; background:currentColor; }
+
+  /* ───────── HOME ───────── */
+  .home-hero { position:relative; overflow:hidden; border-bottom:1px solid var(--line); }
+  .home-hero::before {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background-image:linear-gradient(rgba(13,27,75,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(13,27,75,.4) 1px,transparent 1px);
+    background-size:56px 56px; opacity:.4;
+  }
+  .home-hero::after {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(ellipse 65% 60% at 78% 30%,rgba(13,27,75,.85) 0%,transparent 72%);
+  }
+  .home-hero-inner { position:relative; z-index:2; }
+  .home-star { width:46px; height:46px; margin-bottom:1.4rem; filter:drop-shadow(0 0 18px rgba(255,255,255,.35)); }
+  .home-eyebrow {
+    font-family:'Inter',sans-serif; font-size:var(--fs-body); letter-spacing:.2em;
+    text-transform:uppercase; color:var(--slate); margin-bottom:.7rem;
+    position:relative; display:inline-flex; align-items:center; gap:.9rem;
+  }
+  .home-eyebrow::after { content:''; width:54px; height:1px; background:linear-gradient(90deg,var(--gold),transparent); }
+  .home-title {
+    font-family:'Inter',sans-serif; font-weight:600;
+    font-size:var(--fs-head); line-height:1.05; color:var(--white);
+    letter-spacing:-.015em; margin-bottom:1.5rem;
+  }
+  .home-title em { font-style:normal; color:var(--gold-lt); }
+  .home-lede { font-size:var(--fs-body); line-height:1.7; color:rgba(245,246,250,.86); font-weight:400; }
+  .home-hero-cta { display:flex; gap:1rem; margin-top:2.2rem; align-items:center; flex-wrap:wrap; }
+  .home-hero-cta a {
+    background:var(--gold); color:var(--darker);
+    font-family:'Inter',sans-serif; font-weight:700;
+    font-size:var(--fs-body); letter-spacing:.13em; text-transform:uppercase;
+    padding:.9rem 1.7rem; text-decoration:none;
+    clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,0 100%);
+    transition:background .2s,transform .2s;
+  }
+  .home-hero-cta a:hover { background:var(--gold-lt); transform:translateY(-2px); }
+  .home-hero-cta .ghost { background:transparent; color:var(--white); border:1px solid var(--line-2); clip-path:none; cursor:pointer; }
+  .home-hero-cta .ghost:hover { border-color:var(--gold); background:rgba(201,168,76,.06); transform:translateY(-2px); }
+
+  /* About */
+  .about {
+    display:grid; grid-template-columns:minmax(240px,330px) minmax(0,1fr); gap:3rem;
+    border-bottom:1px solid var(--line); align-items:center;
+    background:linear-gradient(180deg,rgba(13,27,75,.18),transparent 60%);
+  }
+  .about-portrait {
+    max-width:300px; width:100%; position:relative;
+    border:1px solid rgba(201,168,76,.3); border-radius:8px; overflow:hidden;
+    background:var(--navy); box-shadow:0 40px 90px -50px rgba(0,0,0,.9);
+  }
+  .about-portrait img { display:block; width:100%; aspect-ratio:1/1; object-fit:cover; object-position:center 28%; }
+  .about-portrait-cap {
+    padding:.95rem 1.1rem; border-top:1px solid rgba(201,168,76,.25);
+    background:linear-gradient(180deg,rgba(13,27,75,.5),rgba(5,8,15,.7));
+    font-family:'Inter',sans-serif; font-size:var(--fs-sub); color:var(--white); line-height:1.2;
+  }
+  .about-portrait-cap span { display:block; font-size:var(--fs-body); font-style:normal; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-lt); margin-top:.35rem; font-family:'Inter',sans-serif; }
+  .about-body h2 { font-family:'Inter',sans-serif; font-size:var(--fs-sub); font-weight:600; color:var(--white); line-height:1.15; margin-bottom:1rem; letter-spacing:-.01em; }
+  .about-body h2 em { font-style:normal; color:var(--gold-lt); }
+  .about-body p { font-size:var(--fs-body); line-height:1.72; color:rgba(245,246,250,.86); margin-bottom:1rem; }
+  .about-creds { display:grid; grid-template-columns:1fr 1fr; gap:.6rem 1.6rem; margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--line); }
+  .cred-lbl { font-family:'Inter',sans-serif; font-size:var(--fs-body); letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+  .cred-val { font-size:var(--fs-body); color:var(--white); margin-top:2px; }
+
+  /* Stats */
+  .home-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; }
+  .home-stat { background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.007)); border:1px solid var(--line); border-radius:13px; padding:1.8rem 1.6rem; position:relative; }
+  .home-stat::before { content:''; position:absolute; top:0; left:1.6rem; width:24px; height:2px; background:var(--gold); }
+  .home-stat-num { font-family:'Inter',sans-serif; font-size:var(--fs-sub); font-weight:600; color:var(--gold-lt); line-height:1; margin-bottom:.5rem; }
+  .home-stat-num.red { color:var(--red); }
+  .home-stat-lbl { font-size:var(--fs-body); color:rgba(245,246,250,.8); line-height:1.5; }
+
+  /* Solutions grid */
+  .home-sec-head { margin-bottom:2rem; }
+  .home-sec-label { font-family:'Inter',sans-serif; font-size:var(--fs-body); letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:.6rem; display:inline-block; }
+  .home-sec-title { font-family:'Inter',sans-serif; font-size:var(--fs-head); font-weight:600; color:var(--white); letter-spacing:-.015em; }
+  .home-sec-title em { font-style:normal; color:var(--gold-lt); }
+  .home-sec-sub { font-size:var(--fs-body); color:var(--slate); margin-top:.6rem; max-width:560px; line-height:1.6; }
+
+  .sol-grid-home { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+  .sol-tile {
+    background:linear-gradient(180deg,rgba(255,255,255,.032),rgba(255,255,255,.008));
+    border:1px solid var(--line); border-radius:15px;
+    padding:1.9rem 1.7rem 1.7rem; cursor:pointer; position:relative;
+    min-height:200px; display:flex; flex-direction:column;
+    transition:transform .25s cubic-bezier(.16,1,.3,1),border-color .25s,box-shadow .25s,background .25s;
+  }
+  .sol-tile:hover { background:linear-gradient(180deg,rgba(201,168,76,.07),rgba(255,255,255,.01)); border-color:rgba(201,168,76,.45); transform:translateY(-4px); box-shadow:0 34px 70px -45px rgba(0,0,0,.95); }
+  .sol-tile::after { content:'→'; position:absolute; top:1.4rem; right:1.4rem; color:rgba(201,168,76,.35); font-size:var(--fs-body); transition:transform .2s,color .2s; }
+  .sol-tile:hover::after { color:var(--gold); transform:translateX(4px); }
+  .sol-tile-num { font-family:'Inter',sans-serif; font-size:var(--fs-body); letter-spacing:.16em; color:var(--gold); margin-bottom:.9rem; }
+  .sol-tile-name { font-family:'Inter',sans-serif; font-size:var(--fs-sub); font-weight:600; color:var(--white); line-height:1.15; margin-bottom:.7rem; }
+  .sol-tile:hover .sol-tile-name { color:var(--gold-lt); }
+  .sol-tile-desc { font-size:var(--fs-body); color:rgba(245,246,250,.78); line-height:1.55; margin-top:auto; }
+  .sol-grid-home .sol-tile.feat { grid-column:span 2; background:linear-gradient(120deg,rgba(13,27,75,.55),rgba(255,255,255,.012)); }
+  .sol-grid-home .sol-tile.feat .sol-tile-name { font-size:var(--fs-sub); }
+  .sol-grid-home .sol-tile.feat .sol-tile-desc { font-size:var(--fs-body); max-width:60%; }
+  .sol-tile-tag { position:absolute; top:1.4rem; left:1.7rem; font-family:'Inter',sans-serif; font-size:var(--fs-body); letter-spacing:.13em; text-transform:uppercase; color:var(--gold-lt); border:1px solid rgba(201,168,76,.4); border-radius:4px; padding:.12rem .45rem; }
+  .sol-tile.feat .sol-tile-num { margin-top:1.6rem; }
+
+  /* AR aging bar */
+  .ar-bar { display:flex; align-items:center; gap:.8rem; padding:.4rem 0; }
+  .ar-bar-track { flex:1; height:6px; background:rgba(255,255,255,.04); position:relative; }
+  .ar-bar-seg { position:absolute; top:0; bottom:0; }
+  .ar-bar-seg.s1 { background:var(--green); } .ar-bar-seg.s2 { background:var(--gold); }
+  .ar-bar-seg.s3 { background:var(--amber); } .ar-bar-seg.s4 { background:var(--red); }
+  .ar-leg { display:flex; flex-wrap:wrap; gap:1.4rem; font-size:var(--fs-label); color:var(--slate); margin-top:.8rem; }
+  .ar-leg-item { display:flex; align-items:center; gap:.5rem; }
+  .ar-leg-dot { width:8px; height:8px; }
+  .ar-leg-dot.s1 { background:var(--green); } .ar-leg-dot.s2 { background:var(--gold); }
+  .ar-leg-dot.s3 { background:var(--amber); } .ar-leg-dot.s4 { background:var(--red); }
+  .ar-leg-val { color:var(--white); font-family:'Inter',sans-serif; font-size:var(--fs-label); }
+
+  .seq-step { display:flex; gap:1rem; align-items:flex-start; padding:.85rem 0; border-bottom:1px solid var(--line); }
+  .seq-step:last-child { border-bottom:none; }
+  .seq-step-dot { width:24px; height:24px; border:1px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-size:var(--fs-body); color:var(--gold); flex-shrink:0; }
+  .seq-step.done .seq-step-dot { background:var(--gold); color:var(--dark); }
+  .seq-step-body { flex:1; }
+  .seq-step-day { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.13em; text-transform:uppercase; color:var(--slate); }
+  .seq-step-title { font-size:var(--fs-body); color:var(--white); margin-top:2px; }
+  .seq-step-desc { font-size:var(--fs-body); color:#c5cbdc; margin-top:3px; line-height:1.5; }
+  .seq-step-time { font-family:'Inter',sans-serif; font-size:var(--fs-label); color:var(--slate); flex-shrink:0; }
+
+  .email-preview { background:rgba(255,255,255,.025); border:1px solid var(--line); padding:1rem 1.2rem; margin-top:.5rem; }
+  .email-hdr { display:flex; justify-content:space-between; padding-bottom:.7rem; border-bottom:1px solid var(--line); margin-bottom:.8rem; }
+  .email-from { font-size:var(--fs-body); color:var(--white); } .email-from span { color:var(--slate); }
+  .email-time { font-family:'Inter',sans-serif; font-size:var(--fs-label); color:var(--slate); }
+  .email-subj { font-family:'Inter',sans-serif; font-size:var(--fs-body); font-weight:600; color:var(--white); margin-bottom:.7rem; }
+  .email-body { font-size:var(--fs-body); color:#cdd2e0; line-height:1.65; } .email-body p { margin-bottom:.6rem; } .email-body .sign { color:var(--gold-lt); }
+
+  .integ-row { display:flex; flex-wrap:wrap; gap:.6rem; }
+  .integ { display:flex; align-items:center; gap:.5rem; border:1px solid var(--line); padding:.5rem .8rem; font-family:'Inter',sans-serif; font-size:var(--fs-body); letter-spacing:.08em; color:var(--white); }
+  .integ::before { content:''; width:6px; height:6px; background:var(--green); }
+
+  /* Voice */
+  .call-row { display:grid; grid-template-columns:auto 1fr auto auto; gap:1rem; align-items:center; padding:.85rem 0; border-bottom:1px solid var(--line); }
+  .call-row:last-child { border-bottom:none; }
+  .call-time { font-family:'Inter',sans-serif; font-size:var(--fs-body); color:var(--slate); }
+  .call-caller { font-size:var(--fs-body); color:var(--white); } .call-caller-sub { font-size:var(--fs-body); color:var(--slate); margin-top:2px; }
+  .call-dur { font-family:'Inter',sans-serif; font-size:var(--fs-body); color:var(--slate); }
+  .transcript { background:var(--darker); border:1px solid var(--line); padding:1.2rem; }
+  .transcript-head { display:flex; align-items:center; justify-content:space-between; padding-bottom:.9rem; margin-bottom:.9rem; border-bottom:1px solid var(--line); }
+  .transcript-caller { font-size:var(--fs-body); color:var(--white); } .transcript-caller span { display:block; font-size:var(--fs-label); color:var(--slate); margin-top:2px; font-family:'Inter',sans-serif; }
+  .transcript-line { display:flex; gap:.9rem; margin-bottom:.85rem; align-items:flex-start; }
+  .transcript-who { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.13em; text-transform:uppercase; color:var(--slate); min-width:55px; margin-top:3px; }
+  .transcript-who.ai { color:var(--gold); }
+  .transcript-text { font-size:var(--fs-body); color:rgba(245,246,250,.9); line-height:1.55; flex:1; } .transcript-text.ai { color:var(--white); }
+  .cal { display:grid; grid-template-columns:repeat(7,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .cal-h { background:var(--dark); padding:.5rem .4rem; text-align:center; font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.13em; color:var(--slate); text-transform:uppercase; }
+  .cal-d { background:var(--dark); padding:.55rem .5rem; min-height:54px; position:relative; }
+  .cal-d-num { font-family:'Inter',sans-serif; font-size:var(--fs-label); color:var(--white); }
+  .cal-d.muted .cal-d-num { color:rgba(245,246,250,.18); }
+  .cal-d.today { background:rgba(201,168,76,.07); } .cal-d.today .cal-d-num { color:var(--gold-lt); }
+  .cal-d-dot { width:5px; height:5px; background:var(--gold); position:absolute; bottom:6px; left:6px; }
+  .cal-d-dot.green { background:var(--green); } .cal-d-dot.gold { background:var(--gold); }
+  .cal-d-dot + .cal-d-dot { left:14px; } .cal-d-dot + .cal-d-dot + .cal-d-dot { left:22px; }
+
+  /* Lead gen */
+  .funnel { display:flex; flex-direction:column; gap:.6rem; }
+  .funnel-row { display:grid; grid-template-columns:minmax(0,120px) minmax(64px,1fr) auto; gap:.85rem; align-items:center; }
+  .funnel-lbl { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.1em; text-transform:uppercase; color:var(--slate); }
+  .funnel-bar { height:30px; background:rgba(255,255,255,.025); position:relative; }
+  .funnel-bar-fill { position:absolute; left:0; top:0; bottom:0; background:linear-gradient(90deg,rgba(201,168,76,.5),var(--gold)); }
+  .funnel-bar-fill::after { content:attr(data-val); position:absolute; right:.8rem; top:50%; transform:translateY(-50%); font-family:'Inter',sans-serif; font-size:var(--fs-body); color:var(--dark); font-weight:600; }
+  .funnel-conv { font-family:'Inter',sans-serif; font-size:var(--fs-label); color:var(--gold-lt); text-align:right; }
+  .funnel-conv span { color:var(--slate); font-size:var(--fs-label); display:block; margin-top:2px; }
+  .camp-list { display:flex; flex-direction:column; gap:.7rem; }
+  .camp { display:grid; grid-template-columns:1fr auto auto auto; gap:1.2rem; align-items:center; padding:.95rem 1.1rem; background:rgba(255,255,255,.018); border:1px solid var(--line); }
+  .camp-name { font-size:var(--fs-body); color:var(--white); } .camp-name span { display:block; font-size:var(--fs-body); color:var(--slate); margin-top:2px; }
+  .camp-stat { text-align:right; }
+  .camp-stat-lbl { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.13em; color:var(--slate); text-transform:uppercase; }
+  .camp-stat-val { font-family:'Inter',sans-serif; font-size:var(--fs-label); color:var(--white); margin-top:2px; }
+
+  /* Document mock */
+  .doc-mock { background:rgba(245,246,250,.96); color:#1a1d2e; padding:1.4rem 1.5rem; font-size:var(--fs-body); line-height:1.55; position:relative; min-height:340px; font-family:'Times New Roman',serif; }
+  .doc-mock-head { text-align:center; margin-bottom:1.2rem; padding-bottom:.7rem; border-bottom:1px solid rgba(0,0,0,.15); }
+  .doc-mock-head h4 { font-size:var(--fs-body); margin-bottom:.2rem; font-weight:700; } .doc-mock-head p { font-size:var(--fs-body); color:#666; }
+  .doc-mock p { margin-bottom:.6rem; }
+  .extract { background:rgba(201,168,76,.35); padding:1px 4px; }
+  .mask-tag { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.14em; text-transform:uppercase; color:#8a6f1e; border:1px solid rgba(140,111,30,.5); border-radius:4px; padding:.05rem .35rem; margin-left:.4rem; vertical-align:middle; }
+  .masked { font-family:'Inter',sans-serif; letter-spacing:.04em; }
+
+  .check-list { display:flex; flex-direction:column; gap:.85rem; }
+  .check { display:flex; gap:.85rem; align-items:flex-start; padding:.85rem .95rem; background:rgba(255,255,255,.018); border:1px solid var(--line); }
+  .check-box { width:20px; height:20px; flex-shrink:0; border:1px solid var(--green); background:rgba(106,194,138,.15); display:flex; align-items:center; justify-content:center; color:var(--green); font-size:var(--fs-body); }
+  .check-box.warn { border-color:var(--amber); background:rgba(232,166,76,.15); color:var(--amber); }
+  .check-body { flex:1; }
+  .check-name { font-size:var(--fs-body); color:var(--white); }
+  .check-desc { font-size:var(--fs-body); color:#c5cbdc; margin-top:3px; line-height:1.5; }
+
+  /* Orchestration timeline */
+  .timeline { position:relative; padding-left:1.4rem; }
+  .timeline::before { content:''; position:absolute; left:6px; top:8px; bottom:8px; width:1px; background:var(--line-2); }
+  .tl-item { position:relative; padding-bottom:1.6rem; } .tl-item:last-child { padding-bottom:0; }
+  .tl-dot { position:absolute; left:-1.4rem; top:4px; width:13px; height:13px; background:var(--dark); border:2px solid var(--gold); }
+  .tl-item.done .tl-dot { background:var(--gold); }
+  .tl-time { font-family:'Inter',sans-serif; font-size:var(--fs-label); color:var(--slate); margin-bottom:4px; }
+  .tl-title { font-size:var(--fs-body); color:var(--white); margin-bottom:3px; }
+  .tl-desc { font-size:var(--fs-body); color:#c5cbdc; line-height:1.55; }
+  .msg-card { background:rgba(255,255,255,.025); border:1px solid var(--line); padding:1rem 1.1rem; margin-top:.6rem; }
+  .msg-card-hdr { display:flex; justify-content:space-between; font-size:var(--fs-label); color:var(--slate); margin-bottom:.5rem; }
+  .msg-card-hdr .gold { color:var(--gold); font-family:'Inter',sans-serif; letter-spacing:.13em; text-transform:uppercase; }
+  .msg-card-body { font-size:var(--fs-body); color:#dadee9; line-height:1.6; }
+
+  /* Dashboards gauges */
+  .gauge { display:flex; flex-direction:column; gap:1rem; }
+  .gauge-row .gl { display:flex; justify-content:space-between; font-size:var(--fs-body); color:#cdd2e1; margin-bottom:.4rem; }
+  .gauge-row .gl b { color:var(--white); font-family:'Inter',sans-serif; font-weight:400; }
+  .gbar { height:6px; background:rgba(255,255,255,.05); }
+  .gbar i { display:block; height:100%; background:linear-gradient(90deg,rgba(201,168,76,.5),var(--gold)); }
+
+  /* Diagram */
+  .diagram { background:rgba(255,255,255,.018); border:1px solid var(--line); padding:1.8rem; position:relative; min-height:340px; background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px); background-size:24px 24px; }
+  .node { position:absolute; background:var(--darker); border:1px solid rgba(201,168,76,.3); padding:.6rem .7rem; min-width:104px; text-align:center; }
+  .node-lbl { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.13em; color:var(--gold); text-transform:uppercase; }
+  .node-name { font-size:var(--fs-body); color:var(--white); margin-top:3px; }
+  .node.center { border-color:var(--gold); background:rgba(201,168,76,.06); min-width:140px; } .node.center .node-lbl { color:var(--gold-lt); }
+  .node-line { position:absolute; background:rgba(201,168,76,.25); height:1px; transform-origin:left center; }
+
+  /* Phase / spectrum */
+  .phases { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .phase { background:var(--dark); padding:1.2rem 1.1rem; position:relative; }
+  .phase-num { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.16em; color:var(--gold); margin-bottom:.5rem; }
+  .phase-name { font-family:'Inter',sans-serif; font-size:var(--fs-body); font-weight:600; color:var(--white); margin-bottom:.4rem; }
+  .phase-desc { font-size:var(--fs-body); color:#c5cbdc; line-height:1.55; }
+  .phase-week { position:absolute; top:1rem; right:1rem; font-family:'Inter',sans-serif; font-size:var(--fs-label); color:var(--slate); }
+
+  /* Consulting road */
+  .road { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .road-step { background:var(--dark); padding:1.4rem 1.2rem; position:relative; }
+  .road-step::after { content:'→'; position:absolute; right:-10px; top:50%; transform:translateY(-50%); color:var(--gold); font-size:var(--fs-body); background:var(--dark); padding:.2rem .3rem; z-index:2; }
+  .road-step:last-child::after { display:none; }
+  .road-week { font-family:'Inter',sans-serif; font-size:var(--fs-label); color:var(--gold); }
+  .road-name { font-family:'Inter',sans-serif; font-size:var(--fs-body); font-weight:600; color:var(--white); margin:.4rem 0 .5rem; line-height:1.2; }
+  .road-pts { list-style:none; font-size:var(--fs-body); color:rgba(245,246,250,.8); line-height:1.55; }
+  .road-pts li { padding:.18rem 0 .18rem .9rem; position:relative; } .road-pts li::before { content:'·'; position:absolute; left:0; color:var(--gold); }
+  .deliv { background:rgba(255,255,255,.018); border:1px solid var(--line); padding:1.3rem 1.4rem; }
+  .deliv-num { font-family:'Inter',sans-serif; font-size:var(--fs-sub); color:var(--gold-lt); font-weight:600; line-height:1; margin-bottom:.7rem; }
+  .deliv-name { font-family:'Inter',sans-serif; font-size:var(--fs-sub); font-weight:600; color:var(--white); margin-bottom:.5rem; }
+  .deliv-desc { font-size:var(--fs-body); color:#cdd2e1; line-height:1.6; }
+
+  /* Build cards / flow */
+  .build-card { background:rgba(255,255,255,.018); border:1px solid var(--line); padding:1.4rem 1.5rem; display:flex; flex-direction:column; }
+  .build-tag { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.16em; color:var(--gold); text-transform:uppercase; margin-bottom:.7rem; }
+  .build-title { font-family:'Inter',sans-serif; font-size:var(--fs-sub); font-weight:600; color:var(--white); margin-bottom:.6rem; line-height:1.2; }
+  .build-desc { font-size:var(--fs-body); color:#cdd2e1; line-height:1.6; margin-bottom:1rem; }
+  .build-tech { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:auto; }
+  .build-tech span { font-family:'Inter',sans-serif; font-size:var(--fs-body); color:rgba(245,246,250,.8); padding:.25rem .55rem; background:rgba(255,255,255,.025); border:1px solid var(--line); }
+  .flow { background:rgba(255,255,255,.018); border:1px solid var(--line); padding:1.6rem; display:grid; grid-template-columns:repeat(5,1fr); gap:.5rem; align-items:center; }
+  .flow-node { border:1px solid rgba(201,168,76,.25); padding:.85rem .7rem; text-align:center; background:var(--darker); }
+  .flow-node-lbl { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.13em; color:var(--gold); text-transform:uppercase; margin-bottom:.4rem; }
+  .flow-node-txt { font-size:var(--fs-body); color:var(--white); line-height:1.3; }
+  .flow-arrow { text-align:center; color:var(--gold); font-size:var(--fs-sub); }
+  .spec-tier { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+
+  /* Footer CTA */
+  .foot-cta { display:flex; align-items:center; justify-content:space-between; padding:2.2rem 0; background:linear-gradient(180deg,transparent,rgba(13,27,75,.4)); border-top:1px solid var(--line); margin-top:2rem; flex-wrap:wrap; gap:1.5rem; }
+  .foot-cta-text { max-width:520px; }
+  .foot-cta-text h3 { font-family:'Inter',sans-serif; font-size:var(--fs-sub); font-weight:600; color:var(--white); line-height:1.2; margin-bottom:.5rem; }
+  .foot-cta-text h3 em { font-style:normal; color:var(--gold-lt); }
+  .foot-cta-text p { font-size:var(--fs-body); color:var(--slate); line-height:1.55; }
+  .foot-cta a { background:var(--gold); color:var(--dark); font-family:'Inter',sans-serif; font-weight:700; font-size:var(--fs-body); letter-spacing:.13em; text-transform:uppercase; padding:.95rem 1.9rem; text-decoration:none; clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%); transition:background .2s,transform .2s; }
+  .foot-cta a:hover { background:var(--gold-lt); transform:translateY(-2px); }
+
+  /* Reveal */
+  .r { opacity:0; transform:translateY(10px); transition:opacity .55s ease,transform .55s ease; }
+  .view.active .r { opacity:1; transform:translateY(0); }
+  .view.active .r.d1 { transition-delay:.06s; } .view.active .r.d2 { transition-delay:.12s; }
+  .view.active .r.d3 { transition-delay:.18s; } .view.active .r.d4 { transition-delay:.24s; }
+
+  /* Workbar */
+  .workbar { display:flex; align-items:center; gap:.7rem 1.1rem; flex-wrap:wrap; margin:0 0 1.9rem; padding:.85rem 1.5rem; background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.006)); border-bottom:1px solid var(--line); border-radius:16px 16px 0 0; }
+  .wb-crumb { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.08em; color:rgba(245,246,250,.86); display:flex; align-items:center; gap:.6rem; text-transform:uppercase; }
+  .wb-crumb em { font-style:normal; color:var(--gold-lt); }
+  .wb-dot { width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 9px var(--green); animation:pulse 2.4s ease infinite; }
+  .wb-seg { display:flex; gap:.18rem; background:rgba(0,0,0,.3); padding:3px; border-radius:9px; }
+  .wb-seg span { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.1em; text-transform:uppercase; color:var(--slate); padding:.34rem .75rem; border-radius:6px; cursor:pointer; transition:background .15s,color .15s; }
+  .wb-seg span:hover { color:rgba(245,246,250,.9); } .wb-seg span.on { background:rgba(255,255,255,.07); color:var(--white); }
+  .wb-right { margin-left:auto; display:flex; align-items:center; gap:.85rem; }
+  .wb-search { display:flex; align-items:center; gap:.55rem; font-size:var(--fs-body); color:var(--slate); border:1px solid var(--line-2); border-radius:9px; padding:.45rem 1.1rem .45rem .85rem; }
+  .wb-search svg { width:13px; height:13px; opacity:.6; flex-shrink:0; }
+  .wb-search input { background:transparent; border:none; outline:none; color:var(--white); font-family:'Inter',sans-serif; font-size:var(--fs-body); width:140px; }
+  .wb-search input::placeholder { color:var(--slate); } .wb-search:focus-within { border-color:rgba(201,168,76,.55); }
+  .wb-avatar { width:31px; height:31px; border-radius:50%; background:linear-gradient(135deg,var(--gold-lt),#9c7f2e); color:var(--darker); display:flex; align-items:center; justify-content:center; font-family:'Inter',sans-serif; font-weight:700; font-size:var(--fs-body); letter-spacing:.04em; }
+
+  .pane { display:none; } .pane.on { display:block; animation:paneIn .4s cubic-bezier(.16,1,.3,1); }
+  @keyframes paneIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+  tr.filtered-out, .call-row.filtered-out, .camp.filtered-out { display:none !important; }
+  .search-empty { padding:1.4rem; text-align:center; font-size:var(--fs-body); color:var(--slate); display:none; } .search-empty.on { display:block; }
+
+  .compliance-strip { display:flex; flex-wrap:wrap; align-items:center; gap:.6rem 1.4rem; margin-top:1.2rem; padding:.9rem 1.2rem; border:1px solid var(--line); border-radius:11px; background:rgba(106,194,138,.04); }
+  .compliance-strip .cs-lead { font-family:'Inter',sans-serif; font-size:var(--fs-label); letter-spacing:.2em; text-transform:uppercase; color:var(--green); display:flex; align-items:center; gap:.5rem; }
+  .compliance-strip .cs-lead::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); }
+  .compliance-strip .cs-item { font-size:var(--fs-body); color:#cdd2e1; }
+
+  .illus-note { margin-top:1.4rem; font-size:var(--fs-label); color:rgba(188,194,216,.8); letter-spacing:.02em; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width:8px; height:8px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:rgba(255,255,255,.06); }
+  ::-webkit-scrollbar-thumb:hover { background:rgba(201,168,76,.3); }
+
+  /* ───────── Width + spacing system (matches main site scale) ───────── */
+  :root { --content-max:1180px; --content-wide:1320px; --section-pad:clamp(1.25rem,3.8vw,3.75rem); --section-pad-tight:clamp(1rem,2.6vw,2.4rem); --section-gap:clamp(2rem,4.5vw,4.5rem); }
+  .main { overflow-x:hidden; } .view { width:100%; }
+  .page-head, .home-hero-inner { width:min(var(--content-max), calc(100% - (var(--section-pad) * 2))); margin-inline:auto; }
+  .home-hero { padding:clamp(4.25rem,7vw,6.5rem) 0 clamp(3.25rem,6vw,5.5rem); }
+  .home-hero-inner { max-width:min(920px, calc(100% - (var(--section-pad) * 2))); }
+  .home-title { max-width:820px; } .home-lede { max-width:650px; }
+  .about, .home-stats, .home-solutions, .home-footwrap {
+    width:100%;
+    padding-left:max(var(--section-pad), calc((100% - var(--content-max)) / 2));
+    padding-right:max(var(--section-pad), calc((100% - var(--content-max)) / 2));
+  }
+  .about { padding-top:var(--section-gap); padding-bottom:var(--section-gap); }
+  .home-stats { margin-top:clamp(1.4rem,3vw,2.25rem); }
+  .home-solutions { padding-top:var(--section-gap); padding-bottom:clamp(3.5rem,7vw,6rem); }
+  .home-footwrap { padding-bottom:2rem; }
+  .page-head { padding:clamp(2.25rem,4.5vw,4rem) 0 0; }
+  .page-body { width:min(var(--content-wide), calc(100% - (var(--section-pad) * 2))); margin:clamp(1.25rem,2.5vw,1.8rem) auto clamp(2.5rem,5vw,4.5rem); padding:0 var(--section-pad-tight) var(--section-pad-tight); }
+  .card { padding:clamp(1.15rem,2vw,1.6rem); }
+  @media (min-width:1600px) { :root { --content-max:1240px; --content-wide:1380px; } }
+
+  @media (max-width:1180px) {
+    .app { grid-template-columns:270px 1fr; }
+    .grid-3, .kpis, .home-stats, .spec-tier { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .sol-grid-home { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .sol-grid-home .sol-tile.feat { grid-column:span 2; } .sol-grid-home .sol-tile.feat .sol-tile-desc { max-width:72%; }
+    .phases, .road { grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:900px) {
+    body { overflow:auto; }
+    .app { display:block; min-height:100vh; height:auto; }
+    .side { position:relative; max-height:none; border-right:0; border-bottom:1px solid var(--line); }
+    .main { overflow:visible; } .view { min-height:auto; }
+    .page-head, .home-hero-inner, .page-body { width:min(100% - 2rem, var(--content-max)); }
+    .about, .home-stats, .home-solutions, .home-footwrap { padding-left:1rem; padding-right:1rem; }
+    .page-body { border-radius:12px; }
+    .about, .grid-2, .grid-2-1 { grid-template-columns:1fr; }
+    .about-portrait { max-width:340px; }
+    .flow, .spec-tier { grid-template-columns:1fr; } .flow-arrow { display:none; }
+    .diagram { min-height:430px; }
+  }
+  @media (max-width:680px) {
+    :root { --section-pad-tight:1rem; }
+    .page-head, .home-hero-inner, .page-body { width:calc(100% - 1.25rem); }
+    .about, .home-stats, .home-solutions, .home-footwrap { padding-left:.625rem; padding-right:.625rem; }
+    .home-hero { padding-top:3.5rem; padding-bottom:3rem; }
+    .page-title { font-size:var(--fs-head); } .home-title { font-size:var(--fs-head); }
+    .home-stats, .kpis, .grid-3, .sol-grid-home, .phases, .road { grid-template-columns:1fr; }
+    .sol-grid-home .sol-tile.feat { grid-column:auto; } .sol-grid-home .sol-tile.feat .sol-tile-desc { max-width:none; }
+    .home-hero-cta a { width:100%; text-align:center; }
+    .wb-search { display:none; }
+    .workbar { margin-left:0; margin-right:0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ═══════════════ SIDEBAR ═══════════════ -->
+  <aside class="side">
+    <div class="side-head">
+      <a href="https://northstoneventure.com" class="side-back">← Back to main site</a>
+      <div class="side-logo">
+        <svg viewBox="0 0 100 125" fill="none"><polygon points="50,2 52.5,50 62,45 76,24 55,49 96,57 55,61 62,72 76,90 52.5,63 50,118 47.5,63 38,72 24,90 45,61 4,57 45,49 38,45 24,24 47.5,50" fill="#ffffff"/></svg>
+        <span class="side-wm">Northstone</span>
+      </div>
+      <div class="side-tag">AI Systems · CPA &amp; Tax Firms</div>
+    </div>
+
+    <div class="side-section-label">Systems</div>
+    <div class="nav-item active" data-view="ar">
+      <span class="nav-num">I</span>
+      <div class="nav-text"><span class="nav-name">AR Collections Agent<span class="nav-star">★</span></span><span class="nav-desc">Automated recovery sequences</span></div>
+    </div>
+    <div class="nav-item" data-view="voice">
+      <span class="nav-num">II</span>
+      <div class="nav-text"><span class="nav-name">AI Voice Agent<span class="nav-star">★</span></span><span class="nav-desc">24/7 inbound call coverage</span></div>
+    </div>
+    <div class="nav-item" data-view="leadgen">
+      <span class="nav-num">III</span>
+      <div class="nav-text"><span class="nav-name">AI Lead Generation<span class="nav-star">★</span></span><span class="nav-desc">CPA-targeted · booked consults</span></div>
+    </div>
+    <div class="nav-item" data-view="docs">
+      <span class="nav-num">IV</span>
+      <div class="nav-text"><span class="nav-name">Document Processing</span><span class="nav-desc">Intake triage · compliance</span></div>
+    </div>
+    <div class="nav-item" data-view="orch">
+      <span class="nav-num">V</span>
+      <div class="nav-text"><span class="nav-name">Client Orchestration</span><span class="nav-desc">Proactive status updates</span></div>
+    </div>
+    <div class="nav-item" data-view="dash">
+      <span class="nav-num">VI</span>
+      <div class="nav-text"><span class="nav-name">Dashboards &amp; CRM</span><span class="nav-desc">The visibility layer</span></div>
+    </div>
+    <div class="nav-item" data-view="custom">
+      <span class="nav-num">VII</span>
+      <div class="nav-text"><span class="nav-name">Custom Software &amp; Agents</span><span class="nav-desc">Automations · agents · builds</span></div>
+    </div>
+
+    <div class="side-section-label">Advisory</div>
+    <div class="nav-item" data-view="consulting">
+      <span class="nav-num">–</span>
+      <div class="nav-text"><span class="nav-name">Consulting</span><span class="nav-desc">Strategy · ROI modeling</span></div>
+    </div>
+
+    <div class="side-foot">
+      <a href="https://calendly.com/northstone_ventures/ceo" class="side-foot-cta">Book a Free Assessment</a>
+      <div class="side-foot-note">hello@northstoneventures.com</div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════ MAIN ═══════════════ -->
+  <main class="main">
+
+  <!-- ──────────────── AR COLLECTIONS ──────────────── -->
+  <section class="view active" data-v="ar">
+    <div class="page-head">
+      <div>
+        <div class="page-eyebrow">System No. I · Revenue Recovery Bundle</div>
+        <h1 class="page-title">AR Collections <em>Agent</em></h1>
+        <p class="page-sub">Automated 30/60/90-day recovery sequences. Aged invoices collected without partner time.</p>
+      </div>
+      <div class="page-meta"><span class="meta-chip">Sample Firm</span><span class="meta-live">Live</span></div>
+    </div>
+
+    <div class="page-body">
+      <div class="workbar">
+        <div class="wb-crumb"><span class="wb-dot"></span>Sample Firm · Workspace <em>/ Collections</em></div>
+        <div class="wb-seg"><span class="on" data-pane="overview">Overview</span><span data-pane="sequences">Sequences</span><span data-pane="settings">Settings</span></div>
+        <div class="wb-right"><div class="wb-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg><input type="text" placeholder="Search invoices…"></div><div class="wb-avatar">MK</div></div>
+      </div>
+      <div class="kpis r d1">
+        <div class="kpi"><div class="kpi-lbl">Outstanding AR</div><div class="kpi-val gold">$84,210</div><div class="kpi-delta down">↓ $12,480 this month</div></div>
+        <div class="kpi"><div class="kpi-lbl">Recovered (30d)</div><div class="kpi-val green">$38,920</div><div class="kpi-delta up">+ 14 invoices</div></div>
+        <div class="kpi"><div class="kpi-lbl">Active Sequences</div><div class="kpi-val">47</div><div class="kpi-delta">across 23 clients</div></div>
+        <div class="kpi"><div class="kpi-lbl">Partner Time Saved</div><div class="kpi-val">22 hrs</div><div class="kpi-delta">~ $4,400 / mo</div></div>
+      </div>
+
+      <div class="pane on" data-pane="overview">
+      <div class="grid-2-1 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Aging Breakdown</div><div class="card-action">Export →</div></div>
+          <div style="margin-bottom:1.2rem;">
+            <div class="ar-bar"><div class="ar-bar-track">
+              <div class="ar-bar-seg s1" style="left:0;width:42%;"></div>
+              <div class="ar-bar-seg s2" style="left:42%;width:28%;"></div>
+              <div class="ar-bar-seg s3" style="left:70%;width:18%;"></div>
+              <div class="ar-bar-seg s4" style="left:88%;width:12%;"></div>
+            </div></div>
+            <div class="ar-leg">
+              <div class="ar-leg-item"><div class="ar-leg-dot s1"></div>0–30 <span class="ar-leg-val">$35,360</span></div>
+              <div class="ar-leg-item"><div class="ar-leg-dot s2"></div>30–60 <span class="ar-leg-val">$23,580</span></div>
+              <div class="ar-leg-item"><div class="ar-leg-dot s3"></div>60–90 <span class="ar-leg-val">$15,150</span></div>
+              <div class="ar-leg-item"><div class="ar-leg-dot s4"></div>90+ <span class="ar-leg-val">$10,120</span></div>
+            </div>
+          </div>
+          <table class="t" style="margin-top:1.6rem;">
+            <thead><tr><th>Client</th><th>Invoice</th><th>Amount</th><th>Aging</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Hartwell &amp; Co.</td><td class="num">#INV-4218</td><td class="num">$4,820</td><td>52 d</td><td><span class="pill gold">Sequence 2/4</span></td></tr>
+              <tr><td class="name">Maren Logistics</td><td class="num">#INV-4187</td><td class="num">$12,400</td><td>78 d</td><td><span class="pill amber">Escalation</span></td></tr>
+              <tr><td class="name">Brixley Holdings</td><td class="num">#INV-4204</td><td class="num">$2,150</td><td>14 d</td><td><span class="pill green">Paid · today</span></td></tr>
+              <tr><td class="name">Oak &amp; Vance LLP</td><td class="num">#INV-4156</td><td class="num">$8,640</td><td>96 d</td><td><span class="pill red">Final notice</span></td></tr>
+              <tr><td class="name">Sundial Properties</td><td class="num">#INV-4221</td><td class="num">$3,300</td><td>28 d</td><td><span class="pill gold">Sequence 1/4</span></td></tr>
+              <tr><td class="name">Northway Dental</td><td class="num">#INV-4198</td><td class="num">$1,950</td><td>9 d</td><td><span class="pill slate">Not yet due</span></td></tr>
+            </tbody>
+          </table>
+          <div class="search-empty">No invoices match your search.</div>
+        </div>
+
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><div class="card-title">Collections health</div><span class="pill green">On track</span></div>
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <div><div style="display:flex;justify-content:space-between;font-size:var(--fs-body);color:#cdd2e1;margin-bottom:.4rem;"><span>Avg. days to pay</span><span class="num" style="color:var(--white);">38 d ↓</span></div><div class="gbar"><i style="width:62%;"></i></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:var(--fs-body);color:#cdd2e1;margin-bottom:.4rem;"><span>Recovery rate (90d)</span><span class="num" style="color:var(--white);">91%</span></div><div class="gbar"><i style="width:91%;"></i></div></div>
+              <div><div style="display:flex;justify-content:space-between;font-size:var(--fs-body);color:#cdd2e1;margin-bottom:.4rem;"><span>Disputed / on hold</span><span class="num" style="color:var(--white);">$6,200</span></div><div class="gbar"><i style="width:14%;"></i></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div class="card-title">Next actions · today</div><span class="pill gold">6 queued</span></div>
+            <div style="font-size:var(--fs-body);color:#cdd2e1;line-height:1.7;">
+              <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--line);"><span>Send Day-30 follow-up · Hartwell</span><span class="pill gold">09:00</span></div>
+              <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--line);"><span>Partner escalation · Maren</span><span class="pill amber">Review</span></div>
+              <div style="display:flex;justify-content:space-between;padding:.4rem 0;"><span>Final notice · Oak &amp; Vance</span><span class="pill red">Approve</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="compliance-strip r d3">
+        <span class="cs-lead">Compliant by design</span>
+        <span class="cs-item">FTC Safeguards Rule · access-controlled</span>
+        <span class="cs-item">No tax-return data used for collections (IRC §7216)</span>
+        <span class="cs-item">Full audit log of every client touch</span>
+      </div>
+      <p class="illus-note">Console uses illustrative sample-firm data.</p>
+      </div>
+
+      <div class="pane" data-pane="sequences">
+      <div class="grid-2 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Recovery Sequence · Hartwell &amp; Co.</div><div class="card-action">Day 52</div></div>
+          <div class="seq-step done"><div class="seq-step-dot">✓</div><div class="seq-step-body"><div class="seq-step-day">Day 0</div><div class="seq-step-title">Friendly reminder</div><div class="seq-step-desc">Soft tone, payment link inline</div></div><div class="seq-step-time">Mar 14</div></div>
+          <div class="seq-step done"><div class="seq-step-dot">✓</div><div class="seq-step-body"><div class="seq-step-day">Day 30</div><div class="seq-step-title">First follow-up</div><div class="seq-step-desc">CC's billing contact &amp; AP lead</div></div><div class="seq-step-time">Apr 13</div></div>
+          <div class="seq-step"><div class="seq-step-dot">3</div><div class="seq-step-body"><div class="seq-step-day">Day 60</div><div class="seq-step-title">Escalation · partner-tone</div><div class="seq-step-desc">Routes to partner if no reply in 3 days</div></div><div class="seq-step-time">May 13</div></div>
+          <div class="seq-step"><div class="seq-step-dot">4</div><div class="seq-step-body"><div class="seq-step-day">Day 90</div><div class="seq-step-title">Final notice + hold</div><div class="seq-step-desc">Service hold flag pushed to PM system</div></div><div class="seq-step-time">Jun 12</div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Last sent · auto-drafted reminder</div><div class="card-action">View thread →</div></div>
+          <div class="email-preview">
+            <div class="email-hdr"><div class="email-from">To: <span>j•••••@hartwellco.com</span><br>From: billing@yourfirm.cpa</div><div class="email-time">Apr 13 · 09:14 AM</div></div>
+            <div class="email-subj">Friendly nudge on invoice #4218</div>
+            <div class="email-body">
+              <p>Hi Jane –</p>
+              <p>Just a quick note that invoice <strong>#4218 ($4,820)</strong> from March 14 is now 30 days past due. I wanted to reach out before it ages further. You can settle it in one click here: <span style="color:var(--gold-lt);">[secure payment link]</span></p>
+              <p>If there's anything on our end, a missing PO, a credit, or a question on the work, just hit reply and I'll route it to your partner-in-charge same day.</p>
+              <p class="sign">– Hartwell billing assistant, on behalf of the partner team</p>
+            </div>
+          </div>
+          <div style="font-size:var(--fs-body);color:var(--slate);margin-top:.8rem;line-height:1.5;">Every draft is reviewable before send. Tone, cadence, and escalation thresholds are partner-controlled.</div>
+        </div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="settings">
+      <div class="grid-2 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Accounting integrations</div><span class="pill green">Live sync</span></div>
+          <div class="integ-row"><div class="integ">QuickBooks Online</div><div class="integ">Xero</div><div class="integ">Sage Intacct</div><div class="integ">NetSuite</div><div class="integ">Stripe</div></div>
+          <div style="font-size:var(--fs-body);color:#c5cbdc;margin-top:1rem;line-height:1.6;">Read-only sync of invoice + payment status. Northstone never initiates payments or moves funds. The agent drafts outreach only.</div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Guardrails &amp; compliance</div><span class="pill gold">Partner-set</span></div>
+          <div class="check-list">
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">Max 1 outreach / 7 days per contact</div><div class="check-desc">FDCPA-aligned cadence limits, even for B2B</div></div></div>
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">Partner approval before final notice</div><div class="check-desc">No service-hold flag sent without sign-off</div></div></div>
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">Client data encrypted at rest &amp; in transit</div><div class="check-desc">GLBA Safeguards · SOC 2 Type II hosting</div></div></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── VOICE AGENT ──────────────── -->
+  <section class="view" data-v="voice">
+    <div class="page-head">
+      <div>
+        <div class="page-eyebrow">System No. II · Revenue Recovery Bundle</div>
+        <h1 class="page-title">AI Voice <em>Agent</em></h1>
+        <p class="page-sub">24/7 inbound call coverage trained on your firm. Every prospect captured during tax season.</p>
+      </div>
+      <div class="page-meta"><span class="meta-chip">Sample Firm</span><span class="meta-live">On call</span></div>
+    </div>
+
+    <div class="page-body">
+      <div class="workbar">
+        <div class="wb-crumb"><span class="wb-dot"></span>Sample Firm · Workspace <em>/ Voice Agent</em></div>
+        <div class="wb-seg"><span class="on" data-pane="live">Live</span><span data-pane="logs">Logs</span><span data-pane="calendar">Calendar</span></div>
+        <div class="wb-right"><div class="wb-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg><input type="text" placeholder="Search calls…"></div><div class="wb-avatar">MK</div></div>
+      </div>
+      <div class="kpis r d1">
+        <div class="kpi"><div class="kpi-lbl">Calls today</div><div class="kpi-val">28</div><div class="kpi-delta up">+ 6 vs. yesterday</div></div>
+        <div class="kpi"><div class="kpi-lbl">Avg. pickup</div><div class="kpi-val gold">1.4 s</div><div class="kpi-delta">no hold queue</div></div>
+        <div class="kpi"><div class="kpi-lbl">Bookings (30d)</div><div class="kpi-val green">73</div><div class="kpi-delta up">19 from after-hours</div></div>
+        <div class="kpi"><div class="kpi-lbl">Voicemails sent</div><div class="kpi-val">0</div><div class="kpi-delta">zero missed leads</div></div>
+      </div>
+
+      <div class="pane on" data-pane="live">
+      <div class="grid-2 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Live transcript · in progress</div><span class="pill green">Recording</span></div>
+          <div class="transcript">
+            <div class="transcript-head"><div class="transcript-caller">+1 (415) 555-••42<span>Inbound · 00:02:17 · new prospect</span></div><span class="pill gold">Qualifying</span></div>
+            <div class="transcript-line"><div class="transcript-who ai">Agent</div><div class="transcript-text ai">This is the after-hours line for the firm. Are you calling about a new engagement or an existing matter?</div></div>
+            <div class="transcript-line"><div class="transcript-who">Caller</div><div class="transcript-text">Yeah, hi, I'm looking for a CPA for my dental practice. We just got our K-1s and our current accountant is unreachable.</div></div>
+            <div class="transcript-line"><div class="transcript-who ai">Agent</div><div class="transcript-text ai">Understood. We work with dental and medical practices regularly. To make sure the right partner reaches out, roughly what's the annual revenue, and how many entities?</div></div>
+            <div class="transcript-line"><div class="transcript-who">Caller</div><div class="transcript-text">About $2.4M, one S-corp, one holding LLC.</div></div>
+            <div class="transcript-line"><div class="transcript-who ai">Agent</div><div class="transcript-text ai">Perfect, I'll book you with the partner who leads our practice clients. Tuesday at 10:30 or Wednesday at 2:00?</div></div>
+          </div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><div class="card-title">Live qualification</div><span class="pill gold">Auto-captured</span></div>
+            <div style="display:flex;flex-direction:column;gap:.7rem;font-size:var(--fs-body);">
+              <div style="display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid var(--line);"><span style="color:#c5cbdc;">Practice type</span><span style="color:var(--white);">Dental · single location</span></div>
+              <div style="display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid var(--line);"><span style="color:#c5cbdc;">Annual revenue</span><span style="color:var(--white);">~$2.4M</span></div>
+              <div style="display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px solid var(--line);"><span style="color:#c5cbdc;">Entities</span><span style="color:var(--white);">S-corp + holding LLC</span></div>
+              <div style="display:flex;justify-content:space-between;padding:.45rem 0;"><span style="color:#c5cbdc;">Routing to</span><span style="color:var(--gold-lt);">Partner · booked</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div class="card-title">Call disclosures</div><span class="pill green">Played</span></div>
+            <div class="check-list">
+              <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">Recording &amp; AI-assistant notice</div><div class="check-desc">Two-party-consent states honored before record</div></div></div>
+              <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">No tax advice given by agent</div><div class="check-desc">Scope limited to intake &amp; scheduling only</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="logs">
+      <div class="card r d2">
+        <div class="card-head"><div class="card-title">Recent calls · today</div><div class="card-action">Export log →</div></div>
+        <div class="call-row"><div class="call-time">09:42</div><div><div class="call-caller">+1 (415) 555-••42</div><div class="call-caller-sub">New prospect · dental practice</div></div><div class="call-dur">02:17</div><span class="pill gold">Qualifying</span></div>
+        <div class="call-row"><div class="call-time">09:18</div><div><div class="call-caller">Maren Logistics</div><div class="call-caller-sub">Existing client · billing</div></div><div class="call-dur">01:48</div><span class="pill slate">Routed</span></div>
+        <div class="call-row"><div class="call-time">08:55</div><div><div class="call-caller">+1 (212) 555-••93</div><div class="call-caller-sub">New prospect · S-corp tax</div></div><div class="call-dur">03:22</div><span class="pill green">Booked Tue 10:30</span></div>
+        <div class="call-row"><div class="call-time">08:11</div><div><div class="call-caller">+1 (646) 555-••88</div><div class="call-caller-sub">New prospect · 1099 question</div></div><div class="call-dur">04:05</div><span class="pill green">Booked Wed 14:00</span></div>
+        <div class="call-row"><div class="call-time">07:33</div><div><div class="call-caller">Brixley Holdings</div><div class="call-caller-sub">Existing · doc request</div></div><div class="call-dur">01:12</div><span class="pill slate">Resolved</span></div>
+        <div class="call-row"><div class="call-time">23:48</div><div><div class="call-caller">+1 (415) 555-••07</div><div class="call-caller-sub">After-hours · new prospect</div></div><div class="call-dur">02:54</div><span class="pill green">Booked Mon 09:00</span></div>
+        <div class="search-empty">No calls match your search.</div>
+        <div style="font-size:var(--fs-body);color:var(--slate);margin-top:1rem;line-height:1.5;">Caller numbers are masked in the console. Full numbers are access-controlled and visible only to authorized staff (GLBA Safeguards).</div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="calendar">
+      <div class="card r d2">
+        <div class="card-head"><div class="card-title">This week · partner calendar</div><span class="pill gold">14 bookings</span></div>
+        <div class="cal">
+          <div class="cal-h">Mon</div><div class="cal-h">Tue</div><div class="cal-h">Wed</div><div class="cal-h">Thu</div><div class="cal-h">Fri</div><div class="cal-h">Sat</div><div class="cal-h">Sun</div>
+          <div class="cal-d"><div class="cal-d-num">12</div><div class="cal-d-dot green"></div><div class="cal-d-dot gold"></div></div>
+          <div class="cal-d today"><div class="cal-d-num">13</div><div class="cal-d-dot gold"></div><div class="cal-d-dot gold"></div><div class="cal-d-dot green"></div></div>
+          <div class="cal-d"><div class="cal-d-num">14</div><div class="cal-d-dot green"></div><div class="cal-d-dot gold"></div></div>
+          <div class="cal-d"><div class="cal-d-num">15</div><div class="cal-d-dot gold"></div></div>
+          <div class="cal-d"><div class="cal-d-num">16</div><div class="cal-d-dot green"></div><div class="cal-d-dot green"></div></div>
+          <div class="cal-d muted"><div class="cal-d-num">17</div></div>
+          <div class="cal-d muted"><div class="cal-d-num">18</div></div>
+        </div>
+        <div style="display:flex;gap:1rem;margin-top:.9rem;font-size:var(--fs-body);color:#c5cbdc;">
+          <div style="display:flex;align-items:center;gap:.4rem;"><div style="width:6px;height:6px;background:var(--gold);"></div>Consult</div>
+          <div style="display:flex;align-items:center;gap:.4rem;"><div style="width:6px;height:6px;background:var(--green);"></div>New engagement</div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── LEAD GEN ──────────────── -->
+  <section class="view" data-v="leadgen">
+    <div class="page-head">
+      <div>
+        <div class="page-eyebrow">System No. III · Revenue Recovery Bundle</div>
+        <h1 class="page-title">AI Lead Generation &amp; <em>Marketing</em></h1>
+        <p class="page-sub">Targeted campaigns, qualification, and booked consultations, built for the firms a CPA actually wants.</p>
+      </div>
+      <div class="page-meta"><span class="meta-chip">Sample Firm</span><span class="meta-live">3 campaigns running</span></div>
+    </div>
+
+    <div class="page-body">
+      <div class="workbar">
+        <div class="wb-crumb"><span class="wb-dot"></span>Sample Firm · Workspace <em>/ Lead Gen</em></div>
+        <div class="wb-seg"><span class="on" data-pane="funnel">Funnel</span><span data-pane="campaigns">Campaigns</span><span data-pane="pipeline">Pipeline</span></div>
+        <div class="wb-right"><div class="wb-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg><input type="text" placeholder="Search prospects…"></div><div class="wb-avatar">MK</div></div>
+      </div>
+      <div class="kpis r d1">
+        <div class="kpi"><div class="kpi-lbl">Qualified leads (30d)</div><div class="kpi-val gold">142</div><div class="kpi-delta up">+ 28% MoM</div></div>
+        <div class="kpi"><div class="kpi-lbl">Booked consults</div><div class="kpi-val green">37</div><div class="kpi-delta">AI-screened first</div></div>
+        <div class="kpi"><div class="kpi-lbl">Cost / qualified lead</div><div class="kpi-val">$48</div><div class="kpi-delta">blended</div></div>
+        <div class="kpi"><div class="kpi-lbl">Pipeline value</div><div class="kpi-val gold">$284K</div><div class="kpi-delta">est. annual</div></div>
+      </div>
+
+      <div class="pane on" data-pane="funnel">
+      <div class="grid-2-1 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">30-day funnel · all campaigns</div><div class="card-action">Slice by campaign →</div></div>
+          <div class="funnel">
+            <div class="funnel-row"><div class="funnel-lbl">Reached</div><div class="funnel-bar"><div class="funnel-bar-fill" style="width:100%;" data-val="4,800"></div></div><div class="funnel-conv">100% <span>baseline</span></div></div>
+            <div class="funnel-row"><div class="funnel-lbl">Engaged</div><div class="funnel-bar"><div class="funnel-bar-fill" style="width:46%;" data-val="612"></div></div><div class="funnel-conv">13% <span>of reached</span></div></div>
+            <div class="funnel-row"><div class="funnel-lbl">Call requests</div><div class="funnel-bar"><div class="funnel-bar-fill" style="width:26%;" data-val="198"></div></div><div class="funnel-conv">32% <span>of engaged</span></div></div>
+            <div class="funnel-row"><div class="funnel-lbl">Qualified</div><div class="funnel-bar"><div class="funnel-bar-fill" style="width:16%;" data-val="142"></div></div><div class="funnel-conv">72% <span>AI-screened</span></div></div>
+            <div class="funnel-row"><div class="funnel-lbl">Booked</div><div class="funnel-bar"><div class="funnel-bar-fill" style="width:7%;" data-val="37"></div></div><div class="funnel-conv">26% <span>of qualified</span></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Channel mix</div><span class="pill gold">30 days</span></div>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div><div style="display:flex;justify-content:space-between;font-size:var(--fs-body);color:#cdd2e1;margin-bottom:.4rem;"><span>LinkedIn outbound</span><span class="num" style="color:var(--white);">58%</span></div><div class="gbar"><i style="width:58%;"></i></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:var(--fs-body);color:#cdd2e1;margin-bottom:.4rem;"><span>Email</span><span class="num" style="color:var(--white);">29%</span></div><div class="gbar"><i style="width:29%;"></i></div></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:var(--fs-body);color:#cdd2e1;margin-bottom:.4rem;"><span>Referral / paid</span><span class="num" style="color:var(--white);">13%</span></div><div class="gbar"><i style="width:13%;"></i></div></div>
+          </div>
+          <div style="font-size:var(--fs-body);color:#c5cbdc;margin-top:1.1rem;line-height:1.6;">Outreach uses publicly-listed business contacts only. CAN-SPAM opt-out honored on every send.</div>
+        </div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="campaigns">
+        <div class="card r d2">
+          <div class="card-head"><div class="card-title">Active campaigns</div><div class="card-action">+ New</div></div>
+          <div class="camp-list">
+            <div class="camp"><div><div class="camp-name">Small-business owners · 1099-heavy<span>LinkedIn outbound · 1,400 contacts</span></div></div><div class="camp-stat"><div class="camp-stat-lbl">Replies</div><div class="camp-stat-val">68</div></div><div class="camp-stat"><div class="camp-stat-lbl">Booked</div><div class="camp-stat-val">14</div></div><span class="pill green">Live</span></div>
+            <div class="camp"><div><div class="camp-name">Dental &amp; medical practices<span>Email · 2,200 contacts</span></div></div><div class="camp-stat"><div class="camp-stat-lbl">Replies</div><div class="camp-stat-val">94</div></div><div class="camp-stat"><div class="camp-stat-lbl">Booked</div><div class="camp-stat-val">17</div></div><span class="pill green">Live</span></div>
+            <div class="camp"><div><div class="camp-name">Real-estate investors · multi-entity<span>LinkedIn · 940 contacts</span></div></div><div class="camp-stat"><div class="camp-stat-lbl">Replies</div><div class="camp-stat-val">42</div></div><div class="camp-stat"><div class="camp-stat-lbl">Booked</div><div class="camp-stat-val">6</div></div><span class="pill gold">Optimizing</span></div>
+            <div class="camp"><div><div class="camp-name">Restaurant &amp; hospitality groups<span>Paid · landing v3</span></div></div><div class="camp-stat"><div class="camp-stat-lbl">Replies</div><div class="camp-stat-val">–</div></div><div class="camp-stat"><div class="camp-stat-lbl">Booked</div><div class="camp-stat-val">–</div></div><span class="pill slate">Draft</span></div>
+          </div>
+          <div class="search-empty">No campaigns match your search.</div>
+        </div>
+      </div>
+
+      <div class="pane" data-pane="pipeline">
+      <div class="card r d2">
+        <div class="card-head"><div class="card-title">Pipeline · qualified prospects</div><div class="card-action">Sync to CRM →</div></div>
+        <table class="t">
+          <thead><tr><th>Prospect</th><th>Type</th><th>Revenue band</th><th>Source</th><th>Score</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Northgate Dental Group</td><td>Dental · 4 locations</td><td class="num">$3.2M</td><td>LinkedIn</td><td class="num" style="color:var(--gold-lt);">92</td><td><span class="pill green">Booked Tue 10:30</span></td></tr>
+            <tr><td class="name">Cedar Ridge Construction</td><td>Construction · S-corp</td><td class="num">$6.1M</td><td>Email</td><td class="num" style="color:var(--gold-lt);">88</td><td><span class="pill gold">Replied</span></td></tr>
+            <tr><td class="name">Marlowe Property Group</td><td>Real estate · 9 entities</td><td class="num">$4.4M</td><td>LinkedIn</td><td class="num" style="color:var(--gold-lt);">85</td><td><span class="pill green">Booked Wed 14:00</span></td></tr>
+            <tr><td class="name">Helix Orthodontics</td><td>Dental specialty</td><td class="num">$2.1M</td><td>Referral</td><td class="num" style="color:var(--gold-lt);">81</td><td><span class="pill gold">Qualifying</span></td></tr>
+            <tr><td class="name">Brightline Hospitality</td><td>Restaurant group · 5 units</td><td class="num">$8.6M</td><td>Outbound</td><td class="num" style="color:var(--gold-lt);">79</td><td><span class="pill amber">Nurturing</span></td></tr>
+          </tbody>
+        </table>
+        <div class="search-empty">No prospects match your search.</div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── DOCUMENT PROCESSING ──────────────── -->
+  <section class="view" data-v="docs">
+    <div class="page-head">
+      <div>
+        <div class="page-eyebrow">System No. IV</div>
+        <h1 class="page-title">Document <em>Processing</em></h1>
+        <p class="page-sub">Intake triage and compliance auditing. Engagement letter to filed return, automated and auditable.</p>
+      </div>
+      <div class="page-meta"><span class="meta-chip">Sample Firm</span><span class="meta-live">Queue · 12 docs</span></div>
+    </div>
+
+    <div class="page-body">
+      <div class="workbar">
+        <div class="wb-crumb"><span class="wb-dot"></span>Sample Firm · Workspace <em>/ Documents</em></div>
+        <div class="wb-seg"><span class="on" data-pane="queue">Queue</span><span data-pane="audit">Audit</span><span data-pane="rules">Rules</span></div>
+        <div class="wb-right"><div class="wb-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg><input type="text" placeholder="Search documents…"></div><div class="wb-avatar">MK</div></div>
+      </div>
+      <div class="kpis r d1">
+        <div class="kpi"><div class="kpi-lbl">Docs processed (30d)</div><div class="kpi-val">1,284</div><div class="kpi-delta up">+ 312 vs. last 30</div></div>
+        <div class="kpi"><div class="kpi-lbl">Auto-extracted fields</div><div class="kpi-val gold">~96%</div><div class="kpi-delta">human-reviewed</div></div>
+        <div class="kpi"><div class="kpi-lbl">Compliance flags caught</div><div class="kpi-val">47</div><div class="kpi-delta">before partner review</div></div>
+        <div class="kpi"><div class="kpi-lbl">Avg. turnaround</div><div class="kpi-val green">3.4 hrs</div><div class="kpi-delta down">vs. days, manual</div></div>
+      </div>
+
+      <div class="pane on" data-pane="queue">
+      <div class="card r d2">
+        <div class="card-head"><div class="card-title">Today's intake queue</div><div class="card-action">Configure routing →</div></div>
+        <table class="t">
+          <thead><tr><th>Client</th><th>Doc type</th><th>Pages</th><th>Received</th><th>Routed to</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="name">Hartwell &amp; Co.</td><td>W-9</td><td class="num">1</td><td>09:42</td><td>S. Patel</td><td><span class="pill gold">Extracting</span></td></tr>
+            <tr><td class="name">Maren Logistics</td><td>1099-NEC (bundle)</td><td class="num">28</td><td>09:31</td><td>R. Cho</td><td><span class="pill green">Indexed</span></td></tr>
+            <tr><td class="name">Brixley Holdings</td><td>Bank statements Q1</td><td class="num">112</td><td>09:18</td><td>–</td><td><span class="pill green">Reconciled</span></td></tr>
+            <tr><td class="name">Oak &amp; Vance LLP</td><td>K-1 (5)</td><td class="num">42</td><td>08:55</td><td>D. Romero</td><td><span class="pill amber">Variance flagged</span></td></tr>
+            <tr><td class="name">Sundial Properties</td><td>Engagement letter</td><td class="num">3</td><td>08:11</td><td>Auto</td><td><span class="pill green">Countersigned</span></td></tr>
+            <tr><td class="name">Northway Dental</td><td>Receipts batch</td><td class="num">87</td><td>07:48</td><td>R. Cho</td><td><span class="pill slate">Pending OCR</span></td></tr>
+          </tbody>
+        </table>
+        <div class="search-empty">No documents match your search.</div>
+        <div class="compliance-strip" style="margin-top:1.4rem;">
+          <span class="cs-lead">Tax data handling</span>
+          <span class="cs-item">IRC §7216 consent verified before any disclosure</span>
+          <span class="cs-item">SSN / EIN masked at rest · PII tokenized</span>
+          <span class="cs-item">Immutable audit trail per document</span>
+        </div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="audit">
+      <div class="grid-2 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Live intake · W-9 from Hartwell &amp; Co.</div><span class="pill gold">Extracting</span></div>
+          <div class="doc-mock">
+            <div class="doc-mock-head"><h4>Form W-9</h4><p>Request for Taxpayer Identification Number &amp; Certification</p></div>
+            <p><strong>1. Name:</strong> <span class="extract">Hartwell &amp; Company, LLC</span></p>
+            <p><strong>2. Business name:</strong> Hartwell &amp; Co.</p>
+            <p><strong>3. Tax classification:</strong> <span class="extract">Limited Liability Company (S)</span></p>
+            <p><strong>4. Exemptions:</strong> Payee code: 5</p>
+            <p><strong>5. Address:</strong> <span class="extract">1840 Northgate Blvd, Suite 200</span></p>
+            <p><strong>6. City, state, ZIP:</strong> Sacramento, CA 95833</p>
+            <p style="margin-top:1rem;"><strong>Taxpayer ID (EIN):</strong> <span class="extract masked">••–••••918</span> <span class="mask-tag">Masked · §7216</span></p>
+            <p><strong>Signature:</strong> <em style="color:#a78840;">J. Miller (digital)</em> &nbsp; <strong>Date:</strong> <span class="extract">04/13/2026</span></p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Compliance checks · this return</div><span class="pill green">6 of 7 passing</span></div>
+          <div class="check-list">
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">Engagement letter signed</div><div class="check-desc">v.2026.03 · executed Mar 4 · stored in audit log</div></div></div>
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">ID verification (CIP)</div><div class="check-desc">Government ID matched · OFAC clear</div></div></div>
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">§7216 consent on file</div><div class="check-desc">Explicit disclosure consent · expires 12/31/2026</div></div></div>
+            <div class="check"><div class="check-box warn">!</div><div class="check-body"><div class="check-name">Prior-year return reconciliation</div><div class="check-desc">Schedule C income variance &gt;15%, partner review queued</div></div></div>
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">K-1s received (3 of 3)</div><div class="check-desc">All pass-through entities matched to source returns</div></div></div>
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">FBAR threshold check</div><div class="check-desc">Foreign accounts &lt; $10K aggregate · no FinCEN 114 required</div></div></div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="rules">
+      <div class="grid-2 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Routing rules</div><span class="pill gold">Partner-set</span></div>
+          <div style="font-size:var(--fs-body);color:#cdd2e1;line-height:1.7;">
+            <div style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--line);"><span>W-9 / 1099 forms</span><span style="color:var(--white);">→ Tax ops queue</span></div>
+            <div style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--line);"><span>Bank statements</span><span style="color:var(--white);">→ Bookkeeping · auto-reconcile</span></div>
+            <div style="display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--line);"><span>K-1 with variance &gt;15%</span><span style="color:var(--gold-lt);">→ Partner review</span></div>
+            <div style="display:flex;justify-content:space-between;padding:.5rem 0;"><span>Engagement letters</span><span style="color:var(--white);">→ Auto-countersign + file</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Data-handling rules</div><span class="pill green">Enforced</span></div>
+          <div class="check-list">
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">Auto-mask SSN, EIN &amp; bank numbers</div><div class="check-desc">Tokenized on ingest · unmask requires authorization</div></div></div>
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">No §7216 disclosure without consent</div><div class="check-desc">Documents quarantined until consent verified</div></div></div>
+            <div class="check"><div class="check-box">✓</div><div class="check-body"><div class="check-name">Retention &amp; destruction schedule</div><div class="check-desc">Per firm policy · 7-year default · logged purge</div></div></div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── ORCHESTRATION ──────────────── -->
+  <section class="view" data-v="orch">
+    <div class="page-head">
+      <div>
+        <div class="page-eyebrow">System No. V</div>
+        <h1 class="page-title">Client Orchestration <em>Agent</em></h1>
+        <p class="page-sub">Proactive status updates and milestone alerts, sent before the client asks for them.</p>
+      </div>
+      <div class="page-meta"><span class="meta-chip">Sample Firm</span><span class="meta-live">214 clients tracked</span></div>
+    </div>
+
+    <div class="page-body">
+      <div class="workbar">
+        <div class="wb-crumb"><span class="wb-dot"></span>Sample Firm · Workspace <em>/ Client Status</em></div>
+        <div class="wb-seg"><span class="on" data-pane="timeline">Timeline</span><span data-pane="clients">Clients</span><span data-pane="drafts">Drafts</span></div>
+        <div class="wb-right"><div class="wb-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg><input type="text" placeholder="Search clients…"></div><div class="wb-avatar">MK</div></div>
+      </div>
+      <div class="kpis r d1">
+        <div class="kpi"><div class="kpi-lbl">Status updates sent (30d)</div><div class="kpi-val gold">1,082</div><div class="kpi-delta up">+ 240</div></div>
+        <div class="kpi"><div class="kpi-lbl">"Where's my return?" inquiries</div><div class="kpi-val green">↓ 78%</div><div class="kpi-delta">vs. last season</div></div>
+        <div class="kpi"><div class="kpi-lbl">Client NPS</div><div class="kpi-val">+62</div><div class="kpi-delta up">+ 24 pts YoY</div></div>
+        <div class="kpi"><div class="kpi-lbl">Partner interruptions saved</div><div class="kpi-val">28 hrs / wk</div><div class="kpi-delta">across team</div></div>
+      </div>
+
+      <div class="pane on" data-pane="timeline">
+      <div class="card r d2">
+        <div class="card-head"><div class="card-title">Hartwell &amp; Co. · 2025 Tax Year</div><span class="pill gold">3 of 6 milestones</span></div>
+        <div class="timeline">
+          <div class="tl-item done"><div class="tl-dot"></div><div class="tl-time">Mar 04 · 11:20 AM</div><div class="tl-title">Engagement countersigned</div><div class="tl-desc">Auto-sent to client portal · countersigned page filed to audit log.</div></div>
+          <div class="tl-item done"><div class="tl-dot"></div><div class="tl-time">Mar 22 · 09:00 AM</div><div class="tl-title">Document checklist complete</div><div class="tl-desc">17 of 17 source documents received and indexed. Sent confirmation + ETA.</div>
+            <div class="msg-card"><div class="msg-card-hdr"><span class="gold">Sent · SMS + Email</span><span>Mar 22 · 09:00</span></div><div class="msg-card-body">Hi Jane, all 17 documents are in. Your return is moving into preparation; expect a draft for review by April 4. We'll text you the moment it's ready.</div></div>
+          </div>
+          <div class="tl-item done"><div class="tl-dot"></div><div class="tl-time">Apr 02 · 02:15 PM</div><div class="tl-title">Variance flagged · partner notified</div><div class="tl-desc">Schedule C income variance &gt;15% vs. prior year, partner D. Romero alerted before client noticed.</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Apr 04 · scheduled</div><div class="tl-title">Draft return ready for client review</div><div class="tl-desc">Will send portal link + 1-paragraph plain-English summary of variance from last year.</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Apr 12 · scheduled</div><div class="tl-title">E-signature reminder · day 7</div><div class="tl-desc">If unsigned 7 days after delivery, soft nudge with partner CC.</div></div>
+          <div class="tl-item"><div class="tl-dot"></div><div class="tl-time">Apr 14 · scheduled</div><div class="tl-title">E-file confirmation + receipt</div><div class="tl-desc">Filed-and-accepted notification with downloadable PDF copy + 2026 planning callout.</div></div>
+        </div>
+      </div>
+      <div class="compliance-strip" style="margin-top:1.2rem;">
+        <span class="cs-lead">Client comms governance</span>
+        <span class="cs-item">No tax advice sent without partner sign-off</span>
+        <span class="cs-item">Sent over encrypted client portal · GLBA</span>
+        <span class="cs-item">Every message logged &amp; reviewable</span>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="clients">
+        <div class="card r d2">
+          <div class="card-head"><div class="card-title">All clients · status snapshot</div><div class="card-action">Filter →</div></div>
+          <table class="t">
+            <thead><tr><th>Client</th><th>Stage</th><th>Last touch</th></tr></thead>
+            <tbody>
+              <tr><td class="name">Hartwell &amp; Co.</td><td><span class="pill gold">Draft review</span></td><td>2h ago</td></tr>
+              <tr><td class="name">Maren Logistics</td><td><span class="pill green">Filed</span></td><td>1d ago</td></tr>
+              <tr><td class="name">Brixley Holdings</td><td><span class="pill slate">Intake</span></td><td>4h ago</td></tr>
+              <tr><td class="name">Oak &amp; Vance LLP</td><td><span class="pill amber">Awaiting K-1</span></td><td>1d ago</td></tr>
+              <tr><td class="name">Sundial Properties</td><td><span class="pill gold">Preparation</span></td><td>6h ago</td></tr>
+              <tr><td class="name">Northway Dental</td><td><span class="pill green">Signed · pending efile</span></td><td>3h ago</td></tr>
+              <tr><td class="name">Cedar Ridge Construction</td><td><span class="pill slate">Onboarding</span></td><td>30m ago</td></tr>
+            </tbody>
+          </table>
+          <div class="search-empty">No clients match your search.</div>
+        </div>
+      </div>
+
+      <div class="pane" data-pane="drafts">
+        <div class="card r d2">
+          <div class="card-head"><div class="card-title">Auto-drafted · ready to send</div><span class="pill gold">Awaiting partner OK</span></div>
+          <div class="msg-card"><div class="msg-card-hdr"><span class="gold">Draft · Email to Oak &amp; Vance</span><span>Compose</span></div><div class="msg-card-body">Quick update: we're still waiting on K-1s from two of your pass-through entities (Pinegrove LP and Larkin Holdings). We've followed up directly with their accountants. Your return is otherwise ready; estimated filing 6 business days from receipt.</div></div>
+          <div style="font-size:var(--fs-body);color:var(--slate);margin-top:.9rem;line-height:1.55;">Drafts are status updates only, never tax positions or advice. A partner approves before anything sends.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── DASHBOARDS & CRM ──────────────── -->
+  <section class="view" data-v="dash">
+    <div class="page-head">
+      <div>
+        <div class="page-eyebrow">System No. VI</div>
+        <h1 class="page-title">Custom Dashboards &amp; <em>CRM</em></h1>
+        <p class="page-sub">The visibility layer most firms have never had: AR aging, billable hours, and client status, pulled from the tools you already run.</p>
+      </div>
+      <div class="page-meta"><span class="meta-chip">Sample Firm</span><span class="meta-live">Live sync</span></div>
+    </div>
+
+    <div class="page-body">
+      <div class="workbar">
+        <div class="wb-crumb"><span class="wb-dot"></span>Sample Firm · Workspace <em>/ Dashboards</em></div>
+        <div class="wb-seg"><span class="on" data-pane="overview">Overview</span><span data-pane="sources">Sources</span></div>
+        <div class="wb-right"><div class="wb-avatar">MK</div></div>
+      </div>
+      <div class="kpis r d1">
+        <div class="kpi"><div class="kpi-lbl">AR over 60 days</div><div class="kpi-val gold">$25,270</div><div class="kpi-delta">was invisible</div></div>
+        <div class="kpi"><div class="kpi-lbl">Billable hrs · YoY</div><div class="kpi-val green">+ 11%</div><div class="kpi-delta">vs. same period</div></div>
+        <div class="kpi"><div class="kpi-lbl">Active clients</div><div class="kpi-val">214</div><div class="kpi-delta">live pipeline</div></div>
+        <div class="kpi"><div class="kpi-lbl">Reports automated</div><div class="kpi-val">9</div><div class="kpi-delta">no manual pulls</div></div>
+      </div>
+
+      <div class="pane on" data-pane="overview">
+      <div class="grid-2 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Practice health · this month</div><span class="pill green">Live sync</span></div>
+          <div class="gauge">
+            <div class="gauge-row"><div class="gl"><span>Realization rate</span><b>92%</b></div><div class="gbar"><i style="width:92%;"></i></div></div>
+            <div class="gauge-row"><div class="gl"><span>Utilization · staff</span><b>78%</b></div><div class="gbar"><i style="width:78%;"></i></div></div>
+            <div class="gauge-row"><div class="gl"><span>AR &gt; 90 days</span><b>12%</b></div><div class="gbar"><i style="width:12%;"></i></div></div>
+            <div class="gauge-row"><div class="gl"><span>Returns in progress</span><b>61%</b></div><div class="gbar"><i style="width:61%;"></i></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Billable hours · partner view</div><span class="pill gold">YoY</span></div>
+          <table class="t">
+            <thead><tr><th>Partner</th><th>This yr</th><th>Last yr</th><th>Δ</th></tr></thead>
+            <tbody>
+              <tr><td class="name">T. Batty</td><td class="num">1,840</td><td class="num">1,710</td><td><span class="pill green">+8%</span></td></tr>
+              <tr><td class="name">B. Harrison</td><td class="num">1,512</td><td class="num">1,302</td><td><span class="pill green">+16%</span></td></tr>
+              <tr><td class="name">Staff (avg)</td><td class="num">1,180</td><td class="num">1,140</td><td><span class="pill green">+4%</span></td></tr>
+            </tbody>
+          </table>
+          <div style="font-size:var(--fs-body);color:#c5cbdc;margin-top:.9rem;line-height:1.6;">The year-over-year billable view most partners have never been able to see at a glance.</div>
+        </div>
+      </div>
+      <div class="compliance-strip" style="margin-top:1.2rem;">
+        <span class="cs-lead">Compliant by design</span>
+        <span class="cs-item">Read-only sync · minimum-data principles</span>
+        <span class="cs-item">Access-controlled per role (GLBA Safeguards)</span>
+        <span class="cs-item">Hosted on your dedicated environment</span>
+      </div>
+      <p class="illus-note">Console uses illustrative sample-firm data.</p>
+      </div>
+
+      <div class="pane" data-pane="sources">
+      <div class="grid-2 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Pulls from your stack</div><span class="pill gold">Read-only</span></div>
+          <div class="integ-row"><div class="integ">QuickBooks</div><div class="integ">UltraTax</div><div class="integ">Onvio</div><div class="integ">Xero</div><div class="integ">Asana</div><div class="integ">Stripe</div></div>
+          <div style="font-size:var(--fs-body);color:#c5cbdc;margin-top:1rem;line-height:1.6;">Connected via API where one exists, or secure scheduled export where it doesn't (e.g. Onvio). Nothing leaves your environment unnecessarily.</div>
+        </div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Built around your firm</div><span class="pill green">Bespoke</span></div>
+          <div style="font-size:var(--fs-body);color:#cdd2e1;line-height:1.7;">Every dashboard is shaped to the metrics your partners actually decide on, the live AR-aging and timekeeping views we're deploying for firms now are examples, not a fixed template. If you can describe the number you keep guessing at, we can put it on one screen.</div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── CUSTOM SOFTWARE, AUTOMATION & AGENTS ──────────────── -->
+  <section class="view" data-v="custom">
+    <div class="page-head">
+      <div>
+        <div class="page-eyebrow">System No. VII</div>
+        <h1 class="page-title">Custom Software, Automation &amp; <em>Agents</em></h1>
+        <p class="page-sub">From simple automations between the tools you already run, to bespoke agents and full custom builds, for problems no off-the-shelf vendor solves.</p>
+      </div>
+      <div class="page-meta"><span class="meta-chip">Bespoke</span><span class="meta-live">By engagement</span></div>
+    </div>
+
+    <div class="page-body">
+      <div class="workbar">
+        <div class="wb-crumb"><span class="wb-dot"></span>Northstone · Build Studio <em>/ Spectrum</em></div>
+        <div class="wb-seg"><span class="on" data-pane="spectrum">Spectrum</span><span data-pane="architecture">Architecture</span><span data-pane="catalog">Catalog</span></div>
+        <div class="wb-right"><div class="wb-avatar">MK</div></div>
+      </div>
+
+      <div class="pane on" data-pane="spectrum">
+      <div class="spec-tier r d1">
+        <div class="build-card">
+          <div class="build-tag">Entry point</div>
+          <div class="build-title">Automations</div>
+          <div class="build-desc">Connect your existing stack so it talks to itself. Triggers, hand-offs, and notifications wired across the tools you already pay for. No six-figure build required.</div>
+          <div class="build-tech"><span>Zapier</span><span>n8n</span><span>Make</span><span>Webhooks</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-tag">Mid</div>
+          <div class="build-title">Custom Agents</div>
+          <div class="build-desc">Purpose-built AI agents for a specific job in your firm: a capacity dispatcher, a nexus monitor, a quarterly-insights drafter. The partner keeps the pen; the agent removes the typing.</div>
+          <div class="build-tech"><span>Anthropic</span><span>Routing</span><span>Guardrails</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-tag">Full build</div>
+          <div class="build-title">Custom Software</div>
+          <div class="build-desc">End-to-end systems designed around how your firm actually operates: engagement-to-filed orchestration, reconcilers, and more. Yours, built in-house.</div>
+          <div class="build-tech"><span>Python · FastAPI</span><span>Postgres</span><span>SOC 2 hosting</span></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:1.2rem;">
+        <div class="card-head"><div class="card-title">How a build gets shipped</div><span class="pill green">Shadow-mode first</span></div>
+        <div class="flow" style="margin-top:.2rem;">
+          <div class="flow-node"><div class="flow-node-lbl">01</div><div class="flow-node-txt">Watch the actual workflow</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node"><div class="flow-node-lbl">02</div><div class="flow-node-txt">Model the agent &amp; guardrails</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node"><div class="flow-node-lbl">03</div><div class="flow-node-txt">Build · shadow · measure</div></div>
+        </div>
+        <div style="margin-top:1.1rem;font-size:var(--fs-body);color:#cdd2e1;line-height:1.7;">We shadow the human doing the work and don't ship until the system matches or beats their accuracy, with a clean audit trail and a partner-controlled escalation path. Bring us a problem no vendor solves; we'll come back with a 1-page scope and a fixed-fee design phase before you commit.</div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="architecture">
+      <div class="grid-2-1 r d2">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Sample build · "Engagement-to-Filed" orchestration</div><span class="pill gold">In flight</span></div>
+          <div class="diagram">
+            <div class="node center" style="left:50%;top:50%;transform:translate(-50%,-50%);min-width:170px;"><div class="node-lbl">Core</div><div class="node-name">Orchestration Agent</div></div>
+            <div class="node" style="left:4%;top:8%;"><div class="node-lbl">Intake</div><div class="node-name">Engagement letter</div></div>
+            <div class="node" style="right:4%;top:8%;"><div class="node-lbl">Source</div><div class="node-name">QuickBooks · Xero</div></div>
+            <div class="node" style="left:4%;bottom:8%;"><div class="node-lbl">Comms</div><div class="node-name">Client portal · SMS</div></div>
+            <div class="node" style="right:4%;bottom:8%;"><div class="node-lbl">Output</div><div class="node-name">Prep system · e-file</div></div>
+            <div class="node" style="left:50%;top:6%;transform:translateX(-50%);"><div class="node-lbl">Trust</div><div class="node-name">Audit log · §7216</div></div>
+            <div class="node" style="left:50%;bottom:6%;transform:translateX(-50%);"><div class="node-lbl">Exception</div><div class="node-name">Partner review queue</div></div>
+            <div class="node-line" style="left:14%;top:18%;width:32%;transform:rotate(28deg);"></div>
+            <div class="node-line" style="right:14%;top:18%;width:32%;transform:rotate(-28deg) translateX(-100%);transform-origin:right center;"></div>
+            <div class="node-line" style="left:14%;bottom:18%;width:32%;transform:rotate(-28deg);"></div>
+            <div class="node-line" style="right:14%;bottom:18%;width:32%;transform:rotate(28deg) translateX(-100%);transform-origin:right center;"></div>
+            <div class="node-line" style="left:50%;top:14%;width:1px;height:30%;background:rgba(201,168,76,.25);"></div>
+            <div class="node-line" style="left:50%;bottom:14%;width:1px;height:30%;background:rgba(201,168,76,.25);"></div>
+          </div>
+          <div style="margin-top:1rem;font-size:var(--fs-body);color:#cdd2e1;line-height:1.6;">A purpose-built orchestrator that watches every active engagement, pulls source data from your bookkeeping stack, drafts client comms, queues exceptions for partner review, and writes everything to a tamper-proof audit log.</div>
+        </div>
+        <div class="stack">
+          <div class="card">
+            <div class="card-head"><div class="card-title">Stack we build on</div></div>
+            <div class="integ-row" style="margin-top:.3rem;"><div class="integ">Python · FastAPI</div><div class="integ">Postgres</div><div class="integ">Anthropic · OpenAI</div><div class="integ">Twilio</div><div class="integ">Plaid</div><div class="integ">QBO · Xero · Intacct API</div><div class="integ">SOC 2 hosting</div></div>
+          </div>
+          <div class="card">
+            <div class="card-head"><div class="card-title">Built recently · CPA firms</div></div>
+            <div style="font-size:var(--fs-body);color:#cdd2e1;line-height:1.7;">
+              <div style="padding:.4rem 0;border-bottom:1px solid var(--line);"><strong style="color:var(--white);font-weight:600;">Multi-entity tax dispatcher</strong>: routes 800+ returns across 12 preparers by complexity, capacity, and partner relationship.</div>
+              <div style="padding:.4rem 0;border-bottom:1px solid var(--line);"><strong style="color:var(--white);font-weight:600;">AR-aging + timekeeping dashboard</strong>: gives partners year-over-year billable visibility and live AR they never had.</div>
+              <div style="padding:.4rem 0;"><strong style="color:var(--white);font-weight:600;">Document-intake &amp; §7216 audit agent</strong>: structured intake with consent verification before any disclosure.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:1.2rem;">
+        <div class="card-head"><div class="card-title">Compliance review</div><span class="pill green">Per slice</span></div>
+        <div style="font-size:var(--fs-body);color:#cdd2e1;line-height:1.7;">Every build slice passes a compliance gate (§7216 data handling, GLBA Safeguards, and an audit-log requirement) before it ships to production.</div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="catalog">
+      <div class="grid-3 r d2">
+        <div class="build-card">
+          <div class="build-tag">Build · Tax</div>
+          <div class="build-title">Multi-state nexus monitor</div>
+          <div class="build-desc">Watches client revenue, payroll, and property across states; flags new economic-nexus thresholds before they become a filing obligation.</div>
+          <div class="build-tech"><span>Nexus rules</span><span>QBO API</span><span>Gusto</span><span>Slack alerts</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-tag">Build · Audit</div>
+          <div class="build-title">Workpaper drafter</div>
+          <div class="build-desc">Generates first-draft workpapers from source documents, ties tickmarks back to evidence, and queues judgment calls for the manager. Manager keeps the pen.</div>
+          <div class="build-tech"><span>Caseware-compatible</span><span>OCR</span><span>Tickmark links</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-tag">Build · Advisory</div>
+          <div class="build-title">Quarterly insights agent</div>
+          <div class="build-desc">Reads each client's books at quarter-end and drafts a partner-tone advisory note: trends, anomalies, tax-planning prompts. Partner edits in 5 minutes instead of writing in 50.</div>
+          <div class="build-tech"><span>Trend detection</span><span>Anomaly flags</span><span>Partner voice tuning</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-tag">Build · Operations</div>
+          <div class="build-title">Capacity dispatcher</div>
+          <div class="build-desc">Live view of preparer capacity. Routes new returns based on complexity, partner relationship, and current load, instead of partner-by-partner guesswork.</div>
+          <div class="build-tech"><span>Capacity model</span><span>PM integration</span><span>Routing rules</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-tag">Build · Tax</div>
+          <div class="build-title">1099 batch-prep agent</div>
+          <div class="build-desc">Scans vendor payments across the year, drafts the 1099-NEC batch, and flags every payee missing a W-9 before the January deadline.</div>
+          <div class="build-tech"><span>QBO · Stripe</span><span>W-9 matching</span><span>Deadline alerts</span></div>
+        </div>
+        <div class="build-card">
+          <div class="build-tag">Build · Operations</div>
+          <div class="build-title">Client onboarding agent</div>
+          <div class="build-desc">Takes a new client from signed engagement to active in hours: CIP checks, document checklist, §7216 consent, and portal setup, all sequenced and logged.</div>
+          <div class="build-tech"><span>CIP · OFAC</span><span>Consent capture</span><span>Portal setup</span></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── CONSULTING ──────────────── -->
+  <section class="view" data-v="consulting">
+    <div class="page-head">
+      <div>
+        <div class="page-eyebrow">Advisory</div>
+        <h1 class="page-title"><em>Consulting</em></h1>
+        <p class="page-sub">Strategy, automation roadmap, and ROI modeling, before a single line of code is written.</p>
+      </div>
+      <div class="page-meta"><span class="meta-chip">5-week engagement</span></div>
+    </div>
+
+    <div class="page-body">
+      <div class="workbar">
+        <div class="wb-crumb"><span class="wb-dot"></span>Northstone · Advisory <em>/ 5-Week Engagement</em></div>
+        <div class="wb-seg"><span class="on" data-pane="roadmap">Roadmap</span><span data-pane="deliverables">Deliverables</span><span data-pane="readout">Readout</span></div>
+        <div class="wb-right"><div class="wb-avatar">MK</div></div>
+      </div>
+
+      <div class="pane on" data-pane="roadmap">
+      <div class="road r d1">
+        <div class="road-step"><div class="road-week">Week 1</div><div class="road-name">Discovery &amp; shadow</div><ul class="road-pts"><li>Partner &amp; manager interviews</li><li>Workflow shadow sessions</li><li>System &amp; vendor inventory</li></ul></div>
+        <div class="road-step"><div class="road-week">Week 2</div><div class="road-name">Process map &amp; bottlenecks</div><ul class="road-pts"><li>End-to-end engagement map</li><li>Manual-touch quantification</li><li>Compliance exposure points</li></ul></div>
+        <div class="road-step"><div class="road-week">Week 3</div><div class="road-name">ROI model</div><ul class="road-pts"><li>Labor &amp; capacity baseline</li><li>Per-system payback period</li><li>Risk-adjusted scenarios</li></ul></div>
+        <div class="road-step"><div class="road-week">Week 4</div><div class="road-name">Roadmap</div><ul class="road-pts"><li>Sequenced 90-day plan</li><li>Build / buy / partner calls</li><li>Change-management plan</li></ul></div>
+        <div class="road-step"><div class="road-week">Week 5</div><div class="road-name">Partner readout</div><ul class="road-pts"><li>Full deck &amp; appendices</li><li>Live Q&amp;A with partners</li><li>Optional: build proposal</li></ul></div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="deliverables">
+      <div class="grid-3 r d2">
+        <div class="deliv"><div class="deliv-num">01</div><div class="deliv-name">Workflow audit</div><div class="deliv-desc">End-to-end map of how an engagement moves through your firm today, partner touches, idle time, rework loops, compliance gates.</div></div>
+        <div class="deliv"><div class="deliv-num">02</div><div class="deliv-name">ROI model</div><div class="deliv-desc">A model your CFO can interrogate. Hours saved, AR recovered, leads captured, modeled against your real cost of labor, not a vendor average.</div></div>
+        <div class="deliv"><div class="deliv-num">03</div><div class="deliv-name">90-day roadmap</div><div class="deliv-desc">Sequenced plan with go/no-go gates. Where to start, what to defer, what to never build. Partner-facing &amp; team-facing versions.</div></div>
+      </div>
+      </div>
+
+      <div class="pane" data-pane="readout">
+      <div class="card r d2">
+        <div class="card-head"><div class="card-title">Inside the partner readout</div><span class="pill gold">Illustrative</span></div>
+        <div class="grid-2">
+          <div>
+            <div style="font-family:'Inter',sans-serif;font-size:var(--fs-sub);color:var(--white);margin-bottom:.7rem;line-height:1.2;">If we install the <em style="color:var(--gold-lt);">Revenue Recovery Bundle</em> this quarter…</div>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:.7rem;font-size:var(--fs-body);color:rgba(245,246,250,.88);line-height:1.55;">
+              <li style="padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">→</span>Recover $42K–$58K aged AR within 90 days</li>
+              <li style="padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">→</span>Capture every after-hours inbound call · est. 6–9 new engagements per quarter</li>
+              <li style="padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">→</span>A consistent booked-consult pipeline that doesn't depend on referrals</li>
+              <li style="padding-left:1rem;position:relative;"><span style="position:absolute;left:0;color:var(--gold);">→</span>Compliance posture improves on FTC Safeguards &amp; §7216 traceability</li>
+            </ul>
+          </div>
+          <div style="border-left:1px solid var(--line);padding-left:1.4rem;">
+            <div style="font-family:'Inter',sans-serif;font-size:var(--fs-body);letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin-bottom:.7rem;">Illustrative model · year one</div>
+            <table class="t" style="font-size:var(--fs-body);">
+              <tbody>
+                <tr><td>Setup (Revenue Recovery Bundle)</td><td class="num" style="text-align:right;">$12,500</td></tr>
+                <tr><td>Annual management</td><td class="num" style="text-align:right;">$21,000</td></tr>
+                <tr><td><strong>Total year-one</strong></td><td class="num" style="text-align:right;color:var(--white);">$33,500</td></tr>
+                <tr><td>Modeled year-one return</td><td class="num" style="text-align:right;color:var(--gold-lt);">$120K–$180K</td></tr>
+                <tr><td><strong>ROI (conservative)</strong></td><td class="num" style="text-align:right;color:var(--green);">3.6×–5.4×</td></tr>
+              </tbody>
+            </table>
+            <div style="font-size:var(--fs-body);color:rgba(188,194,216,.85);margin-top:.8rem;line-height:1.5;">Figures illustrative. Your engagement is modeled on your real numbers in the audit.</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<script>
+  const navItems = document.querySelectorAll('.nav-item');
+  const views = document.querySelectorAll('.view');
+  const main = document.querySelector('.main');
+
+  function go(name) {
+    navItems.forEach(n => n.classList.toggle('active', n.dataset.view === name));
+    views.forEach(v => v.classList.toggle('active', v.dataset.v === name));
+    const v = document.querySelector('.view[data-v="'+name+'"]');
+    if (v) { const input = v.querySelector('.wb-search input'); if (input) { input.value=''; runSearch(v, ''); } }
+    main.scrollTo({ top: 0, behavior: 'instant' });
+    if (window.innerWidth <= 900) { v && v.scrollIntoView({ behavior:'smooth', block:'start' }); }
+  }
+
+  navItems.forEach(n => n.addEventListener('click', () => go(n.dataset.view)));
+  document.querySelectorAll('.sol-tile').forEach(t => t.addEventListener('click', () => go(t.dataset.view)));
+  document.querySelectorAll('[data-view].ghost, .ghost[data-view]').forEach(b => b.addEventListener('click', () => go(b.dataset.view)));
+
+  document.querySelectorAll('.wb-seg').forEach(seg => {
+    const tabs = seg.querySelectorAll('span');
+    const view = seg.closest('.view');
+    tabs.forEach(tab => tab.addEventListener('click', () => {
+      const pane = tab.dataset.pane;
+      tabs.forEach(t => t.classList.toggle('on', t === tab));
+      view.querySelectorAll('.pane').forEach(p => p.classList.toggle('on', p.dataset.pane === pane));
+      const input = view.querySelector('.wb-search input');
+      if (input) { input.value=''; runSearch(view, ''); }
+    }));
+  });
+
+  function runSearch(view, qRaw) {
+    const q = qRaw.trim().toLowerCase();
+    const pane = view.querySelector('.pane.on') || view;
+    const rows = pane.querySelectorAll('table.t tbody tr, .call-row, .camp');
+    let shown = 0;
+    rows.forEach(row => { const match = !q || row.textContent.toLowerCase().includes(q); row.classList.toggle('filtered-out', !match); if (match) shown++; });
+    const empty = pane.querySelector('.search-empty');
+    if (empty) empty.classList.toggle('on', q && shown === 0);
+  }
+
+  document.querySelectorAll('.wb-search input').forEach(input => {
+    const view = input.closest('.view');
+    input.addEventListener('input', () => runSearch(view, input.value));
+  });
+</script>
+
+</body>
+</html>
