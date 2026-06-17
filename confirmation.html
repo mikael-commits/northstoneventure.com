@@ -1692,7 +1692,16 @@ src="https://www.facebook.com/tr?id=1488733843043488&ev=Schedule&noscript=1"/>
   function param(name) { return new URLSearchParams(window.location.search).get(name) || ''; }
   const firstName = param('invitee_first_name');
   if (firstName) {
-    document.querySelector('.hero h1').innerHTML = `${firstName}, Your Call Is <em>Confirmed.</em><br>Here's What To Do Next.`;
+    const h1 = document.querySelector('.hero h1');
+    h1.textContent = '';
+    const nameNode = document.createTextNode(firstName + ', Your Call Is ');
+    const em = document.createElement('em');
+    em.textContent = 'Confirmed.';
+    const rest = document.createElement('br');
+    h1.appendChild(nameNode);
+    h1.appendChild(em);
+    h1.appendChild(rest);
+    h1.appendChild(document.createTextNode("Here's What To Do Next."));
   }
 
   /* Animate bar chart on scroll into view */
